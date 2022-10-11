@@ -12,7 +12,7 @@ import com.example.pizz_apk.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class RestaurantChoixActivity extends AppCompatActivity {
 
     List<String> restaurantsList;
     ActivityMainBinding binding;
