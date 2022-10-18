@@ -31,5 +31,6 @@ public class ListePizzasActivity extends AppCompatActivity {
         binding.rvPizzasListe.setHasFixedSize(true);
         binding.rvPizzasListe.setAdapter(adapter);
         binding.rvPizzasListe.setLayoutManager(new LinearLayoutManager(this));
+
     }
 }
