@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Pizz-APK</string>
+    <string name="app_name">Una Vita</string>
+    <string name="image_Unavita_Desc_Login">Description Unavita</string>
+    <string name="login_EmailAdress">Adresse mail</string>
+    <string name="login_Password">Mot de passe</string>
+    <string name="btn_login_connexion">Connexion</string>
+    <string name="login_password_forgot">mot de passe oublié ?</string>
 </resources>

@@ -37,5 +37,7 @@ public class RestaurantChoixActivity extends AppCompatActivity {
             Intent intent = new Intent().setClass(this, ListePizzasActivity.class);
             startActivity(intent);
         });
+
+
     }
 }
