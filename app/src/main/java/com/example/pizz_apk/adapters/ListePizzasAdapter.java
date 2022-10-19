@@ -15,6 +15,7 @@ import com.example.pizz_apk.models.PlatPropose;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.ListePizzasViewHolder>{
 
@@ -42,9 +43,9 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ListePizzasViewHolder holder, int position) {
-        binding.tvNomPizza.setText(pizzasList.get(position).getNom());
-        binding.tvDescriptionPizza.setText(pizzasList.get(position).getDescription());
-        binding.tvPrixPizza.setText(String.format("%.2f",pizzasList.get(position).getPrix())+"€");
+        holder.binding.tvNomPizza.setText(pizzasList.get(position).getNom());
+        holder.binding.tvDescriptionPizza.setText(pizzasList.get(position).getDescription());
+        holder.binding.tvPrixPizza.setText(String.format(Locale.getDefault(),"%.2f",pizzasList.get(position).getPrix())+"€");
     }
 
     @Override
@@ -68,6 +69,7 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
 
         public ListePizzasViewHolder(@NonNull View itemView) {
             super(itemView);
+            binding = RvItemPizzaBinding.bind(itemView);
         }
     }
 
