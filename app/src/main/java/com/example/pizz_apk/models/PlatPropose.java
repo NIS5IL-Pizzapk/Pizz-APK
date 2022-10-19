@@ -1,5 +1,6 @@
 package com.example.pizz_apk.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlatPropose {
@@ -70,5 +71,15 @@ public class PlatPropose {
 
     public int getId() {
         return id;
+    }
+
+    public static List<PlatPropose> getPlatsByTagNameFromList(List<PlatPropose> list, String tag) {
+        List<PlatPropose> newList = new ArrayList<>();
+        for(PlatPropose plat : list) {
+            for(Tag t : plat.getTags()) {
+                if(t.getNom().equals(tag)) {newList.add(plat);}
+            }
+        }
+        return newList;
     }
 }
