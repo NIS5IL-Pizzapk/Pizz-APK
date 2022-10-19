@@ -13,9 +13,9 @@
         android:layout_gravity="start"
         android:background="#B5000000"
         app:headerLayout="@layout/header"
-        app:menu="@menu/burger_menu"
-        app:itemTextColor="#FFFFFF"
         app:itemIconTint="#FFFFFF"
+        app:itemTextColor="#FFFFFF"
+        app:menu="@menu/burger_menu"
         app:subheaderColor="#C60101" />
 
 
@@ -27,7 +27,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#000000"
+            android:background="#2C2C2C"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme" />
 
