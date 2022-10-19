@@ -5,4 +5,10 @@
     <string name="login_Password">Mot de passe</string>
     <string name="btn_login_connexion">Connexion</string>
     <string name="login_password_forgot">mot de passe oublié ?</string>
+    <string name="title_reservation">Réservations</string>
+    <string name="title_param">Paramètres</string>
+    <string name="title_apropos">A propos</string>
+    <string name="title_contact">Contact</string>
+    <string name="title_account">Mon compte</string>
+    <string name="menu_deconnexion">Déconnexion</string>
 </resources>

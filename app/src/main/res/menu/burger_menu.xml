@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_item_1"
+            android:icon="@drawable/ic_baseline_checklist_24"
+            android:title="@string/title_reservation" />
+        <item
+            android:id="@+id/menu_item_2"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="@string/title_param" />
+        <item
+            android:id="@+id/menu_item_3"
+            android:icon="@drawable/ic_baseline_fmd_bad_24"
+            android:title="@string/title_apropos" />
+        <item
+            android:id="@+id/menu_item_4"
+            android:icon="@drawable/ic_baseline_contact_support_24"
+            android:title="@string/title_contact" />
+        <item
+            android:id="@+id/menu_item_5"
+            android:icon="@drawable/ic_baseline_manage_accounts_24"
+            android:title="@string/title_account" />
+        <item
+            android:id="@+id/menu_item_7"
+            android:icon="@drawable/ic_baseline_logout_24"
+            android:title="@string/menu_deconnexion" />
+    </group>
+
+</menu>
