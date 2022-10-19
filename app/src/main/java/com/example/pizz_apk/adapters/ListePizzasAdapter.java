@@ -27,6 +27,12 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
         this.context = context;
     }
 
+    public void setPizzasList(List<PlatPropose> pizzasList) {
+        this.pizzasList.clear();
+        this.pizzasList.addAll(pizzasList);
+        this.notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ListePizzasViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
