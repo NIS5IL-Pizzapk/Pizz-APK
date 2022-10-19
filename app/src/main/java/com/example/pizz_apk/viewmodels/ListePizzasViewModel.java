@@ -9,32 +9,19 @@ import com.example.pizz_apk.models.TestData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ListePizzasViewModel extends ViewModel {
 
     private int oldSize = 0;
-    private final List<PlatPropose> listPizza = new ArrayList<>();
     private final MutableLiveData<List<PlatPropose>> listPizzaLiveData = new MutableLiveData<>(new ArrayList<>());
     private boolean baseCreme = false;
 
-    public void setBase(String base, RecyclerView.Adapter adapter) {
-        int i = listPizza.size();
-        this.listPizza.clear();
-        adapter.notifyItemRangeRemoved(0, i);
-        this.listPizza.addAll(PlatPropose.getPlatsByTagNameFromList(TestData.listePizzas, base));
-        //this.listPizza.add(new PlatPropose("Pizza 1", "Pizza 1", "Pizza", 0, null, null));
-        adapter.notifyItemRangeInserted(0, listPizza.size());
-    }
-
     public void setBaseLD(String base) {
-        this.oldSize = listPizzaLiveData.getValue().size();
+        this.oldSize = Objects.requireNonNull(listPizzaLiveData.getValue()).size();
         //this.listPizzaLiveData.getValue().clear();
-        this.listPizzaLiveData.setValue(PlatPropose.getPlatsByTagNameFromList(TestData.listePizzas, base));
+        this.listPizzaLiveData.postValue(PlatPropose.getPlatsByTagNameFromList(TestData.listePizzas, base));
         //this.listPizzaLiveData.getValue().addAll(PlatPropose.getPlatsByTagNameFromList(TestData.listePizzas, base));
-    }
-
-    public List<PlatPropose> getListPizza() {
-        return listPizza;
     }
 
     public boolean isBaseCreme() {
