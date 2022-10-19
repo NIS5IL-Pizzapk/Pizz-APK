@@ -27,10 +27,10 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
         this.context = context;
     }
 
-    public void setPizzasList(List<PlatPropose> pizzasList) {
-        this.pizzasList.clear();
-        this.pizzasList.addAll(pizzasList);
-        this.notifyDataSetChanged();
+    public void setPizzasList(int oldSize, List<PlatPropose> pizzasList) {
+        this.pizzasList = pizzasList;
+        this.notifyItemRangeRemoved(0,oldSize);
+        this.notifyItemRangeInserted(0,this.pizzasList.size());
     }
 
     @NonNull
@@ -50,6 +50,16 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
     @Override
     public int getItemCount() {
         return pizzasList.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     public static class ListePizzasViewHolder extends RecyclerView.ViewHolder{

@@ -29,20 +29,23 @@ public class ListePizzasActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         pizzaListViewModel = new ViewModelProvider(this).get(ListePizzasViewModel.class);
-        ListePizzasAdapter adapter = new ListePizzasAdapter(pizzaListViewModel.getListPizza(),this);
+        ListePizzasAdapter adapter = new ListePizzasAdapter(pizzaListViewModel.getListPizzaLiveData().getValue(),this);
         binding.rvPizzasListe.setHasFixedSize(true);
         binding.rvPizzasListe.setAdapter(adapter);
         binding.rvPizzasListe.setLayoutManager(new LinearLayoutManager(this));
 
-        //NE RIEN TOUCHER A PARTIR D'ICI !
+        //NE RIEN TOUCHER A PARTIR D'ICI
+        pizzaListViewModel.getListPizzaLiveData().observe(this, pizzas -> {
+            adapter.setPizzasList(pizzaListViewModel.getOldSize(),pizzas);
+        });
         binding.btnBaseTomate.setOnClickListener(view1 -> {
-            pizzaListViewModel.setBase("Rouge",adapter);
+            pizzaListViewModel.setBaseLD("Rouge");
             binding.btnBaseTomate.setEnabled(false);
             binding.btnBaseCreme.setEnabled(true);
             pizzaListViewModel.setBaseCreme(false);
         });
         binding.btnBaseCreme.setOnClickListener(view1 -> {
-            pizzaListViewModel.setBase("Blanche",adapter);
+            pizzaListViewModel.setBaseLD("Blanche");
             binding.btnBaseTomate.setEnabled(true);
             binding.btnBaseCreme.setEnabled(false);
             pizzaListViewModel.setBaseCreme(true);
