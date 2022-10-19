@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/colo"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:orientation="vertical"
     android:gravity="bottom"
+    android:orientation="vertical"
     android:padding="20dp">
 
     <ImageView
