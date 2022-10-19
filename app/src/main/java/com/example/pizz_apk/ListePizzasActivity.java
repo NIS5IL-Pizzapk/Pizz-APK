@@ -33,12 +33,11 @@ public class ListePizzasActivity extends AppCompatActivity {
         binding.rvPizzasListe.setHasFixedSize(true);
         binding.rvPizzasListe.setAdapter(adapter);
         binding.rvPizzasListe.setLayoutManager(new LinearLayoutManager(this));
+
+        //NE RIEN TOUCHER A PARTIR D'ICI
         pizzaListViewModel.getListPizzaLiveData().observe(this, pizzas -> {
             adapter.setPizzasList(pizzaListViewModel.getOldSize(),pizzas);
         });
-
-
-        //NE RIEN TOUCHER A PARTIR D'ICI !
         binding.btnBaseTomate.setOnClickListener(view1 -> {
             pizzaListViewModel.setBaseLD("Rouge");
             binding.btnBaseTomate.setEnabled(false);
