@@ -64,7 +64,7 @@
             android:layout_toStartOf="@+id/imageView2"
             android:layout_toEndOf="@+id/imageView"
             android:contentDescription="TODO"
-            app:srcCompat="@drawable/logo_Unavita_blanc" />
+            app:srcCompat="@drawable/logo_unavita_blanc" />
 
     </RelativeLayout>
 
