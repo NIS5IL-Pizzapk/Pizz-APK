@@ -3,10 +3,6 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/menu_item_1"
-            android:icon="@drawable/ic_baseline_checklist_24"
-            android:title="@string/title_reservation" />
-        <item
             android:id="@+id/menu_item_2"
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="@string/title_param" />

@@ -3,9 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:openDrawer="start"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:openDrawer="start">
 
+    >
+
+    <!--if you want enable the menu -> tools:openDrawer="start"  -->
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
