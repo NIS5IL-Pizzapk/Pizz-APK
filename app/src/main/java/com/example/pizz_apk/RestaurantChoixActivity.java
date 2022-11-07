@@ -19,7 +19,9 @@ import java.util.Random;
 public class RestaurantChoixActivity extends AppCompatActivity {
 
     private String[] listScrollingText;
-    List<String> restaurantsList;
+
+    List<String> restaurantsList = new ArrayList<>();
+
     ActivityRestaurantChoixBinding binding;
 
     @Override
@@ -37,6 +39,7 @@ public class RestaurantChoixActivity extends AppCompatActivity {
         binding.rvHomepageRestaurants.setAdapter(restaurantsAdapter);
         binding.rvHomepageRestaurants.setLayoutManager(new LinearLayoutManager(this));
 
+
         TextView tv=(TextView)findViewById(R.id.scroll_text);
         tv.setSelected(true);
 
@@ -46,5 +49,15 @@ public class RestaurantChoixActivity extends AppCompatActivity {
         int randomIndex = new Random().nextInt(listScrollingText.length);
         String randomName = listScrollingText[randomIndex];
         tv.setText(randomName);
+        //OnClick du bouton temporaire permettant d'accéder à la page des pizzas
+        binding.btnTemp.setOnClickListener(view1 -> {
+            Intent intent = new Intent().setClass(this, ListePizzasActivity.class);
+            startActivity(intent);
+        });
+
+        binding.btnTemp2.setOnClickListener(view1 -> {
+            Intent intent = new Intent().setClass(this, AccueilActivity.class);
+            startActivity(intent);
+        });
     }
 }
