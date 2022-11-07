@@ -17,7 +17,6 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/unavita_background" />
-
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
