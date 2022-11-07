@@ -4,24 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RestaurantChoixActivity">
+    tools:context=".AccueilActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_homepage_restaurants"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/rv_buttons_accueil"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#7E7E7E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pizzas (en attendant de faire la navigation)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
