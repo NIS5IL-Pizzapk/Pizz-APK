@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Pizz-APK</string>
     <string-array name="scrolling_text">
         <item>Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1</item>
         <item>Text2 Text2 Text2 Text2 Text2 Text2 Text2 Text2 Text2</item>

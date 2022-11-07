@@ -50,14 +50,5 @@ public class RestaurantChoixActivity extends AppCompatActivity {
         String randomName = listScrollingText[randomIndex];
         tv.setText(randomName);
         //OnClick du bouton temporaire permettant d'accéder à la page des pizzas
-        binding.btnTemp.setOnClickListener(view1 -> {
-            Intent intent = new Intent().setClass(this, ListePizzasActivity.class);
-            startActivity(intent);
-        });
-
-        binding.btnTemp2.setOnClickListener(view1 -> {
-            Intent intent = new Intent().setClass(this, AccueilActivity.class);
-            startActivity(intent);
-        });
     }
 }
