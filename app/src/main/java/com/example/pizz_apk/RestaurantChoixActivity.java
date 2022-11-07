@@ -38,6 +38,10 @@ public class RestaurantChoixActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        binding.btnTemp2.setOnClickListener(view1 -> {
+            Intent intent = new Intent().setClass(this, AccueilActivity.class);
+            startActivity(intent);
+        });
 
     }
 }
