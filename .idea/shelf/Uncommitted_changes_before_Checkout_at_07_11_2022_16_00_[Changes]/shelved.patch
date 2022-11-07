@@ -1,0 +1,64 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.PizzAPK\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".PlatUniqueActivity\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        <activity\r\n            android:name=\".LoginActivity\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".AccueilActivity\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".ListePizzasActivity\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".RestaurantChoixActivity\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	
++++ b/app/src/main/AndroidManifest.xml	
+@@ -26,32 +26,10 @@
+                 android:value="" />
+         </activity>
+         <activity
+-            android:name=".AccueilActivity"
++            android:name=".MainActivity"
+             android:exported="false">
+-            <meta-data
+-                android:name="android.app.lib_name"
+-                android:value="" />
+-        </activity>
+-        <activity
+-            android:name=".ListePizzasActivity"
+-            android:exported="false">
+-            <meta-data
+-                android:name="android.app.lib_name"
+-                android:value="" />
+-        </activity>
+-        <activity
+-            android:name=".RestaurantChoixActivity"
+-            android:exported="true">
+-            <intent-filter>
+-                <action android:name="android.intent.action.MAIN" />
+-
+-                <category android:name="android.intent.category.LAUNCHER" />
+-            </intent-filter>
+-
+-            <meta-data
+-                android:name="android.app.lib_name"
+-                android:value="" />
+         </activity>
++
+     </application>
+ 
+ </manifest>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">Pizz-APK</string>\r\n    <string-array name=\"scrolling_text\">\r\n        <item>Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1</item>\r\n        <item>Text2 Text2 Text2 Text2 Text2 Text2 Text2 Text2 Text2</item>\r\n        <item>Text3 Text3 Text3 Text3 Text3 Text3 Text3 Text3 Text3</item>\r\n        <item>Text4 Text4 Text4 Text4 Text4 Text4 Text4 Text4 Text4</item>\r\n        <item>Text5 Text5 Text5 Text5 Text5 Text5 Text5 Text5 Text5</item>\r\n    </string-array>\r\n    <string name=\"app_name\">Una Vita</string>\r\n    <string name=\"image_Unavita_Desc_Login\">Description Unavita</string>\r\n    <string name=\"login_EmailAdress\">Adresse mail</string>\r\n    <string name=\"login_Password\">Mot de passe</string>\r\n    <string name=\"btn_login_connexion\">Connexion</string>\r\n    <string name=\"login_password_forgot\">mot de passe oublié ?</string>\r\n    <string name=\"title_reservation\">Réservations</string>\r\n    <string name=\"title_param\">Paramètres</string>\r\n    <string name=\"title_apropos\">A propos</string>\r\n    <string name=\"title_contact\">Contact</string>\r\n    <string name=\"title_account\">Mon compte</string>\r\n    <string name=\"menu_deconnexion\">Déconnexion</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	
++++ b/app/src/main/res/values/strings.xml	
+@@ -19,4 +19,6 @@
+     <string name="title_contact">Contact</string>
+     <string name="title_account">Mon compte</string>
+     <string name="menu_deconnexion">Déconnexion</string>
++    <!-- TODO: Remove or change this placeholder text -->
++    <string name="hello_blank_fragment">Hello blank fragment</string>
+ </resources>
+\ No newline at end of file

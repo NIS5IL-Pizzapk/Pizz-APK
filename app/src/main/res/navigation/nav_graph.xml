@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/restaurantChoixFragment">
 
+    <fragment
+        android:id="@+id/restaurantChoixFragment"
+        android:name="com.example.pizz_apk.RestaurantChoixFragment"
+        android:label="fragment_restaurant_choix"
+        tools:layout="@layout/fragment_restaurant_choix" >
+        <action
+            android:id="@+id/action_restaurantChoixFragment_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listePizzasFragment"
+        android:name="com.example.pizz_apk.ListePizzasFragment"
+        android:label="fragment_liste_pizzas"
+        tools:layout="@layout/fragment_liste_pizzas" >
+        <action
+            android:id="@+id/action_listePizzasFragment_to_restaurantChoixFragment"
+            app:destination="@id/restaurantChoixFragment" />
+        <action
+            android:id="@+id/action_listePizzasFragment_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accueilFragment"
+        android:name="com.example.pizz_apk.AccueilFragment"
+        android:label="fragment_accueil"
+        tools:layout="@layout/fragment_accueil" >
+        <action
+            android:id="@+id/action_accueilFragment_to_restaurantChoixFragment"
+            app:destination="@id/restaurantChoixFragment" />
+        <action
+            android:id="@+id/action_accueilFragment_to_listePizzasFragment"
+            app:destination="@id/listePizzasFragment" />
+    </fragment>
 </navigation>

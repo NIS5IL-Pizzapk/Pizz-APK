@@ -1,0 +1,685 @@
+Index: app/src/main/res/navigation/nav_graph.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<navigation xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:id=\"@+id/nav_graph\">\r\n\r\n</navigation>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/navigation/nav_graph.xml b/app/src/main/res/navigation/nav_graph.xml
+--- a/app/src/main/res/navigation/nav_graph.xml	
++++ b/app/src/main/res/navigation/nav_graph.xml	
+@@ -1,6 +1,41 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+-    android:id="@+id/nav_graph">
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/nav_graph"
++    app:startDestination="@id/restaurantChoixFragment">
+ 
++    <fragment
++        android:id="@+id/restaurantChoixFragment"
++        android:name="com.example.pizz_apk.RestaurantChoixFragment"
++        android:label="fragment_restaurant_choix"
++        tools:layout="@layout/fragment_restaurant_choix" >
++        <action
++            android:id="@+id/action_restaurantChoixFragment_to_accueilFragment"
++            app:destination="@id/accueilFragment" />
++    </fragment>
++    <fragment
++        android:id="@+id/listePizzasFragment"
++        android:name="com.example.pizz_apk.ListePizzasFragment"
++        android:label="fragment_liste_pizzas"
++        tools:layout="@layout/fragment_liste_pizzas" >
++        <action
++            android:id="@+id/action_listePizzasFragment_to_restaurantChoixFragment"
++            app:destination="@id/restaurantChoixFragment" />
++        <action
++            android:id="@+id/action_listePizzasFragment_to_accueilFragment"
++            app:destination="@id/accueilFragment" />
++    </fragment>
++    <fragment
++        android:id="@+id/accueilFragment"
++        android:name="com.example.pizz_apk.AccueilFragment"
++        android:label="fragment_accueil"
++        tools:layout="@layout/fragment_accueil" >
++        <action
++            android:id="@+id/action_accueilFragment_to_restaurantChoixFragment"
++            app:destination="@id/restaurantChoixFragment" />
++        <action
++            android:id="@+id/action_accueilFragment_to_listePizzasFragment"
++            app:destination="@id/listePizzasFragment" />
++    </fragment>
+ </navigation>
+\ No newline at end of file
+Index: app/src/main/java/com/example/pizz_apk/adapters/ListePizzasAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.pizz_apk.adapters;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Button;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.example.pizz_apk.PlatUniqueActivity;\r\nimport com.example.pizz_apk.databinding.ActivityListePizzasBinding;\r\nimport com.example.pizz_apk.databinding.RvItemPizzaBinding;\r\nimport com.example.pizz_apk.models.PlatPropose;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Locale;\r\n\r\npublic class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.ListePizzasViewHolder>{\r\n\r\n    List<PlatPropose> pizzasList = new ArrayList<>();\r\n    RvItemPizzaBinding binding;\r\n    Context context;\r\n\r\n    public ListePizzasAdapter(List<PlatPropose> pizzasList, Context context) {\r\n        this.pizzasList = pizzasList;\r\n        this.context = context;\r\n    }\r\n\r\n    public void setPizzasList(int oldSize, List<PlatPropose> pizzasList) {\r\n        this.pizzasList = pizzasList;\r\n        this.notifyItemRangeRemoved(0,oldSize);\r\n        this.notifyItemRangeInserted(0,this.pizzasList.size());\r\n    }\r\n\r\n    @NonNull\r\n    @Override\r\n    public ListePizzasViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        binding = RvItemPizzaBinding.inflate(LayoutInflater.from(context));\r\n        return new ListePizzasViewHolder(binding.getRoot());\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull ListePizzasViewHolder holder, int position) {\r\n        holder.binding.tvNomPizza.setText(pizzasList.get(position).getNom());\r\n        holder.binding.tvDescriptionPizza.setText(pizzasList.get(position).getDescription());\r\n        holder.binding.tvPrixPizza.setText(String.format(Locale.getDefault(),\"%.2f\",pizzasList.get(position).getPrix())+\"€\");\r\n        holder.binding.cvPizza.setOnClickListener(view -> {\r\n            Intent intent = new Intent(context, PlatUniqueActivity.class);\r\n            intent.putExtra(\"plat\",pizzasList.get(position));\r\n            context.startActivity(intent);\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return pizzasList.size();\r\n    }\r\n\r\n    @Override\r\n    public long getItemId(int position) {\r\n        return position;\r\n    }\r\n\r\n    @Override\r\n    public int getItemViewType(int position) {\r\n        return position;\r\n    }\r\n\r\n    public static class ListePizzasViewHolder extends RecyclerView.ViewHolder{\r\n\r\n        RvItemPizzaBinding binding;\r\n\r\n        public ListePizzasViewHolder(@NonNull View itemView) {\r\n            super(itemView);\r\n            binding = RvItemPizzaBinding.bind(itemView);\r\n        }\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/pizz_apk/adapters/ListePizzasAdapter.java b/app/src/main/java/com/example/pizz_apk/adapters/ListePizzasAdapter.java
+--- a/app/src/main/java/com/example/pizz_apk/adapters/ListePizzasAdapter.java	
++++ b/app/src/main/java/com/example/pizz_apk/adapters/ListePizzasAdapter.java	
+@@ -1,7 +1,6 @@
+ package com.example.pizz_apk.adapters;
+ 
+ import android.content.Context;
+-import android.content.Intent;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+@@ -11,7 +10,7 @@
+ import androidx.recyclerview.widget.RecyclerView;
+ 
+ import com.example.pizz_apk.PlatUniqueActivity;
+-import com.example.pizz_apk.databinding.ActivityListePizzasBinding;
++import com.example.pizz_apk.databinding.FragmentListePizzasBinding;
+ import com.example.pizz_apk.databinding.RvItemPizzaBinding;
+ import com.example.pizz_apk.models.PlatPropose;
+ 
+@@ -48,11 +47,6 @@
+         holder.binding.tvNomPizza.setText(pizzasList.get(position).getNom());
+         holder.binding.tvDescriptionPizza.setText(pizzasList.get(position).getDescription());
+         holder.binding.tvPrixPizza.setText(String.format(Locale.getDefault(),"%.2f",pizzasList.get(position).getPrix())+"€");
+-        holder.binding.cvPizza.setOnClickListener(view -> {
+-            Intent intent = new Intent(context, PlatUniqueActivity.class);
+-            intent.putExtra("plat",pizzasList.get(position));
+-            context.startActivity(intent);
+-        });
+     }
+ 
+     @Override
+Index: app/src/main/java/com/example/pizz_apk/RestaurantChoixActivity.java
+===================================================================
+diff --git a/app/src/main/java/com/example/pizz_apk/RestaurantChoixActivity.java b/app/src/main/java/com/example/pizz_apk/RestaurantChoixActivity.java
+deleted file mode 100644
+--- a/app/src/main/java/com/example/pizz_apk/RestaurantChoixActivity.java	
++++ /dev/null	
+@@ -1,63 +0,0 @@
+-package com.example.pizz_apk;
+-
+-import androidx.appcompat.app.AppCompatActivity;
+-import androidx.recyclerview.widget.LinearLayoutManager;
+-
+-import android.content.Intent;
+-import android.os.Bundle;
+-import android.view.View;
+-import android.widget.Button;
+-import android.widget.TextView;
+-
+-import com.example.pizz_apk.adapters.RestaurantsAdapter;
+-import com.example.pizz_apk.databinding.ActivityRestaurantChoixBinding;
+-
+-import java.util.ArrayList;
+-import java.util.List;
+-import java.util.Random;
+-
+-public class RestaurantChoixActivity extends AppCompatActivity {
+-
+-    private String[] listScrollingText;
+-
+-    List<String> restaurantsList = new ArrayList<>();
+-
+-    ActivityRestaurantChoixBinding binding;
+-
+-    @Override
+-    protected void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_restaurant_choix);
+-        binding = ActivityRestaurantChoixBinding.inflate(getLayoutInflater());
+-        View view = binding.getRoot();
+-        setContentView(view);
+-        restaurantsList = new ArrayList<>();
+-        restaurantsList.add("Clarensac");
+-        restaurantsList.add("Vauvert");
+-        RestaurantsAdapter restaurantsAdapter = new RestaurantsAdapter(restaurantsList,this);
+-        binding.rvHomepageRestaurants.setHasFixedSize(true);
+-        binding.rvHomepageRestaurants.setAdapter(restaurantsAdapter);
+-        binding.rvHomepageRestaurants.setLayoutManager(new LinearLayoutManager(this));
+-
+-
+-        TextView tv=(TextView)findViewById(R.id.scroll_text);
+-        tv.setSelected(true);
+-
+-        //Récupération de la liste des textes à faire défiler
+-        listScrollingText = getResources().getStringArray(R.array.scrolling_text);
+-
+-        int randomIndex = new Random().nextInt(listScrollingText.length);
+-        String randomName = listScrollingText[randomIndex];
+-        tv.setText(randomName);
+-        //OnClick du bouton temporaire permettant d'accéder à la page des pizzas
+-        binding.btnTemp.setOnClickListener(view1 -> {
+-            Intent intent = new Intent().setClass(this, ListePizzasActivity.class);
+-            startActivity(intent);
+-        });
+-
+-        binding.btnTemp2.setOnClickListener(view1 -> {
+-            Intent intent = new Intent().setClass(this, AccueilActivity.class);
+-            startActivity(intent);
+-        });
+-    }
+-}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_restaurant_choix.xml
+===================================================================
+diff --git a/app/src/main/res/layout/activity_restaurant_choix.xml b/app/src/main/res/layout/activity_restaurant_choix.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/activity_restaurant_choix.xml	
++++ /dev/null	
+@@ -1,79 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context=".RestaurantChoixActivity">
+-
+-    <FrameLayout
+-        android:id="@+id/frameLayout"
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent">
+-
+-        <pl.droidsonroids.gif.GifImageView
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent"
+-            android:scaleType="centerCrop"
+-            android:src="@drawable/unavita_background" />
+-
+-    </FrameLayout>
+-
+-    <androidx.recyclerview.widget.RecyclerView
+-        android:id="@+id/rv_homepage_restaurants"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="70dp"
+-        android:layout_marginBottom="150dp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/restaurant_choix_text">
+-
+-    </androidx.recyclerview.widget.RecyclerView>
+-
+-    <TextView
+-        android:id="@+id/scroll_text"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_margin="10dp"
+-        android:ellipsize="marquee"
+-        android:focusable="true"
+-        android:focusableInTouchMode="true"
+-        android:fontFamily="@font/tw_cen_mt_italic"
+-        android:marqueeRepeatLimit="marquee_forever"
+-        android:scrollHorizontally="true"
+-        android:singleLine="true"
+-        android:textColor="@color/grey"
+-        android:textSize="30dp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent" />
+-
+-    <TextView
+-        android:id="@+id/restaurant_choix_text"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="20dp"
+-        android:fontFamily="@font/tw_cen_mt_bold"
+-        android:text="CHOISISSEZ \nVOTRE RESTAURANT"
+-        android:textAlignment="center"
+-        android:textColor="@color/white"
+-        android:textSize="40dp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+-
+-    <ImageView
+-        android:id="@+id/imageView"
+-        android:layout_width="250dp"
+-        android:layout_height="200dp"
+-        android:layout_marginTop="20dp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:srcCompat="@drawable/logo_unavita" />
+-
+-
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/pizz_apk/AccueilActivity.java
+===================================================================
+diff --git a/app/src/main/java/com/example/pizz_apk/AccueilActivity.java b/app/src/main/java/com/example/pizz_apk/AccueilActivity.java
+deleted file mode 100644
+--- a/app/src/main/java/com/example/pizz_apk/AccueilActivity.java	
++++ /dev/null	
+@@ -1,37 +0,0 @@
+-package com.example.pizz_apk;
+-
+-import androidx.appcompat.app.AppCompatActivity;
+-import androidx.recyclerview.widget.LinearLayoutManager;
+-
+-import android.os.Bundle;
+-import android.view.View;
+-
+-import com.example.pizz_apk.adapters.CategorieAccueilAdapter;
+-import com.example.pizz_apk.adapters.ListePizzasAdapter;
+-import com.example.pizz_apk.adapters.RestaurantsAdapter;
+-import com.example.pizz_apk.databinding.ActivityAccueilBinding;
+-import com.example.pizz_apk.databinding.ActivityListePizzasBinding;
+-import com.example.pizz_apk.databinding.ActivityRestaurantChoixBinding;
+-import com.example.pizz_apk.models.CategorieAccueil;
+-import com.example.pizz_apk.models.TestData;
+-
+-import java.util.ArrayList;
+-import java.util.List;
+-
+-public class AccueilActivity extends AppCompatActivity {
+-    ActivityAccueilBinding binding;
+-    List<CategorieAccueil> categorieAccueilList = new ArrayList<>();
+-    @Override
+-    protected void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_accueil);
+-        binding = ActivityAccueilBinding.inflate(getLayoutInflater());
+-        View view = binding.getRoot();
+-        setContentView(view);
+-        categorieAccueilList = TestData.ListeCatégorie;
+-        CategorieAccueilAdapter adapter = new CategorieAccueilAdapter(categorieAccueilList,this);
+-        binding.rvButtonsAccueil.setHasFixedSize(true);
+-        binding.rvButtonsAccueil.setAdapter(adapter);
+-        binding.rvButtonsAccueil.setLayoutManager(new LinearLayoutManager(this));
+-    }
+-}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_liste_pizzas.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_liste_pizzas.xml b/app/src/main/res/layout/fragment_liste_pizzas.xml
+rename from app/src/main/res/layout/activity_liste_pizzas.xml
+rename to app/src/main/res/layout/fragment_liste_pizzas.xml
+--- a/app/src/main/res/layout/activity_liste_pizzas.xml	
++++ b/app/src/main/res/layout/fragment_liste_pizzas.xml	
+@@ -1,10 +1,9 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context=".ListePizzasActivity">
++    tools:context=".ListePizzasFragment">
+ 
+     <LinearLayout
+         android:layout_width="match_parent"
+@@ -54,4 +53,4 @@
+             android:layout_weight="68" />
+     </LinearLayout>
+ 
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/pizz_apk/RestaurantChoixFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/pizz_apk/RestaurantChoixFragment.java b/app/src/main/java/com/example/pizz_apk/RestaurantChoixFragment.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/example/pizz_apk/RestaurantChoixFragment.java	
+@@ -0,0 +1,61 @@
++package com.example.pizz_apk;
++
++import android.content.Context;
++import android.content.Intent;
++import android.os.Bundle;
++
++import androidx.fragment.app.Fragment;
++import androidx.navigation.Navigation;
++import androidx.recyclerview.widget.LinearLayoutManager;
++
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++import com.example.pizz_apk.adapters.RestaurantsAdapter;
++import com.example.pizz_apk.databinding.FragmentRestaurantChoixBinding;
++
++import java.util.ArrayList;
++import java.util.List;
++
++
++public class RestaurantChoixFragment extends Fragment {
++
++    FragmentRestaurantChoixBinding binding;
++    List<String> restaurantsList = new ArrayList<>();
++    Context context = getContext();
++
++
++    public RestaurantChoixFragment() {
++    }
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        View view = binding.getRoot();
++        restaurantsList = new ArrayList<>();
++        restaurantsList.add("Clarensac");
++        restaurantsList.add("Nîmes");
++        RestaurantsAdapter restaurantsAdapter = new RestaurantsAdapter(restaurantsList,context);
++        binding.rvHomepageRestaurants.setHasFixedSize(true);
++        binding.rvHomepageRestaurants.setAdapter(restaurantsAdapter);
++            binding.rvHomepageRestaurants.setLayoutManager(new LinearLayoutManager(context));
++        //OnClick du bouton temporaire permettant d'accéder à la page des pizzas
++        binding.btnTemp.setOnClickListener(view1 -> {
++            Navigation.findNavController(view1).navigate(R.id.action_restaurantChoixFragment_to_accueilFragment);
++        });
++
++        binding.btnTemp2.setOnClickListener(view1 -> {
++            Intent intent = new Intent().setClass(context, AccueilFragment.class);
++            startActivity(intent);
++        });
++
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        binding = FragmentRestaurantChoixBinding.inflate(inflater, container, false);
++        return binding.getRoot();
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/pizz_apk/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/pizz_apk/MainActivity.java b/app/src/main/java/com/example/pizz_apk/MainActivity.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/example/pizz_apk/MainActivity.java	
+@@ -0,0 +1,14 @@
++package com.example.pizz_apk;
++
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.os.Bundle;
++
++public class MainActivity extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_main);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_restaurant_choix.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_restaurant_choix.xml b/app/src/main/res/layout/fragment_restaurant_choix.xml
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/res/layout/fragment_restaurant_choix.xml	
+@@ -0,0 +1,35 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    tools:context=".RestaurantChoixFragment">
++
++    <androidx.recyclerview.widget.RecyclerView
++        android:id="@+id/rv_homepage_restaurants"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
++    <Button
++        android:id="@+id/btn_temp"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Pizzas (en attendant de faire la navigation)"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent" />
++
++    <Button
++        android:id="@+id/btn_temp2"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginBottom="52dp"
++        android:text="Accueil (en attendant de faire la navigation)"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent" />
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/pizz_apk/ListePizzasActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/pizz_apk/ListePizzasActivity.java b/app/src/main/java/com/example/pizz_apk/ListePizzasFragment.java
+rename from app/src/main/java/com/example/pizz_apk/ListePizzasActivity.java
+rename to app/src/main/java/com/example/pizz_apk/ListePizzasFragment.java
+--- a/app/src/main/java/com/example/pizz_apk/ListePizzasActivity.java	
++++ b/app/src/main/java/com/example/pizz_apk/ListePizzasFragment.java	
+@@ -1,38 +1,43 @@
+ package com.example.pizz_apk;
+ 
+-import androidx.appcompat.app.AppCompatActivity;
++import android.content.Context;
++import android.os.Bundle;
++
++import androidx.fragment.app.Fragment;
+ import androidx.lifecycle.ViewModelProvider;
+ import androidx.recyclerview.widget.LinearLayoutManager;
+ 
+-import android.os.Bundle;
++import android.view.LayoutInflater;
+ import android.view.View;
++import android.view.ViewGroup;
+ 
+ import com.example.pizz_apk.adapters.ListePizzasAdapter;
+-import com.example.pizz_apk.databinding.ActivityListePizzasBinding;
+-import com.example.pizz_apk.models.PlatPropose;
+-import com.example.pizz_apk.models.TestData;
++import com.example.pizz_apk.databinding.FragmentListePizzasBinding;
++import com.example.pizz_apk.databinding.FragmentRestaurantChoixBinding;
+ import com.example.pizz_apk.viewmodels.ListePizzasViewModel;
+ 
+-import java.util.ArrayList;
+-import java.util.List;
++public class ListePizzasFragment extends Fragment {
+ 
+-public class ListePizzasActivity extends AppCompatActivity {
+-
+-    ActivityListePizzasBinding binding;
++    FragmentListePizzasBinding binding;
+     ListePizzasViewModel pizzaListViewModel;
++    Context context = getContext();
++
++    public ListePizzasFragment() {
++        // Required empty public constructor
++    }
++
+ 
+     @Override
+-    protected void onCreate(Bundle savedInstanceState) {
++    public void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_liste_pizzas);
+-        binding = ActivityListePizzasBinding.inflate(getLayoutInflater());
++
++        binding = FragmentListePizzasBinding.inflate(getLayoutInflater());
+         View view = binding.getRoot();
+-        setContentView(view);
+         pizzaListViewModel = new ViewModelProvider(this).get(ListePizzasViewModel.class);
+-        ListePizzasAdapter adapter = new ListePizzasAdapter(pizzaListViewModel.getListPizzaLiveData().getValue(),this);
++        ListePizzasAdapter adapter = new ListePizzasAdapter(pizzaListViewModel.getListPizzaLiveData().getValue(),context);
+         binding.rvPizzasListe.setHasFixedSize(true);
+         binding.rvPizzasListe.setAdapter(adapter);
+-        binding.rvPizzasListe.setLayoutManager(new LinearLayoutManager(this));
++        binding.rvPizzasListe.setLayoutManager(new LinearLayoutManager(context));
+ 
+         //NE RIEN TOUCHER A PARTIR D'ICI
+         pizzaListViewModel.getListPizzaLiveData().observe(this, pizzas -> {
+@@ -55,6 +60,14 @@
+         } else {
+             binding.btnBaseCreme.callOnClick();
+         }
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        // Inflate the layout for this fragment
++        binding = FragmentListePizzasBinding.inflate(inflater, container, false);
++        return binding.getRoot();
+ 
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/res/layout/activity_main.xml	
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".MainActivity">
++
++    <androidx.fragment.app.FragmentContainerView
++        android:id="@+id/fragmentContainerView"
++        android:name="androidx.navigation.fragment.NavHostFragment"
++        android:layout_width="0dp"
++        android:layout_height="0dp"
++        app:defaultNavHost="true"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:navGraph="@navigation/nav_graph"
++        tools:layout="@layout/activity_main"/>
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_accueil.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_accueil.xml b/app/src/main/res/layout/fragment_accueil.xml
+rename from app/src/main/res/layout/activity_accueil.xml
+rename to app/src/main/res/layout/fragment_accueil.xml
+--- a/app/src/main/res/layout/activity_accueil.xml	
++++ b/app/src/main/res/layout/fragment_accueil.xml	
+@@ -1,10 +1,10 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context=".AccueilActivity">
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    tools:context=".AccueilFragment">
+ 
+     <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/rv_buttons_accueil"
+@@ -15,4 +15,5 @@
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/pizz_apk/AccueilFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/pizz_apk/AccueilFragment.java b/app/src/main/java/com/example/pizz_apk/AccueilFragment.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/example/pizz_apk/AccueilFragment.java	
+@@ -0,0 +1,52 @@
++package com.example.pizz_apk;
++
++import android.content.Context;
++import android.os.Bundle;
++
++import androidx.fragment.app.Fragment;
++import androidx.recyclerview.widget.LinearLayoutManager;
++
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++import com.example.pizz_apk.adapters.CategorieAccueilAdapter;
++import com.example.pizz_apk.databinding.FragmentAccueilBinding;
++import com.example.pizz_apk.databinding.FragmentRestaurantChoixBinding;
++import com.example.pizz_apk.models.CategorieAccueil;
++import com.example.pizz_apk.models.TestData;
++
++import java.util.ArrayList;
++import java.util.List;
++
++
++public class AccueilFragment extends Fragment {
++
++    FragmentAccueilBinding binding;
++    List<CategorieAccueil> categorieAccueilList = new ArrayList<>();
++    Context context = getContext();
++
++    public AccueilFragment() {
++        // Required empty public constructor
++    }
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        binding = FragmentAccueilBinding.inflate(getLayoutInflater());
++        View view = binding.getRoot();
++        categorieAccueilList = TestData.ListeCatégorie;
++        CategorieAccueilAdapter adapter = new CategorieAccueilAdapter(categorieAccueilList,context);
++        binding.rvButtonsAccueil.setHasFixedSize(true);
++        binding.rvButtonsAccueil.setAdapter(adapter);
++        binding.rvButtonsAccueil.setLayoutManager(new LinearLayoutManager(context));
++
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        binding = FragmentAccueilBinding.inflate(inflater, container, false);
++        return binding.getRoot();
++    }
++}
+\ No newline at end of file
