@@ -1,9 +1,10 @@
 package com.example.pizz_apk.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlatPropose {
+public class PlatPropose implements Serializable {
     private int id;
     private String type;
     private String nom;

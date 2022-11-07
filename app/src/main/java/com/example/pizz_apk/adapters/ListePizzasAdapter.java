@@ -1,6 +1,7 @@
 package com.example.pizz_apk.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pizz_apk.PlatUniqueActivity;
 import com.example.pizz_apk.databinding.ActivityListePizzasBinding;
 import com.example.pizz_apk.databinding.RvItemPizzaBinding;
 import com.example.pizz_apk.models.PlatPropose;
@@ -46,6 +48,11 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
         holder.binding.tvNomPizza.setText(pizzasList.get(position).getNom());
         holder.binding.tvDescriptionPizza.setText(pizzasList.get(position).getDescription());
         holder.binding.tvPrixPizza.setText(String.format(Locale.getDefault(),"%.2f",pizzasList.get(position).getPrix())+"€");
+        holder.binding.cvPizza.setOnClickListener(view -> {
+            Intent intent = new Intent(context, PlatUniqueActivity.class);
+            intent.putExtra("plat",pizzasList.get(position));
+            context.startActivity(intent);
+        });
     }
 
     @Override

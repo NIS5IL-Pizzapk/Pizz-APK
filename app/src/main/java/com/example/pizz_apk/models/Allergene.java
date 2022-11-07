@@ -1,6 +1,8 @@
 package com.example.pizz_apk.models;
 
-public class Allergene {
+import java.io.Serializable;
+
+public class Allergene implements Serializable {
     private int id;
     private String nom;
 
