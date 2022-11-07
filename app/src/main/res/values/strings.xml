@@ -19,4 +19,6 @@
     <string name="title_contact">Contact</string>
     <string name="title_account">Mon compte</string>
     <string name="menu_deconnexion">Déconnexion</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

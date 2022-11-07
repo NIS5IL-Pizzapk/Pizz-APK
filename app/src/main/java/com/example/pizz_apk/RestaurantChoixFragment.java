@@ -1,46 +1,56 @@
 package com.example.pizz_apk;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.pizz_apk.adapters.RestaurantsAdapter;
-import com.example.pizz_apk.databinding.ActivityRestaurantChoixBinding;
+import com.example.pizz_apk.databinding.FragmentRestaurantChoixBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RestaurantChoixActivity extends AppCompatActivity {
+
+public class RestaurantChoixFragment extends Fragment {
 
     private String[] listScrollingText;
 
     List<String> restaurantsList = new ArrayList<>();
 
-    ActivityRestaurantChoixBinding binding;
+    FragmentRestaurantChoixBinding binding;
+
+    Context context = getContext();
+
+    TextView tv;
+
+    public RestaurantChoixFragment() {
+        // Required empty public constructor
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant_choix);
-        binding = ActivityRestaurantChoixBinding.inflate(getLayoutInflater());
+        binding = FragmentRestaurantChoixBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-        setContentView(view);
         restaurantsList = new ArrayList<>();
         restaurantsList.add("Clarensac");
         restaurantsList.add("Vauvert");
-        RestaurantsAdapter restaurantsAdapter = new RestaurantsAdapter(restaurantsList,this);
+        RestaurantsAdapter restaurantsAdapter = new RestaurantsAdapter(restaurantsList,context);
         binding.rvHomepageRestaurants.setHasFixedSize(true);
         binding.rvHomepageRestaurants.setAdapter(restaurantsAdapter);
-        binding.rvHomepageRestaurants.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvHomepageRestaurants.setLayoutManager(new LinearLayoutManager(context));
 
 
-        TextView tv=(TextView)findViewById(R.id.scroll_text);
+        tv = (TextView) view.findViewById(R.id.scroll_text);
         tv.setSelected(true);
 
         //Récupération de la liste des textes à faire défiler
@@ -50,14 +60,14 @@ public class RestaurantChoixActivity extends AppCompatActivity {
         String randomName = listScrollingText[randomIndex];
         tv.setText(randomName);
         //OnClick du bouton temporaire permettant d'accéder à la page des pizzas
-        binding.btnTemp.setOnClickListener(view1 -> {
-            Intent intent = new Intent().setClass(this, ListePizzasActivity.class);
-            startActivity(intent);
-        });
 
-        binding.btnTemp2.setOnClickListener(view1 -> {
-            Intent intent = new Intent().setClass(this, AccueilActivity.class);
-            startActivity(intent);
-        });
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentRestaurantChoixBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 }
