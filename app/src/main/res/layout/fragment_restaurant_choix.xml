@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         android:src="@drawable/unavita_background"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
