@@ -5,12 +5,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pizz_apk.PlatUniqueActivity;
 import com.example.pizz_apk.databinding.ActivityListePizzasBinding;
 import com.example.pizz_apk.databinding.RvItemPizzaBinding;
 import com.example.pizz_apk.models.PlatPropose;
