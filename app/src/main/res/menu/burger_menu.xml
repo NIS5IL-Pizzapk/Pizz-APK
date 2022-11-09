@@ -5,6 +5,12 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_choixresto"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="Choix Restaurant"
+            app:showAsAction="never"
+            />
+        <item
             android:id="@+id/nav_parametres"
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="@string/title_param"
