@@ -1,12 +1,15 @@
 package com.example.pizz_apk;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+Fragment fragment = null;
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -72,11 +77,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-    if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-        drawerLayout.closeDrawer(GravityCompat.START);
-    } else {
-        super.onBackPressed();
-    }
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            if (fragment instanceof AProposFragment) {
+                super.onBackPressed();
+            } else {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RestaurantChoixFragment()).commit();
+            }
+            if (fragment instanceof ContactFragment) {
+                super.onBackPressed();
+            } else {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RestaurantChoixFragment()).commit();
+            }
+            if (fragment instanceof ParametresFragment) {
+                super.onBackPressed();
+            } else {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RestaurantChoixFragment()).commit();
+            }
+            if (fragment instanceof MonCompteFragment) {
+                super.onBackPressed();
+            } else {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RestaurantChoixFragment()).commit();
+            }
+        }
     }
 
 }
