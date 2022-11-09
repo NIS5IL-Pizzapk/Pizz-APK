@@ -3,6 +3,8 @@ package com.example.pizz_apk;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.pizz_apk.adapters.ListePizzasAdapter;
 import com.example.pizz_apk.databinding.FragmentListePizzasBinding;
+import com.example.pizz_apk.databinding.FragmentPlatUniqueBinding;
 import com.example.pizz_apk.viewmodels.ListePizzasViewModel;
 
 
@@ -30,8 +33,21 @@ public class ListePizzasFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = FragmentListePizzasBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
+
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        binding = FragmentListePizzasBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         pizzaListViewModel = new ViewModelProvider(this).get(ListePizzasViewModel.class);
         ListePizzasAdapter adapter = new ListePizzasAdapter(pizzaListViewModel.getListPizzaLiveData().getValue(),context);
         binding.rvPizzasListe.setHasFixedSize(true);
@@ -59,13 +75,5 @@ public class ListePizzasFragment extends Fragment {
         } else {
             binding.btnBaseCreme.callOnClick();
         }
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_liste_pizzas, container, false);
     }
 }

@@ -9,6 +9,7 @@
 
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,8 +23,9 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/unavita_background" />
-    </FrameLayout>
 
+
+    </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_homepage_restaurants"
