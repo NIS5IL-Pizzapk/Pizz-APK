@@ -1,12 +1,14 @@
 package com.example.pizz_apk.models;
 
 import com.example.pizz_apk.R;
+import com.example.pizz_apk.viewmodels.RestaurantsViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class TestData {
+
     public static List<PlatPropose> listePizzas = new ArrayList<PlatPropose>(Arrays.asList(
                 new PlatPropose("Pizza","4 Fromages","roquefort, chèvre, mozza",14,new ArrayList<>(Arrays.asList(new Allergene("lait"),new Allergene("oeuf"))),new ArrayList<>(Arrays.asList(new Tag("Rouge")))),
             new PlatPropose("Pizza","Flamme","lardons, oignons, mozza",14,new ArrayList<>(Arrays.asList(new Allergene("lait"),new Allergene("oeuf"))),new ArrayList<>(Arrays.asList(new Tag("Blanche")))),
@@ -26,5 +28,12 @@ public class TestData {
             new CategorieAccueil("Nos Tacos",R.drawable.nos_tacos),
             new CategorieAccueil("Nos Salades",R.drawable.nos_salades)
     ));
+
+    public static List<Restaurant> listeRestaurant = new ArrayList<Restaurant>(Arrays.asList(
+            new Restaurant("Clarensac"),
+            new Restaurant("Vauvert")
+    ));
+
+
 
 }

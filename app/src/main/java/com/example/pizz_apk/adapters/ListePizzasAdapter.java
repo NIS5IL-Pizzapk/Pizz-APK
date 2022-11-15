@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.example.pizz_apk.PlatUniqueFragment;
 import com.example.pizz_apk.databinding.RvItemPizzaBinding;
 import com.example.pizz_apk.models.PlatPropose;
 
@@ -46,10 +48,10 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
         holder.binding.tvDescriptionPizza.setText(pizzasList.get(position).getDescription());
         holder.binding.tvPrixPizza.setText(String.format(Locale.getDefault(),"%.2f",pizzasList.get(position).getPrix())+"€");
         holder.binding.cvPizza.setOnClickListener(view -> {
-            Intent intent = new Intent();
-            intent.putExtra("pizza",pizzasList.get(position));
-            intent.setAction("pizza");
-            context.sendBroadcast(intent);
+
+            Intent intent = new Intent(context, PlatUniqueFragment.class);
+            intent.putExtra("plat",pizzasList.get(position));
+            context.startActivity(intent);
         });
     }
 

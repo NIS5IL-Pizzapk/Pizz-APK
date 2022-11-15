@@ -3,6 +3,8 @@ package com.example.pizz_apk;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -27,7 +29,6 @@ public class PlatUniqueFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = FragmentPlatUniqueBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         //todo lignes à modifier
         //PlatPropose plat = (PlatPropose) getIntent().getSerializableExtra("plat");
@@ -43,5 +44,10 @@ public class PlatUniqueFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentPlatUniqueBinding.inflate(inflater, container, false);
         return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 }
