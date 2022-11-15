@@ -19,6 +19,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
     List<Restaurant> restaurantsList;
     Context context;
     RestaurantsListener listener;
+    RvItemRestaurantBinding binding;
 
     public RestaurantsAdapter(List<Restaurant> restaurantsList, Context context, RestaurantsListener listener) {
         this.restaurantsList = restaurantsList;
@@ -32,6 +33,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.rv_item_restaurant,parent,false);
         return new RestaurantsViewHolder(RvItemRestaurantBinding.bind(view));
+
     }
 
     @Override
@@ -39,6 +41,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
         final Restaurant restaurant = restaurantsList.get(position);
         holder.binding.btnChoixRestaurant.setOnClickListener(v -> listener.onRestaurantClicked(restaurant));
         holder.binding.btnChoixRestaurant.setText(restaurant.getNom());
+
     }
 
     @Override
