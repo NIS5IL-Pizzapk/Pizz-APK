@@ -26,7 +26,6 @@ public class AccueilFragment extends Fragment {
 
     FragmentAccueilBinding binding;
     List<CategorieAccueil> categorieAccueilList = new ArrayList<>();
-    Context context = getContext();
     public AccueilFragment() {
         // Required empty public constructor
     }
@@ -49,9 +48,9 @@ public class AccueilFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         categorieAccueilList = TestData.ListeCatégorie;
-        CategorieAccueilAdapter adapter = new CategorieAccueilAdapter(categorieAccueilList,context);
+        CategorieAccueilAdapter adapter = new CategorieAccueilAdapter(categorieAccueilList,getContext());
         binding.rvButtonsAccueil.setHasFixedSize(true);
         binding.rvButtonsAccueil.setAdapter(adapter);
-        binding.rvButtonsAccueil.setLayoutManager(new LinearLayoutManager(context));
+        binding.rvButtonsAccueil.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

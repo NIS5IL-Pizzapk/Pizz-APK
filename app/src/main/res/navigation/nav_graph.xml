@@ -27,11 +27,7 @@
         android:id="@+id/loginFragment"
         android:name="com.example.pizz_apk.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_accueilFragment"
-            app:destination="@id/accueilFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/platUniqueFragment"
         android:name="com.example.pizz_apk.PlatUniqueFragment"
@@ -43,7 +39,7 @@
         android:label="fragment_restaurant_choix"
         tools:layout="@layout/fragment_restaurant_choix" >
         <action
-            android:id="@+id/action_restaurantChoixFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_restaurantChoixFragment_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
     </fragment>
 </navigation>
