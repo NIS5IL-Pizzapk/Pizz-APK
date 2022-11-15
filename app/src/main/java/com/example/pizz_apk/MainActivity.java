@@ -1,22 +1,17 @@
 package com.example.pizz_apk;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.ui.AppBarConfiguration;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -81,7 +76,7 @@ Fragment fragment = null;
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_cart:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PannierFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PanierFragment()).commit();
                 break;
         }
         return true;
@@ -94,18 +89,12 @@ Fragment fragment = null;
         } else {
             if (fragment instanceof AProposFragment) {
                 super.onBackPressed();
-            } else {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RestaurantChoixFragment()).commit();
             }
             if (fragment instanceof ContactFragment) {
                 super.onBackPressed();
-            } else {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RestaurantChoixFragment()).commit();
             }
             if (fragment instanceof ParametresFragment) {
                 super.onBackPressed();
-            } else {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RestaurantChoixFragment()).commit();
             }
             if (fragment instanceof MonCompteFragment) {
                 super.onBackPressed();
