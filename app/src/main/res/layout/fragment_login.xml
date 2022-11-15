@@ -42,19 +42,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:textColor="@color/white"
             android:inputType="textEmailAddress"
-            android:text="Adresse Mail" />
+            android:minHeight="48dp"
+            android:text="Adresse Mail"
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_marginTop="40dp"
             android:ems="10"
             android:inputType="textPassword"
-            android:text="Password" />
+            android:minHeight="48dp"
+            android:text="Password"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <ImageView
