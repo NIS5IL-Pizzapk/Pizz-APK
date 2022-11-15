@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Restaurant"
-        android:background="@drawable/style_button"
+        android:background="@drawable/custom_btn_tovalid"
         android:backgroundTint="@null"
         android:font="@font/tw_cen_mt"
         android:textSize="20dp"
