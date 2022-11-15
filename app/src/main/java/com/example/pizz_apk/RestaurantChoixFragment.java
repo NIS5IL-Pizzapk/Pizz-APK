@@ -4,7 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -13,7 +17,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.pizz_apk.adapters.RestaurantsAdapter;
+import com.example.pizz_apk.adapters.RestaurantsListener;
 import com.example.pizz_apk.databinding.FragmentRestaurantChoixBinding;
+import com.example.pizz_apk.models.Restaurant;
+import com.example.pizz_apk.models.TestData;
+import com.example.pizz_apk.viewmodels.RestaurantsViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +32,12 @@ public class RestaurantChoixFragment extends Fragment {
 
     private String[] listScrollingText;
 
-    List<String> restaurantsList = new ArrayList<>();
+    List<Restaurant> restaurantsList = new ArrayList<>();
 
     FragmentRestaurantChoixBinding binding;
 
-    Context context = getContext();
+    RestaurantsViewModel restaurantsViewModel;
+
 
     TextView tv;
 
@@ -39,28 +48,7 @@ public class RestaurantChoixFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = FragmentRestaurantChoixBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        restaurantsList = new ArrayList<>();
-        restaurantsList.add("Clarensac");
-        restaurantsList.add("Vauvert");
-        RestaurantsAdapter restaurantsAdapter = new RestaurantsAdapter(restaurantsList,context);
-        binding.rvHomepageRestaurants.setHasFixedSize(true);
-        binding.rvHomepageRestaurants.setAdapter(restaurantsAdapter);
-        binding.rvHomepageRestaurants.setLayoutManager(new LinearLayoutManager(context));
-
-
-        tv = (TextView) view.findViewById(R.id.scroll_text);
-        tv.setSelected(true);
-
-        //Récupération de la liste des textes à faire défiler
-        listScrollingText = getResources().getStringArray(R.array.scrolling_text);
-
-        int randomIndex = new Random().nextInt(listScrollingText.length);
-        String randomName = listScrollingText[randomIndex];
-        tv.setText(randomName);
-        //OnClick du bouton temporaire permettant d'accéder à la page des pizzas
-
+        this.restaurantsList = TestData.listeRestaurant;
 
     }
 
@@ -69,5 +57,29 @@ public class RestaurantChoixFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentRestaurantChoixBinding.inflate(inflater, container, false);
         return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        restaurantsViewModel = new ViewModelProvider(requireActivity()).get(RestaurantsViewModel.class);
+        restaurantsViewModel.setRestaurantsList(restaurantsList);
+        RestaurantsAdapter restaurantsAdapter = new RestaurantsAdapter(restaurantsViewModel.getRestaurantsList(),getContext(), new RestaurantsListener() {
+            @Override
+            public void onRestaurantClicked(Restaurant restaurant) {
+                restaurantsViewModel.setSelectedRestaurant(restaurant);
+                Navigation.findNavController(view).navigate(R.id.action_restaurantChoixFragment_to_accueilFragment);
+            }
+        });
+        binding.rvHomepageRestaurants.setHasFixedSize(true);
+        binding.rvHomepageRestaurants.setAdapter(restaurantsAdapter);
+        binding.rvHomepageRestaurants.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.scrollText.setSelected(true);
+        //Récupération de la liste des textes à faire défiler
+        listScrollingText = getResources().getStringArray(R.array.scrolling_text);
+
+        int randomIndex = new Random().nextInt(listScrollingText.length);
+        String randomName = listScrollingText[randomIndex];
+        binding.scrollText.setText(randomName);
     }
 }
