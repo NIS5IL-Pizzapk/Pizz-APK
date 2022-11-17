@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity"
-    app:startDestination="@id/restaurantChoixFragment">
+    tools:context=".MainActivity">
 
 
     <fragment
-        android:id="@+id/fragment_container"
+        android:id="@+id/nav_host_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -29,12 +28,11 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#00000000"
-            app:title=""
-            app:menu="@menu/toolbar_cart"
-            app:navigationIcon="@drawable/ic_baseline_menu_24" />
+            app:navigationIcon="@drawable/ic_baseline_menu_24"
+
+            app:menu="@menu/toolbar_cart"/>
 
     </LinearLayout>
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -43,9 +41,9 @@
         android:layout_gravity="start"
         android:background="#000000"
         app:headerLayout="@layout/header"
-        app:menu="@menu/burger_menu" >
-
+        app:menu="@menu/burger_menu">
     </com.google.android.material.navigation.NavigationView>
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -6,19 +6,27 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.example.pizz_apk.adapters.PlatUniqueListener;
 import com.example.pizz_apk.databinding.FragmentPlatUniqueBinding;
 
 import com.example.pizz_apk.models.PlatPropose;
+import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
+
+import java.util.List;
 
 
 public class PlatUniqueFragment extends Fragment {
+
     FragmentPlatUniqueBinding binding;
+    List<PlatPropose> platProposeList;
+    PlatUniqueListener listener;
 
     Context context = getContext();
 
@@ -29,12 +37,6 @@ public class PlatUniqueFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = binding.getRoot();
-        //todo lignes à modifier
-        //PlatPropose plat = (PlatPropose) getIntent().getSerializableExtra("plat");
-        //binding.tvPlatUniqueNom.setText(plat.getNom());
-        //binding.tvPlatUniquePrix.setText(String.valueOf(plat.getPrix()));
-        //binding.tvPlatUniqueIngredients.setText(plat.getDescription());
 
     }
 
@@ -49,5 +51,12 @@ public class PlatUniqueFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        PlatUniqueViewModel platUniqueViewModel = new ViewModelProvider(requireActivity()).get(PlatUniqueViewModel.class);
+        platUniqueViewModel.getSelectedPlat().observe(getViewLifecycleOwner(), plat -> {
+
+            binding.tvPlatNom.setText(plat.getNom());
+            binding.tvPlatPrix.setText(String.valueOf(plat.getPrix())+ " €");
+            binding.tvPlatIngredients.setText(plat.getDescription());
+        });
     }
 }
