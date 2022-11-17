@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccueilFragment">
+    tools:context=".CategorieAccueilFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_buttons_accueil"
