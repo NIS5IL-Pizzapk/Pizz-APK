@@ -2,6 +2,7 @@ package com.example.pizz_apk;
 
 import static androidx.navigation.Navigation.findNavController;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -11,6 +12,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
@@ -38,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
        }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+      getMenuInflater().inflate(R.menu.toolbar_cart, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     //remove this if you want application to start
     @Override
     public boolean onSupportNavigateUp() {
@@ -45,5 +53,11 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.nav_panier) {
+            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_panier);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
