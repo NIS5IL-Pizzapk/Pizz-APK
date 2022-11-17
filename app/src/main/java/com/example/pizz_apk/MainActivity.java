@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.navigation_view);
 
         appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.restaurantChoixFragment,R.id.accueilFragment)
+                R.id.accueilFragment)
                 .setOpenableLayout(drawerLayout)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -48,9 +48,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-
-
-    //remove this if you want application to start
     @Override
     public boolean onSupportNavigateUp() {
       NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
