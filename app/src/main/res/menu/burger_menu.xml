@@ -3,39 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
-    <group android:checkableBehavior="single">
-        <item
+    <item
             android:id="@+id/nav_parametres"
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="@string/title_param"
-            app:showAsAction="never"
             />
         <item
             android:id="@+id/nav_apropos"
             android:icon="@drawable/ic_baseline_fmd_bad_24"
             android:title="@string/title_apropos"
-            app:showAsAction="never"
             />
         <item
             android:id="@+id/nav_contact"
             android:icon="@drawable/ic_baseline_contact_support_24"
             android:title="@string/title_contact"
-            app:showAsAction="never"
             />
         <item
             android:id="@+id/nav_account"
             android:icon="@drawable/ic_baseline_manage_accounts_24"
             android:title="@string/title_account"
-            app:showAsAction="never"
             />
         <item
             android:id="@+id/nav_deconnexion"
             android:icon="@drawable/ic_baseline_logout_24"
             android:title="@string/menu_deconnexion"
-            app:showAsAction="never"
             />
-    </group>
-
 
 </menu>
