@@ -34,12 +34,14 @@
                 android:id="@+id/btn_base_tomate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#616161"
                 android:text="BASE TOMATE" />
 
             <Button
                 android:id="@+id/btn_base_creme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#616161"
                 android:text="BASE CREME" />
 
         </LinearLayout>

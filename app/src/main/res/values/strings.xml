@@ -1,10 +1,8 @@
 <resources>
     <string-array name="scrolling_text">
-        <item>Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1</item>
-        <item>Text2 Text2 Text2 Text2 Text2 Text2 Text2 Text2 Text2</item>
-        <item>Text3 Text3 Text3 Text3 Text3 Text3 Text3 Text3 Text3</item>
-        <item>Text4 Text4 Text4 Text4 Text4 Text4 Text4 Text4 Text4</item>
-        <item>Text5 Text5 Text5 Text5 Text5 Text5 Text5 Text5 Text5</item>
+        <item>Notre passion pour la pizza nous a conduit à
+            rechercher en permanence des produits et des matières de qualité</item>
+
     </string-array>
     <string name="app_name">Una Vita</string>
     <string name="image_Unavita_Desc_Login">Description Unavita</string>
