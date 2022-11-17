@@ -27,8 +27,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         setSupportActionBar(findViewById(R.id.toolbar));
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
         appBarConfiguration = new AppBarConfiguration.Builder(
