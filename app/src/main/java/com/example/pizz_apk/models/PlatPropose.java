@@ -11,15 +11,17 @@ public class PlatPropose implements Serializable {
     private String description;
     private float prix;
     private List<Allergene> listeAllergenes;
+    private int image;
     private List<Tag> tags;
 
-    public PlatPropose(String type, String nom, String description, float prix, List<Allergene> listeAllergenes,List<Tag> tags) {
+    public PlatPropose(String type, String nom, String description, float prix, List<Allergene> listeAllergenes,List<Tag> tags,int image) {
         this.type = type;
         this.nom = nom;
         this.description = description;
         this.prix = prix;
         this.listeAllergenes = listeAllergenes;
         this.tags = tags;
+        this.image = image;
     }
 
     public String getType() {
@@ -73,6 +75,19 @@ public class PlatPropose implements Serializable {
     public int getId() {
         return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
+    }
+
 
     public static List<PlatPropose> getPlatsByTagNameFromList(List<PlatPropose> list, String tag) {
         List<PlatPropose> newList = new ArrayList<>();

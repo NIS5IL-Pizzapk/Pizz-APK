@@ -17,8 +17,7 @@ import android.view.ViewGroup;
 import com.example.pizz_apk.adapters.ListePizzasAdapter;
 import com.example.pizz_apk.adapters.PlatUniqueListener;
 import com.example.pizz_apk.databinding.FragmentListePizzasBinding;
-import com.example.pizz_apk.databinding.FragmentPlatUniqueBinding;
-import com.example.pizz_apk.viewmodels.CategorieAccueilViewModel;
+import com.example.pizz_apk.models.PlatPropose;
 import com.example.pizz_apk.viewmodels.ListePizzasViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
 
@@ -56,9 +55,23 @@ public class ListePizzasFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         pizzaListViewModel = new ViewModelProvider(this).get(ListePizzasViewModel.class);
         platUniqueViewModel = new ViewModelProvider(requireActivity()).get(PlatUniqueViewModel.class);
-        ListePizzasAdapter listePizzasAdapteradapter = new ListePizzasAdapter(pizzaListViewModel.getListPizzaLiveData().getValue(),context, platPropose -> {
+        ListePizzasAdapter listePizzasAdapteradapter = new ListePizzasAdapter(pizzaListViewModel.getListPizzaLiveData().getValue(),context, new PlatUniqueListener() {
+            @Override
+            public void onPlatUniqueClicked(PlatPropose platPropose) {
             platUniqueViewModel.setSelectedPlat(platPropose);
             Navigation.findNavController(view).navigate(R.id.action_listePizzasFragment_to_platUniqueFragment);
+
+            }
+
+            @Override
+            public void onPlatUniqueAllergenesClicked(PlatPropose platPropose) {
+                platUniqueViewModel.setSelectedPlat(platPropose);
+                Navigation.findNavController(view).navigate(R.id.action_listePizzasFragment_to_allergenesFragment);
+
+
+            }
+
+
         });
         binding.rvPizzasListe.setHasFixedSize(true);
         binding.rvPizzasListe.setAdapter(listePizzasAdapteradapter);

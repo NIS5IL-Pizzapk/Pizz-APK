@@ -28,7 +28,8 @@
                     android:id="@+id/img_pizza_mini"
                     android:layout_width="100dp"
                     android:layout_height="150dp"
-                    app:srcCompat="@drawable/ic_launcher_background" />
+                    android:layout_marginLeft="10dp"
+                    app:srcCompat="@drawable/pizza" />
 
                 <Space
                     android:layout_width="15dp"
