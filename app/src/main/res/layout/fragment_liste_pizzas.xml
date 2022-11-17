@@ -13,11 +13,18 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="126dp"
+            android:layout_height="103dp"
+            android:src="@drawable/logo_unavita" />
+
         <TextView
             android:id="@+id/tv_nos_pizzas"
+            android:layout_marginTop="1dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="25"
+            android:layout_weight="15"
             android:gravity="center"
             android:text="NOS PIZZAS"
             android:textSize="40sp" />
@@ -51,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="68" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
