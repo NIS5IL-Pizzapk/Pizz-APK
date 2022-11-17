@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.navigation_view);
 
         appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.restaurantChoixFragment,R.id.accueilFragment,R.id.listePizzasFragment)
+                R.id.restaurantChoixFragment,R.id.accueilFragment)
                 .setOpenableLayout(drawerLayout)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
