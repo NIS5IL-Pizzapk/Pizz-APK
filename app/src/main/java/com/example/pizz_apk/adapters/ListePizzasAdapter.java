@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.pizz_apk.PlatUniqueFragment;
+import com.example.pizz_apk.R;
 import com.example.pizz_apk.databinding.RvItemPizzaBinding;
+import com.example.pizz_apk.models.CategorieAccueil;
 import com.example.pizz_apk.models.PlatPropose;
 
 import java.util.ArrayList;
@@ -23,10 +25,12 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
     List<PlatPropose> pizzasList = new ArrayList<>();
     RvItemPizzaBinding binding;
     Context context;
+    PlatUniqueListener listener;
 
-    public ListePizzasAdapter(List<PlatPropose> pizzasList, Context context) {
+    public ListePizzasAdapter(List<PlatPropose> pizzasList, Context context, PlatUniqueListener listener) {
         this.pizzasList = pizzasList;
         this.context = context;
+        this.listener = listener;
     }
 
     public void setPizzasList(int oldSize, List<PlatPropose> pizzasList) {
@@ -38,8 +42,9 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
     @NonNull
     @Override
     public ListePizzasViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        binding = RvItemPizzaBinding.inflate(LayoutInflater.from(context));
-        return new ListePizzasViewHolder(binding.getRoot());
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.rv_item_pizza,parent,false);
+        return new ListePizzasAdapter.ListePizzasViewHolder(RvItemPizzaBinding.bind(view));
     }
 
     @Override
@@ -47,12 +52,8 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
         holder.binding.tvNomPizza.setText(pizzasList.get(position).getNom());
         holder.binding.tvDescriptionPizza.setText(pizzasList.get(position).getDescription());
         holder.binding.tvPrixPizza.setText(String.format(Locale.getDefault(),"%.2f",pizzasList.get(position).getPrix())+"€");
-        holder.binding.cvPizza.setOnClickListener(view -> {
-
-            Intent intent = new Intent(context, PlatUniqueFragment.class);
-            intent.putExtra("plat",pizzasList.get(position));
-            context.startActivity(intent);
-        });
+        final PlatPropose platPropose = pizzasList.get(position);
+        holder.binding.cvPizza.setOnClickListener(v -> listener.onPlatUniqueClicked(platPropose));
     }
 
     @Override
@@ -70,14 +71,15 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
         return position;
     }
 
-    public static class ListePizzasViewHolder extends RecyclerView.ViewHolder{
+    public static class ListePizzasViewHolder extends RecyclerView.ViewHolder {
 
         RvItemPizzaBinding binding;
 
-        public ListePizzasViewHolder(@NonNull View itemView) {
-            super(itemView);
-            binding = RvItemPizzaBinding.bind(itemView);
+        public ListePizzasViewHolder(@NonNull RvItemPizzaBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
-
 }
+
+
