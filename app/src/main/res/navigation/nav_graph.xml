@@ -41,50 +41,49 @@
         <action
             android:id="@+id/action_restaurantChoixFragment_to_accueilFragment"
             app:destination="@id/accueilFragment" />
+        <action
+            android:id="@+id/action_restaurantChoixFragment_to_nav_parametres"
+            app:destination="@id/nav_parametres" />
+        <action
+            android:id="@+id/action_restaurantChoixFragment_to_nav_apropos"
+            app:destination="@id/nav_apropos" />
+        <action
+            android:id="@+id/action_restaurantChoixFragment_to_nav_account"
+            app:destination="@id/nav_account" />
+        <action
+            android:id="@+id/action_restaurantChoixFragment_to_nav_contact"
+            app:destination="@id/nav_contact" />
+        <action
+            android:id="@+id/action_restaurantChoixFragment_to_nav_panier"
+            app:destination="@id/nav_panier" />
     </fragment>
     <fragment
-        android:id="@+id/AProposFragment"
+        android:id="@+id/nav_apropos"
         android:name="com.example.pizz_apk.AProposFragment"
         android:label="fragment_a_propos"
-        tools:layout="@layout/fragment_a_propos" >
-        <action
-            android:id="@+id/action_AProposFragment_to_listePizzasFragment"
-            app:destination="@id/listePizzasFragment" />
+        tools:layout="@layout/fragment_a_propos">
+    <action
+        android:id="@+id/action_nav_panier_to_restaurantChoixFragment"
+        app:destination="@id/restaurantChoixFragment"/>
     </fragment>
     <fragment
-        android:id="@+id/contactFragment"
+        android:id="@+id/nav_contact"
         android:name="com.example.pizz_apk.ContactFragment"
         android:label="fragment_contact"
-        tools:layout="@layout/fragment_contact" >
-        <action
-            android:id="@+id/action_contactFragment_to_listePizzasFragment"
-            app:destination="@id/listePizzasFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_contact" />
     <fragment
-        android:id="@+id/monCompteFragment"
+        android:id="@+id/nav_account"
         android:name="com.example.pizz_apk.MonCompteFragment"
         android:label="fragment_mon_compte"
-        tools:layout="@layout/fragment_mon_compte" >
-        <action
-            android:id="@+id/action_monCompteFragment_to_listePizzasFragment"
-            app:destination="@id/listePizzasFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_mon_compte" />
     <fragment
-        android:id="@+id/panierFragment"
+        android:id="@+id/nav_panier"
         android:name="com.example.pizz_apk.PanierFragment"
         android:label="fragment_panier"
-        tools:layout="@layout/fragment_panier" >
-        <action
-            android:id="@+id/action_panierFragment_to_listePizzasFragment"
-            app:destination="@id/listePizzasFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_panier" />
     <fragment
-        android:id="@+id/parametresFragment"
+        android:id="@+id/nav_parametres"
         android:name="com.example.pizz_apk.ParametresFragment"
         android:label="fragment_parametres"
-        tools:layout="@layout/fragment_parametres" >
-        <action
-            android:id="@+id/action_parametresFragment_to_listePizzasFragment"
-            app:destination="@id/listePizzasFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_parametres" />
 </navigation>
