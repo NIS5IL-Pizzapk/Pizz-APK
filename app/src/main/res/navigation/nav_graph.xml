@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_listePizzasFragment_to_platUniqueFragment"
             app:destination="@id/platUniqueFragment" />
+        <action
+            android:id="@+id/action_listePizzasFragment_to_allergenesFragment"
+            app:destination="@id/allergenesFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -67,4 +70,9 @@
         android:name="com.example.pizz_apk.ParametresFragment"
         android:label="fragment_parametres"
         tools:layout="@layout/fragment_parametres" />
+    <fragment
+        android:id="@+id/allergenesFragment"
+        android:name="com.example.pizz_apk.AllergenesFragment"
+        android:label="fragment_allergenes"
+        tools:layout="@layout/fragment_allergenes" />
 </navigation>

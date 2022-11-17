@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="VOTRE PIZZA"
-        android:textSize="18sp"
+        android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_plat_prix"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Prix"
-        android:textSize="20sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/img_plat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,14 +32,16 @@
 
     <ImageView
         android:id="@+id/img_plat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:maxWidth="250dp"
+        android:maxHeight="250dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_plat_ingredients"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_plat_prix"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@drawable/pizza" />
 
     <TextView
         android:id="@+id/tv_plat_ingredients"
@@ -48,7 +50,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="Ingrédients"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,6 +63,7 @@
         android:ems="10"
         android:hint="Ajouter un commentaire..."
         android:inputType="textPersonName"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,6 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="Suppléments :"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/rv_plat_supp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
@@ -91,7 +95,9 @@
         android:id="@+id/btn_plat_commander"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#616161"
         android:text="COMMANDER"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

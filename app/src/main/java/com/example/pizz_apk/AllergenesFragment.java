@@ -1,6 +1,5 @@
 package com.example.pizz_apk;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,25 +11,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-import com.example.pizz_apk.adapters.PlatUniqueListener;
+import com.example.pizz_apk.databinding.FragmentAllergenesBinding;
 import com.example.pizz_apk.databinding.FragmentPlatUniqueBinding;
-
-import com.example.pizz_apk.models.PlatPropose;
+import com.example.pizz_apk.models.Allergene;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
 
 import java.util.List;
 
 
-public class PlatUniqueFragment extends Fragment {
+public class AllergenesFragment extends Fragment {
 
-    FragmentPlatUniqueBinding binding;
-    List<PlatPropose> platProposeList;
-    PlatUniqueListener listener;
+    FragmentAllergenesBinding binding;
 
-    Context context = getContext();
-
-    public PlatUniqueFragment() {
+    public AllergenesFragment() {
         // Required empty public constructor
     }
 
@@ -44,7 +37,7 @@ public class PlatUniqueFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentPlatUniqueBinding.inflate(inflater, container, false);
+        binding = FragmentAllergenesBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -53,11 +46,18 @@ public class PlatUniqueFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         PlatUniqueViewModel platUniqueViewModel = new ViewModelProvider(requireActivity()).get(PlatUniqueViewModel.class);
         platUniqueViewModel.getSelectedPlat().observe(getViewLifecycleOwner(), plat -> {
+            List<Allergene> listeAllergenes = (plat.getListeAllergenes());
+            String allergenes = "";
 
-            binding.tvPlatNom.setText(plat.getNom());
-            binding.tvPlatPrix.setText(String.valueOf(plat.getPrix())+ " €");
-            binding.tvPlatIngredients.setText(plat.getDescription());
-            binding.imgPlat.setImageResource(plat.getImage());
+            if (listeAllergenes.size() == 0) {
+                allergenes = "Aucun allergène";
+            } else {
+                for (int i = 0; i < listeAllergenes.size(); i++) {
+                    allergenes += listeAllergenes.get(i).getNom() + " ";
+                }
+            }
+            binding.tvAller.setText(allergenes);
+
         });
     }
 }

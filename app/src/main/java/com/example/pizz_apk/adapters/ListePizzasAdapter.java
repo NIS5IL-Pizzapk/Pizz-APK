@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -49,11 +50,12 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ListePizzasViewHolder holder, int position) {
-        holder.binding.tvNomPizza.setText(pizzasList.get(position).getNom());
-        holder.binding.tvDescriptionPizza.setText(pizzasList.get(position).getDescription());
-        holder.binding.tvPrixPizza.setText(String.format(Locale.getDefault(),"%.2f",pizzasList.get(position).getPrix())+"€");
         final PlatPropose platPropose = pizzasList.get(position);
-        holder.binding.cvPizza.setOnClickListener(v -> listener.onPlatUniqueClicked(platPropose));
+        holder.binding.tvNomPizza.setText(platPropose.getNom());
+        holder.binding.tvDescriptionPizza.setText(platPropose.getDescription());
+        holder.binding.tvPrixPizza.setText(String.format(Locale.getDefault(),"%.2f",platPropose.getPrix())+"€");
+        holder.binding.imgPizzaMini.setOnClickListener(v -> listener.onPlatUniqueClicked(platPropose));
+        holder.binding.imgbtnPizzaAllergenes.setOnClickListener(v -> listener.onPlatUniqueAllergenesClicked(platPropose));
     }
 
     @Override
@@ -70,6 +72,7 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
     public int getItemViewType(int position) {
         return position;
     }
+
 
     public static class ListePizzasViewHolder extends RecyclerView.ViewHolder {
 
