@@ -28,13 +28,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar(findViewById(R.id.toolbar));
-
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
 
         appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.restaurantChoixFragment,R.id.nav_panier,R.id.nav_parametres, R.id.nav_apropos, R.id.nav_account, R.id.nav_contact, R.id.nav_deconnexion)
+                R.id.restaurantChoixFragment,R.id.accueilFragment,R.id.listePizzasFragment)
                 .setOpenableLayout(drawerLayout)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -48,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+
+
     //remove this if you want application to start
     @Override
     public boolean onSupportNavigateUp() {
@@ -59,6 +60,21 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.nav_panier) {
             Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_panier);
+        }
+        if (item.getItemId() == R.id.nav_parametres) {
+            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_parametres);
+        }
+        if (item.getItemId() == R.id.nav_apropos) {
+            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_apropos);
+        }
+        if (item.getItemId() == R.id.nav_account) {
+            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_account);
+        }
+        if (item.getItemId() == R.id.nav_contact) {
+            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_contact);
+        }
+        if (item.getItemId() == R.id.nav_deconnexion) {
+            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_deconnexion);
         }
         return super.onOptionsItemSelected(item);
     }
