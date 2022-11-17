@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
+
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.restaurantChoixFragment,R.id.nav_panier,R.id.nav_parametres, R.id.nav_apropos, R.id.nav_account, R.id.nav_contact, R.id.nav_deconnexion)
                 .setOpenableLayout(drawerLayout)
