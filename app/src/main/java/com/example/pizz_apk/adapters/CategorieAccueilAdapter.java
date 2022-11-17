@@ -37,7 +37,7 @@ public class CategorieAccueilAdapter extends RecyclerView.Adapter<CategorieAccue
     public void onBindViewHolder(@NonNull CategorieAccueilViewHolder holder, int position) {
         binding.imgAccueil.setImageResource(categorieList.get(position).getImage());
         final CategorieAccueil categorieAccueil = categorieList.get(position);
-        holder.binding.getRoot().setOnClickListener(v -> listener.onCategorieAccueilClicked(categorieAccueil));
+        binding.getRoot().setOnClickListener(v -> listener.onCategorieAccueilClicked(categorieAccueil));
 
     }
 
