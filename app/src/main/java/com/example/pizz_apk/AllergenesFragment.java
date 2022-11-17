@@ -13,7 +13,10 @@ import android.view.ViewGroup;
 
 import com.example.pizz_apk.databinding.FragmentAllergenesBinding;
 import com.example.pizz_apk.databinding.FragmentPlatUniqueBinding;
+import com.example.pizz_apk.models.Allergene;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
+
+import java.util.List;
 
 
 public class AllergenesFragment extends Fragment {
@@ -43,8 +46,17 @@ public class AllergenesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         PlatUniqueViewModel platUniqueViewModel = new ViewModelProvider(requireActivity()).get(PlatUniqueViewModel.class);
         platUniqueViewModel.getSelectedPlat().observe(getViewLifecycleOwner(), plat -> {
+            List<Allergene> listeAllergenes = (plat.getListeAllergenes());
+            String allergenes = "";
 
-            binding.tvAller.setText(String.valueOf(plat.getListeAllergenes()));
+            if (listeAllergenes.size() == 0) {
+                allergenes = "Aucun allergène";
+            } else {
+                for (int i = 0; i < listeAllergenes.size(); i++) {
+                    allergenes += listeAllergenes.get(i).getNom() + " ";
+                }
+            }
+            binding.tvAller.setText(allergenes);
 
         });
     }
