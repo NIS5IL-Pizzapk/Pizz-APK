@@ -9,21 +9,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pizz_apk.databinding.RvItemAccueilBinding;
-import com.example.pizz_apk.databinding.RvItemPizzaBinding;
 import com.example.pizz_apk.models.CategorieAccueil;
-import com.example.pizz_apk.models.PlatPropose;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategorieAccueilAdapter extends RecyclerView.Adapter<CategorieAccueilAdapter.CategorieAccueilViewHolder> {
     List<CategorieAccueil> categorieList = new ArrayList<>();
+    CategorieAccueilListener listener;
     RvItemAccueilBinding binding;
     Context context;
 
-    public CategorieAccueilAdapter(List<CategorieAccueil> categorieList, Context context) {
+    public CategorieAccueilAdapter(List<CategorieAccueil> categorieList, Context context, CategorieAccueilListener categorieAccueilListener) {
         this.categorieList = categorieList;
         this.context = context;
+        this.listener = categorieAccueilListener;
     }
 
     @NonNull
@@ -36,6 +36,8 @@ public class CategorieAccueilAdapter extends RecyclerView.Adapter<CategorieAccue
     @Override
     public void onBindViewHolder(@NonNull CategorieAccueilViewHolder holder, int position) {
         binding.imgAccueil.setImageResource(categorieList.get(position).getImage());
+        final CategorieAccueil categorieAccueil = categorieList.get(position);
+        holder.binding.getRoot().setOnClickListener(v -> listener.onCategorieAccueilClicked(categorieAccueil));
 
     }
 

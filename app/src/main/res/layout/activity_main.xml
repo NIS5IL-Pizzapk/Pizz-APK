@@ -18,6 +18,7 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#00000000"
-            app:title=" "
+            app:title=""
             app:menu="@menu/toolbar_cart"
             app:navigationIcon="@drawable/ic_baseline_menu_24" />
 

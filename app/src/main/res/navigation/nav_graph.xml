@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/accueilFragment"
-        android:name="com.example.pizz_apk.AccueilFragment"
+        android:name="com.example.pizz_apk.CategorieAccueilFragment"
         android:label="fragment_accueil"
         tools:layout="@layout/fragment_accueil" >
         <action
