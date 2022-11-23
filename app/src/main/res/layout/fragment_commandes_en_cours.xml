@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ContactFragment" >
+    tools:context=".CommandesEnCoursFragment" >
 
     <ImageView
-        android:id="@+id/background_slate2"
+        android:id="@+id/background_slate7"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/background" />
 
     <ImageView
-        android:id="@+id/bush_image2"
+        android:id="@+id/bush_image7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:alpha="0.4"
@@ -28,7 +28,7 @@
         app:srcCompat="@drawable/bush" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageView11"
         android:layout_width="210dp"
         android:layout_height="206dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,14 +37,12 @@
         app:srcCompat="@drawable/logo_unavita" />
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Contact"
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/commandes_en_cours"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
+        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 </androidx.constraintlayout.widget.ConstraintLayout>

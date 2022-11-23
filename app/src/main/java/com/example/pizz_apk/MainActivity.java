@@ -60,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.nav_panier) {
             Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_panier);
         }
+        if (item.getItemId() == R.id.nav_reservation) {
+            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_reservation);
+        }
+        if (item.getItemId() == R.id.nav_commandesencours) {
+            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_commandesencours);
+        }
         if (item.getItemId() == R.id.nav_parametres) {
             Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_parametres);
         }

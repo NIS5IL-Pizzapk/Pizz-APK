@@ -75,4 +75,14 @@
         android:name="com.example.pizz_apk.AllergenesFragment"
         android:label="fragment_allergenes"
         tools:layout="@layout/fragment_allergenes" />
+    <fragment
+        android:id="@+id/nav_reservation"
+        android:name="com.example.pizz_apk.ReservationFragment"
+        android:label="fragment_reservation"
+        tools:layout="@layout/fragment_reservation" />
+    <fragment
+        android:id="@+id/nav_commandesencours"
+        android:name="com.example.pizz_apk.CommandesEnCoursFragment"
+        android:label="fragment_commandes_en_cours"
+        tools:layout="@layout/fragment_commandes_en_cours" />
 </navigation>
