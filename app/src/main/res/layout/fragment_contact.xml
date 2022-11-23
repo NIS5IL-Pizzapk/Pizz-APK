@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/tw_cen_mt_bold"
-            android:text="A EMPORTER & LIVRAISON A DOMICILE"
+            android:text="A EMPORTER &amp; LIVRAISON A DOMICILE"
             android:textAlignment="center"
             android:textSize="25sp" />
 
