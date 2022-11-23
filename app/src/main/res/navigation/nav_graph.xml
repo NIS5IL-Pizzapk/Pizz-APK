@@ -35,7 +35,11 @@
         android:id="@+id/platUniqueFragment"
         android:name="com.example.pizz_apk.PlatUniqueFragment"
         android:label="fragment_plat_unique"
-        tools:layout="@layout/fragment_plat_unique" />
+        tools:layout="@layout/fragment_plat_unique" >
+        <action
+            android:id="@+id/action_platUniqueFragment_to_nav_panier"
+            app:destination="@id/nav_panier" />
+    </fragment>
     <fragment
         android:id="@+id/restaurantChoixFragment"
         android:name="com.example.pizz_apk.RestaurantChoixFragment"

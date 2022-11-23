@@ -13,8 +13,9 @@ public class PlatPropose implements Serializable {
     private List<Allergene> listeAllergenes;
     private int image;
     private List<Tag> tags;
+    private int quantite;
 
-    public PlatPropose(String type, String nom, String description, float prix, List<Allergene> listeAllergenes,List<Tag> tags,int image) {
+    public PlatPropose(String type, String nom, String description, float prix, List<Allergene> listeAllergenes,List<Tag> tags,int image,int quantite) {
         this.type = type;
         this.nom = nom;
         this.description = description;
@@ -22,6 +23,7 @@ public class PlatPropose implements Serializable {
         this.listeAllergenes = listeAllergenes;
         this.tags = tags;
         this.image = image;
+        this.quantite = quantite;
     }
 
     public String getType() {
@@ -87,6 +89,28 @@ public class PlatPropose implements Serializable {
     public void setImage(int image) {
         this.image = image;
     }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
+    public void addQuantite(int quantite) {
+        this.quantite += quantite;
+    }
+
+    public void removeQuantite(int quantite) {
+        this.quantite -= quantite;
+    }
+
+    public void PricePerQuantity() {
+        this.prix = this.prix * this.quantite;
+    }
+
+
 
 
     public static List<PlatPropose> getPlatsByTagNameFromList(List<PlatPropose> list, String tag) {
