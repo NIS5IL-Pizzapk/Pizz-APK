@@ -39,7 +39,12 @@
         android:label="fragment_restaurant_choix"
         tools:layout="@layout/fragment_restaurant_choix" >
         <action
-            android:id="@+id/action_restaurantChoixFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_restaurantChoixFragment_to_fragmentSignup"
+            app:destination="@id/fragmentSignup" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentSignup"
+        android:name="com.example.pizz_apk.FragmentSignup"
+        android:label="fragment_signup"
+        tools:layout="@layout/fragment_signup" />
 </navigation>

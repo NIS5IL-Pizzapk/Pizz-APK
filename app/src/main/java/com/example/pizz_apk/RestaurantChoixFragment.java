@@ -68,7 +68,7 @@ public class RestaurantChoixFragment extends Fragment {
             @Override
             public void onRestaurantClicked(Restaurant restaurant) {
                 restaurantsViewModel.setSelectedRestaurant(restaurant);
-                Navigation.findNavController(view).navigate(R.id.action_restaurantChoixFragment_to_loginFragment);
+                Navigation.findNavController(view).navigate(R.id.action_restaurantChoixFragment_to_fragmentSignup);
             }
         });
         binding.rvHomepageRestaurants.setHasFixedSize(true);
