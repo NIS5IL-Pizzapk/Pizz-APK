@@ -62,12 +62,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="150dp"
+                android:fontFamily="@font/tw_cen_mt_bold"
                 android:text="Qui est UnaVita ?" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/tw_cen_mt_bold"
                 android:text="Le respect des traditions culinaires, le partage des saveurs, la qualité et la fraîcheur des produits reflètent nos valeurs. UNAVITA est situé au cœur du Village de CLARENSAC , à deux pas de la magnifique Fontaine du Griffe. Notre passion pour la pizza nous a conduit à rechercher en permanence des produits et des matières premières de qualité locale Notre carte est pleine de combinaisons qui satisferont  tous les types de palais. Les garnitures les plus imaginatives et raffinées sont à la base de notre philosophie de fabrication , nos pains hamburgers sont faits et fabriquée par nos soins , toutes nos frites sont épluchées à la main , notre pâte à pizza fraîche italienne Façonnèe à la main est croustillante et moelleuse à la fois" />
         </LinearLayout>
     </ScrollView>
