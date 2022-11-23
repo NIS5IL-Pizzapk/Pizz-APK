@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:backgroundTint="#616161"
-        android:font="@font/tw_cen_mt"
+        android:font="@font/tw_cen_mt_bold"
         android:text="Restaurant"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
