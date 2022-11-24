@@ -3,8 +3,10 @@ package com.example.pizz_apk.models;
 import com.example.pizz_apk.R;
 import com.example.pizz_apk.viewmodels.RestaurantsViewModel;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class TestData {
@@ -34,6 +36,9 @@ public class TestData {
             new Restaurant("Vauvert")
     ));
 
+    public static List<Reservation> listeReservation = new ArrayList<Reservation>(Arrays.asList(
+            new Reservation("ALDEBERT","Arnaud", "06 06 06 06 06", 3,new Date(),new Time(12,0,0))
+    ));
 
 
 }
