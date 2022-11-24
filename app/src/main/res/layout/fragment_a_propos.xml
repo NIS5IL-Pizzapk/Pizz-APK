@@ -47,6 +47,18 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/tw_cen_mt"
+            android:text="Qui est UnaVita ?"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tw_cen_mt"
+            android:text="Lorem ipsum dolor sit amet. Ex voluptas voluptas qui repellendus omnis ut tempore voluptatem aut provident dolorem aut tempore aperiam. Eum assumenda natus aut sint dolorem qui neque soluta non adipisci velit aut unde veritatis sed doloribus error in voluptatem voluptas. Sed quia error aut porro culpa ut nostrum omnis non voluptatem voluptates quo voluptas praesentium qui internos nemo ut mollitia tempore! Aut quae odio At minima praesentium id reprehenderit quidem et cumque eligendi qui officia quia est odio rerum."
+            android:textSize="20sp" />
+    </LinearLayout>
             android:orientation="vertical">
 
             <ImageView

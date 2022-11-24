@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,6 +59,11 @@ public class PlatUniqueFragment extends Fragment {
             binding.tvPlatPrix.setText(String.valueOf(plat.getPrix())+ " €");
             binding.tvPlatIngredients.setText(plat.getDescription());
             binding.imgPlat.setImageResource(plat.getImage());
+
+            binding.btnPlatCommander.setOnClickListener(v -> {
+                platUniqueViewModel.addPlatToPanier(plat);
+                Navigation.findNavController(v).navigate(R.id.action_platUniqueFragment_to_nav_panier);
+            });
         });
     }
 }

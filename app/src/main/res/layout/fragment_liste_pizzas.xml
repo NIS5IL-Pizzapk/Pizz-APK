@@ -27,6 +27,7 @@
             android:layout_weight="15"
             android:gravity="center"
             android:text="NOS PIZZAS"
+            android:fontFamily="@font/tw_cen_mt_bold"
             android:textSize="40sp" />
 
         <LinearLayout
@@ -42,13 +43,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#616161"
-                android:text="BASE TOMATE" />
+                android:fontFamily="@font/tw_cen_mt_bold"
+                android:text="BASE TOMATE"
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btn_base_creme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#616161"
+                android:fontFamily="@font/tw_cen_mt_bold"
+                android:textSize="16sp"
                 android:text="BASE CREME" />
 
         </LinearLayout>
