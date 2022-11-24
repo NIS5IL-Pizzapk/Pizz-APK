@@ -20,5 +20,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="commandes_en_cours">Commandes en cours</string>
+    <string name="r_servations">Réservations</string>
 
 </resources>

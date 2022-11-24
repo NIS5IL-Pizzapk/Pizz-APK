@@ -44,31 +44,12 @@
         <action
             android:id="@+id/action_restaurantChoixFragment_to_accueilFragment"
             app:destination="@id/accueilFragment" />
-        <action
-            android:id="@+id/action_restaurantChoixFragment_to_nav_parametres"
-            app:destination="@id/nav_parametres" />
-        <action
-            android:id="@+id/action_restaurantChoixFragment_to_nav_apropos"
-            app:destination="@id/nav_apropos" />
-        <action
-            android:id="@+id/action_restaurantChoixFragment_to_nav_account"
-            app:destination="@id/nav_account" />
-        <action
-            android:id="@+id/action_restaurantChoixFragment_to_nav_contact"
-            app:destination="@id/nav_contact" />
-        <action
-            android:id="@+id/action_restaurantChoixFragment_to_nav_panier"
-            app:destination="@id/nav_panier" />
     </fragment>
     <fragment
         android:id="@+id/nav_apropos"
         android:name="com.example.pizz_apk.AProposFragment"
         android:label="fragment_a_propos"
-        tools:layout="@layout/fragment_a_propos">
-    <action
-        android:id="@+id/action_nav_panier_to_restaurantChoixFragment"
-        app:destination="@id/restaurantChoixFragment"/>
-    </fragment>
+        tools:layout="@layout/fragment_a_propos"/>
     <fragment
         android:id="@+id/nav_contact"
         android:name="com.example.pizz_apk.ContactFragment"
@@ -94,4 +75,14 @@
         android:name="com.example.pizz_apk.AllergenesFragment"
         android:label="fragment_allergenes"
         tools:layout="@layout/fragment_allergenes" />
+    <fragment
+        android:id="@+id/nav_reservation"
+        android:name="com.example.pizz_apk.ReservationFragment"
+        android:label="fragment_reservation"
+        tools:layout="@layout/fragment_reservation" />
+    <fragment
+        android:id="@+id/nav_commandesencours"
+        android:name="com.example.pizz_apk.CommandesEnCoursFragment"
+        android:label="fragment_commandes_en_cours"
+        tools:layout="@layout/fragment_commandes_en_cours" />
 </navigation>
