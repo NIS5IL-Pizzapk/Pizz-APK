@@ -2,9 +2,12 @@ package com.example.pizz_apk;
 
 import static androidx.navigation.Navigation.findNavController;
 
+import static com.google.android.material.tabs.TabLayout.GRAVITY_START;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -22,7 +25,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private NavController navController;
+    private NavController navControllertest;
     private DrawerLayout drawerLayout;
     //get selected fragment
     private Fragment selectedFragment;
@@ -53,18 +56,28 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-      NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
-    }
+      this.navControllertest = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-   //onbackpressed redirect to accueil fragment TODO
-    @Override
-    public void onBackPressed() {
-        if (navController.getCurrentDestination().getId() == R.id.restaurantChoixFragment) {
-            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_restaurantChoixFragment_to_accueilFragment);
-        } else {
-            navController.navigate(R.id.restaurantChoixFragment);
+      if (this.navControllertest.getCurrentDestination().getId() == R.id.nav_reservation) {
+          navControllertest.navigate(R.id.accueilFragment);
         }
+        if (this.navControllertest.getCurrentDestination().getId() == R.id.nav_commandesencours) {
+            navControllertest.navigate(R.id.accueilFragment);
+        }
+        if (this.navControllertest.getCurrentDestination().getId() == R.id.nav_parametres) {
+            navControllertest.navigate(R.id.accueilFragment);
+        }
+        if (this.navControllertest.getCurrentDestination().getId() == R.id.nav_apropos) {
+            navControllertest.navigate(R.id.accueilFragment);
+        }
+        if (this.navControllertest.getCurrentDestination().getId() == R.id.nav_contact) {
+            navControllertest.navigate(R.id.accueilFragment);
+        }
+        if (this.navControllertest.getCurrentDestination().getId() == R.id.nav_account) {
+            navControllertest.navigate(R.id.accueilFragment);
+        }
+
+        return NavigationUI.navigateUp(this.navControllertest, this.appBarConfiguration);
     }
 
     @Override
