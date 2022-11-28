@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -14,16 +15,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.pizz_apk.adapters.ListePizzasAdapter;
+import com.example.pizz_apk.adapters.PlatUniqueListener;
 import com.example.pizz_apk.databinding.FragmentListePizzasBinding;
-import com.example.pizz_apk.databinding.FragmentPlatUniqueBinding;
+import com.example.pizz_apk.models.PlatPropose;
 import com.example.pizz_apk.viewmodels.ListePizzasViewModel;
+import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
 
 
 public class ListePizzasFragment extends Fragment {
 
     FragmentListePizzasBinding binding;
     ListePizzasViewModel pizzaListViewModel;
+    PlatUniqueViewModel platUniqueViewModel;
     Context context = getContext();
+    PlatUniqueListener listener;
 
     public ListePizzasFragment() {
         // Required empty public constructor
@@ -49,14 +54,32 @@ public class ListePizzasFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         pizzaListViewModel = new ViewModelProvider(this).get(ListePizzasViewModel.class);
-        ListePizzasAdapter adapter = new ListePizzasAdapter(pizzaListViewModel.getListPizzaLiveData().getValue(),context);
+        platUniqueViewModel = new ViewModelProvider(requireActivity()).get(PlatUniqueViewModel.class);
+        ListePizzasAdapter listePizzasAdapteradapter = new ListePizzasAdapter(pizzaListViewModel.getListPizzaLiveData().getValue(),context, new PlatUniqueListener() {
+            @Override
+            public void onPlatUniqueClicked(PlatPropose platPropose) {
+            platUniqueViewModel.setSelectedPlat(platPropose);
+            Navigation.findNavController(view).navigate(R.id.action_listePizzasFragment_to_platUniqueFragment);
+
+            }
+
+            @Override
+            public void onPlatUniqueAllergenesClicked(PlatPropose platPropose) {
+                platUniqueViewModel.setSelectedPlat(platPropose);
+                Navigation.findNavController(view).navigate(R.id.action_listePizzasFragment_to_allergenesFragment);
+
+
+            }
+
+
+        });
         binding.rvPizzasListe.setHasFixedSize(true);
-        binding.rvPizzasListe.setAdapter(adapter);
+        binding.rvPizzasListe.setAdapter(listePizzasAdapteradapter);
         binding.rvPizzasListe.setLayoutManager(new LinearLayoutManager(context));
 
         //NE RIEN TOUCHER A PARTIR D'ICI
-        pizzaListViewModel.getListPizzaLiveData().observe(this, pizzas -> {
-            adapter.setPizzasList(pizzaListViewModel.getOldSize(),pizzas);
+        pizzaListViewModel.getListPizzaLiveData().observe(getViewLifecycleOwner(), pizzas -> {
+            listePizzasAdapteradapter.setPizzasList(pizzaListViewModel.getOldSize(),pizzas);
         });
         binding.btnBaseTomate.setOnClickListener(view1 -> {
             pizzaListViewModel.setBaseLD("Rouge");

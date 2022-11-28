@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout2"
+    android:id="@+id/ctl_lay_restaurant_choix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RestaurantChoixFragment">
+
 
 
     <FrameLayout
@@ -29,12 +30,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_homepage_restaurants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="325dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_choix_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        app:layout_constraintTop_toTopOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 

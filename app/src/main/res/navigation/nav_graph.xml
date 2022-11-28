@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/accueilFragment"
-        android:name="com.example.pizz_apk.AccueilFragment"
+        android:name="com.example.pizz_apk.CategorieAccueilFragment"
         android:label="fragment_accueil"
         tools:layout="@layout/fragment_accueil" >
         <action
@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_listePizzasFragment_to_platUniqueFragment"
             app:destination="@id/platUniqueFragment" />
+        <action
+            android:id="@+id/action_listePizzasFragment_to_allergenesFragment"
+            app:destination="@id/allergenesFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -32,7 +35,11 @@
         android:id="@+id/platUniqueFragment"
         android:name="com.example.pizz_apk.PlatUniqueFragment"
         android:label="fragment_plat_unique"
-        tools:layout="@layout/fragment_plat_unique" />
+        tools:layout="@layout/fragment_plat_unique" >
+        <action
+            android:id="@+id/action_platUniqueFragment_to_nav_panier"
+            app:destination="@id/nav_panier" />
+    </fragment>
     <fragment
         android:id="@+id/restaurantChoixFragment"
         android:name="com.example.pizz_apk.RestaurantChoixFragment"
@@ -43,8 +50,43 @@
             app:destination="@id/fragmentSignup" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentSignup"
-        android:name="com.example.pizz_apk.FragmentSignup"
-        android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" />
+        android:id="@+id/nav_apropos"
+        android:name="com.example.pizz_apk.AProposFragment"
+        android:label="fragment_a_propos"
+        tools:layout="@layout/fragment_a_propos"/>
+    <fragment
+        android:id="@+id/nav_contact"
+        android:name="com.example.pizz_apk.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.example.pizz_apk.MonCompteFragment"
+        android:label="fragment_mon_compte"
+        tools:layout="@layout/fragment_mon_compte" />
+    <fragment
+        android:id="@+id/nav_panier"
+        android:name="com.example.pizz_apk.PanierFragment"
+        android:label="fragment_panier"
+        tools:layout="@layout/fragment_panier" />
+    <fragment
+        android:id="@+id/nav_parametres"
+        android:name="com.example.pizz_apk.ParametresFragment"
+        android:label="fragment_parametres"
+        tools:layout="@layout/fragment_parametres" />
+    <fragment
+        android:id="@+id/allergenesFragment"
+        android:name="com.example.pizz_apk.AllergenesFragment"
+        android:label="fragment_allergenes"
+        tools:layout="@layout/fragment_allergenes" />
+    <fragment
+        android:id="@+id/nav_reservation"
+        android:name="com.example.pizz_apk.ReservationFragment"
+        android:label="fragment_reservation"
+        tools:layout="@layout/fragment_reservation" />
+    <fragment
+        android:id="@+id/nav_commandesencours"
+        android:name="com.example.pizz_apk.CommandesEnCoursFragment"
+        android:label="fragment_commandes_en_cours"
+        tools:layout="@layout/fragment_commandes_en_cours" />
 </navigation>

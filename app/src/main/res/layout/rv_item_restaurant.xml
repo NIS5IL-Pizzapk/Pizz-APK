@@ -2,18 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
     <Button
         android:id="@+id/btn_choix_restaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:backgroundTint="#616161"
+        android:font="@font/tw_cen_mt_bold"
         android:text="Restaurant"
-        android:background="@drawable/custom_btn_tovalid"
-        android:backgroundTint="@null"
-        android:font="@font/tw_cen_mt"
-        android:textSize="20dp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

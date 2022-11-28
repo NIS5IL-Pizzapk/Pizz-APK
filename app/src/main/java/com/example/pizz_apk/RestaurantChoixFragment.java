@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -60,16 +61,26 @@ public class RestaurantChoixFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         restaurantsViewModel = new ViewModelProvider(requireActivity()).get(RestaurantsViewModel.class);
         restaurantsViewModel.setRestaurantsList(restaurantsList);
-        RestaurantsAdapter restaurantsAdapter = new RestaurantsAdapter(restaurantsViewModel.getRestaurantsList(),getContext(), new RestaurantsListener() {
-            @Override
-            public void onRestaurantClicked(Restaurant restaurant) {
-                restaurantsViewModel.setSelectedRestaurant(restaurant);
-                Navigation.findNavController(view).navigate(R.id.action_restaurantChoixFragment_to_fragmentSignup);
-            }
+
+        RestaurantsAdapter restaurantsAdapter = new RestaurantsAdapter(restaurantsViewModel.getRestaurantsList(),getContext(), restaurant -> {
+            restaurantsViewModel.setSelectedRestaurant(restaurant);
+            Navigation.findNavController(view).navigate(R.id.action_restaurantChoixFragment_to_accueilFragment);
+
         });
         binding.rvHomepageRestaurants.setHasFixedSize(true);
         binding.rvHomepageRestaurants.setAdapter(restaurantsAdapter);
