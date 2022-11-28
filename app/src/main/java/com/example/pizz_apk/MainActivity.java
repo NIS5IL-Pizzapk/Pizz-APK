@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     private NavController navController;
     private DrawerLayout drawerLayout;
+    //get selected fragment
+    private Fragment selectedFragment;
     private AppBarConfiguration appBarConfiguration;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,15 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
     }
 
+   //onbackpressed redirect to accueil fragment TODO
+    @Override
+    public void onBackPressed() {
+        if (navController.getCurrentDestination().getId() == R.id.restaurantChoixFragment) {
+            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_restaurantChoixFragment_to_accueilFragment);
+        } else {
+            navController.navigate(R.id.restaurantChoixFragment);
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
