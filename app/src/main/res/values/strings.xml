@@ -22,5 +22,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="commandes_en_cours">Commandes en cours</string>
     <string name="r_servations">Réservations</string>
+    <string name="guest"><u>Continuer en tant qu\'invité</u></string>
 
 </resources>
