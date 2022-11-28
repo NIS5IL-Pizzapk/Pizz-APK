@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     //get selected fragment
     private Fragment selectedFragment;
     private AppBarConfiguration appBarConfiguration;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,38 +48,31 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-       }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-      getMenuInflater().inflate(R.menu.toolbar_cart, menu);
+        getMenuInflater().inflate(R.menu.toolbar_cart, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-      this.navControllertest = Navigation.findNavController(this, R.id.nav_host_fragment);
-
-      if (this.navControllertest.getCurrentDestination().getId() == R.id.nav_reservation) {
-          navControllertest.navigate(R.id.accueilFragment);
-        }
-        if (this.navControllertest.getCurrentDestination().getId() == R.id.nav_commandesencours) {
-            navControllertest.navigate(R.id.accueilFragment);
-        }
-        if (this.navControllertest.getCurrentDestination().getId() == R.id.nav_parametres) {
-            navControllertest.navigate(R.id.accueilFragment);
-        }
-        if (this.navControllertest.getCurrentDestination().getId() == R.id.nav_apropos) {
-            navControllertest.navigate(R.id.accueilFragment);
-        }
-        if (this.navControllertest.getCurrentDestination().getId() == R.id.nav_contact) {
-            navControllertest.navigate(R.id.accueilFragment);
-        }
-        if (this.navControllertest.getCurrentDestination().getId() == R.id.nav_account) {
-            navControllertest.navigate(R.id.accueilFragment);
-        }
-
-        return NavigationUI.navigateUp(this.navControllertest, this.appBarConfiguration);
+        this.navControllertest = Navigation.findNavController(this, R.id.nav_host_fragment);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // Title and subtitle
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (navControllertest.getCurrentDestination().getId() == R.id.nav_reservation) {
+                    navControllertest.navigate(R.id.accueilFragment);
+                } else {
+                    NavigationUI.navigateUp(navControllertest, appBarConfiguration);
+                }
+            }
+        });
+    return NavigationUI.navigateUp(this.navControllertest, this.appBarConfiguration);
     }
 
     @Override
