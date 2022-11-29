@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -77,6 +78,14 @@ public class ReservationFragment extends Fragment {
                 reservationViewModel.removeReservation(reservation);
             }
         });
+
+        binding.btnReservationReserver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_nav_reservation_to_ajoutReservationFragment);
+            }
+        });
+
 
         this.binding.rvItemReservation.setAdapter(reservationAdapter);
         this.binding.rvItemReservation.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -42,7 +42,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         final Reservation reservation = reservationList.getValue().get(position);
         holder.binding.tvDateItem.setText(String.valueOf(reservation.getDate()));
         holder.binding.tvHeureItem.setText(String.valueOf(reservation.getHeure()));
-        holder.binding.tvNbpersonnesItem.setText(String.valueOf(reservation.getNbPersonnes()));
+        holder.binding.tvNbpersonnesItem.setText(String.valueOf(reservation.getNbPersonnes())+ " personnes");
 
         // supprime la réservation quand on clique sur le bouton supprimer
         holder.binding.ivDeletePanier.setOnClickListener(v -> {

@@ -83,10 +83,23 @@
         android:id="@+id/nav_reservation"
         android:name="com.example.pizz_apk.ReservationFragment"
         android:label="fragment_reservation"
-        tools:layout="@layout/fragment_reservation" />
+        tools:layout="@layout/fragment_reservation" >
+        <action
+            android:id="@+id/action_nav_reservation_to_ajoutReservationFragment"
+            app:destination="@id/ajoutReservationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_commandesencours"
         android:name="com.example.pizz_apk.CommandesEnCoursFragment"
         android:label="fragment_commandes_en_cours"
         tools:layout="@layout/fragment_commandes_en_cours" />
+    <fragment
+        android:id="@+id/ajoutReservationFragment"
+        android:name="com.example.pizz_apk.AjoutReservationFragment"
+        android:label="fragment_ajout_reservation"
+        tools:layout="@layout/fragment_ajout_reservation" >
+        <action
+            android:id="@+id/action_ajoutReservationFragment_to_nav_reservation"
+            app:destination="@id/nav_reservation" />
+    </fragment>
 </navigation>
