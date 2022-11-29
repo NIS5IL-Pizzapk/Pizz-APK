@@ -60,18 +60,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         this.navControllertest = Navigation.findNavController(this, R.id.nav_host_fragment);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        // Title and subtitle
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (navControllertest.getCurrentDestination().getId() == R.id.nav_reservation) {
-                    navControllertest.navigate(R.id.accueilFragment);
-                } else {
-                    NavigationUI.navigateUp(navControllertest, appBarConfiguration);
-                }
-            }
-        });
+
+           //     if (navControllertest.getCurrentDestination().getId() == R.id.nav_reservation || navControllertest.getCurrentDestination().getId() == R.id.nav_contact || navControllertest.getCurrentDestination().getId() == R.id.nav_parametres || navControllertest.getCurrentDestination().getId() == R.id.nav_apropos || navControllertest.getCurrentDestination().getId() == R.id.nav_commandesencours || navControllertest.getCurrentDestination().getId() == R.id.nav_account) {
+             //       Navigation.findNavController(this,R.id.nav_host_fragment).navigate(R.id.accueilFragment);
+              //  }
+
+
     return NavigationUI.navigateUp(this.navControllertest, this.appBarConfiguration);
     }
 
