@@ -23,34 +23,37 @@ import java.util.Locale;
 
 public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.ListePizzasViewHolder>{
 
-    List<PlatPropose> pizzasList = new ArrayList<>();
+    ArrayList<PlatPropose> pizzasList = new ArrayList<>();
     RvItemPizzaBinding binding;
     Context context;
     PlatUniqueListener listener;
 
-    public ListePizzasAdapter(List<PlatPropose> pizzasList, Context context, PlatUniqueListener listener) {
+    public ListePizzasAdapter(ArrayList<PlatPropose> pizzasList, Context context, PlatUniqueListener listener) {
         this.pizzasList = pizzasList;
         this.context = context;
         this.listener = listener;
     }
 
-    public void setPizzasList(int oldSize, List<PlatPropose> pizzasList) {
+    public void setPizzasList(ArrayList<PlatPropose> pizzasList) {
         this.pizzasList = pizzasList;
-        this.notifyItemRangeRemoved(0,oldSize);
-        this.notifyItemRangeInserted(0,this.pizzasList.size());
+        notifyDataSetChanged();
+
+
+//        this.pizzasList = pizzasList;
+//        this.notifyItemRangeRemoved(0,oldSize);
+//        this.notifyItemRangeInserted(0,this.pizzasList.size());
     }
 
     @NonNull
     @Override
     public ListePizzasViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.rv_item_pizza,parent,false);
-        return new ListePizzasAdapter.ListePizzasViewHolder(RvItemPizzaBinding.bind(view));
+        RvItemPizzaBinding binding = RvItemPizzaBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new ListePizzasViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ListePizzasViewHolder holder, int position) {
-        final PlatPropose platPropose = pizzasList.get(position);
+        PlatPropose platPropose = pizzasList.get(position);
         holder.binding.tvNomPizza.setText(platPropose.getNom());
         holder.binding.tvDescriptionPizza.setText(platPropose.getDescription());
         holder.binding.tvPrixPizza.setText(String.format(Locale.getDefault(),"%.2f",platPropose.getPrix())+"€");

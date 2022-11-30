@@ -1,10 +1,13 @@
 package com.example.pizz_apk.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlatPropose implements Serializable {
+    @SerializedName("produitId")
     private int id;
     private String type;
     private String nom;
@@ -113,8 +116,8 @@ public class PlatPropose implements Serializable {
 
 
 
-    public static List<PlatPropose> getPlatsByTagNameFromList(List<PlatPropose> list, String tag) {
-        List<PlatPropose> newList = new ArrayList<>();
+    public static ArrayList<PlatPropose> getPlatsByTagNameFromList(ArrayList<PlatPropose> list, String tag) {
+        ArrayList<PlatPropose> newList = new ArrayList<>();
         for(PlatPropose plat : list) {
             for(Tag t : plat.getTags()) {
                 if(t.getNom().equals(tag)) {newList.add(plat);}
