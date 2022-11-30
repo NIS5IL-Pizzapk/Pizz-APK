@@ -74,7 +74,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/popupbackground"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#D8000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 

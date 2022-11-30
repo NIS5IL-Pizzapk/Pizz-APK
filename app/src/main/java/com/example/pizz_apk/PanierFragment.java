@@ -22,6 +22,8 @@ import com.example.pizz_apk.databinding.FragmentPanierBinding;
 import com.example.pizz_apk.models.PlatPropose;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
 
+import jp.wasabeef.blurry.Blurry;
+
 public class PanierFragment extends Fragment {
 
     FragmentPanierBinding binding;
@@ -81,6 +83,7 @@ public class PanierFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 binding.popup.setVisibility(View.VISIBLE);
+                Blurry.with(requireContext()).radius(25).sampling(45).async().onto(constraintLayout);
             }
         });
 
