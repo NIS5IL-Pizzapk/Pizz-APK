@@ -5,6 +5,7 @@ import static androidx.navigation.Navigation.findNavController;
 import static com.google.android.material.tabs.TabLayout.GRAVITY_START;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -16,7 +17,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+
     }
 
 
@@ -60,14 +66,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         this.navControllertest = Navigation.findNavController(this, R.id.nav_host_fragment);
-
            //     if (navControllertest.getCurrentDestination().getId() == R.id.nav_reservation || navControllertest.getCurrentDestination().getId() == R.id.nav_contact || navControllertest.getCurrentDestination().getId() == R.id.nav_parametres || navControllertest.getCurrentDestination().getId() == R.id.nav_apropos || navControllertest.getCurrentDestination().getId() == R.id.nav_commandesencours || navControllertest.getCurrentDestination().getId() == R.id.nav_account) {
              //       Navigation.findNavController(this,R.id.nav_host_fragment).navigate(R.id.accueilFragment);
               //  }
-
-
-    return NavigationUI.navigateUp(this.navControllertest, this.appBarConfiguration);
+    return NavigationUI.navigateUp(navControllertest, appBarConfiguration)
+                || super.onSupportNavigateUp();
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -95,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.nav_deconnexion) {
             Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_deconnexion);
         }
-        return super.onOptionsItemSelected(item);
+        return NavigationUI.onNavDestinationSelected(item,findNavController(this, R.id.nav_host_fragment))
+                || super.onOptionsItemSelected(item);
     }
 }
