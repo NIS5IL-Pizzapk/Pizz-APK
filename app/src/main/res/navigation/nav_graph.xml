@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_accueilFragment_to_listePizzasFragment"
             app:destination="@id/listePizzasFragment" />
+        <action
+            android:id="@+id/action_accueilFragment_to_listeBurgersFragment"
+            app:destination="@id/listeBurgersFragment" />
     </fragment>
     <fragment
         android:id="@+id/listePizzasFragment"
@@ -101,5 +104,17 @@
         <action
             android:id="@+id/action_ajoutReservationFragment_to_nav_reservation"
             app:destination="@id/nav_reservation" />
+    </fragment>
+    <fragment
+        android:id="@+id/listeBurgersFragment"
+        android:name="com.example.pizz_apk.ListeBurgersFragment"
+        android:label="fragment_liste_burgers"
+        tools:layout="@layout/fragment_liste_burgers" >
+        <action
+            android:id="@+id/action_listeBurgersFragment_to_platUniqueFragment"
+            app:destination="@id/platUniqueFragment" />
+        <action
+            android:id="@+id/action_listeBurgersFragment_to_allergenesFragment"
+            app:destination="@id/allergenesFragment" />
     </fragment>
 </navigation>
