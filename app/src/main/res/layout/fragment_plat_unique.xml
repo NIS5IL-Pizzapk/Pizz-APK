@@ -4,16 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".PlatUniqueFragment">
+
+    <ImageView
+        android:id="@+id/background_slate9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/bush_image9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background" />
+
+    <ImageView
+        android:id="@+id/bush_image9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:alpha="0.3"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bush" />
 
     <TextView
         android:id="@+id/tv_plat_nom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/tw_cen_mt"
         android:text="VOTRE PIZZA"
-        android:fontFamily="@font/tw_cen_mt_bold"
-        android:textSize="34sp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_plat_prix"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -24,89 +45,106 @@
         android:id="@+id/tv_plat_prix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/tw_cen_mt_bold"
         android:text="Prix"
         android:textSize="40sp"
-        android:fontFamily="@font/tw_cen_mt_bold"
-        app:layout_constraintBottom_toTopOf="@+id/img_plat"
+        app:layout_constraintBottom_toTopOf="@+id/cstrlay_container_pizza"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_plat_nom" />
 
-    <ImageView
-        android:id="@+id/img_plat"
-        android:maxWidth="250dp"
-        android:maxHeight="250dp"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_plat_ingredients"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cstrlay_container_pizza"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/background_container_blur"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_plat_prix"
-        app:srcCompat="@drawable/pizza" />
+        app:layout_constraintTop_toTopOf="@+id/background_slate9">
 
-    <TextView
-        android:id="@+id/tv_plat_ingredients"
+        <ImageView
+            android:id="@+id/img_plat"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:maxWidth="250dp"
+            android:maxHeight="250dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_plat_ingredients"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/pizza" />
+
+        <TextView
+            android:id="@+id/tv_plat_ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tw_cen_mt_bold"
+            android:paddingLeft="10dp"
+            android:text="Ingrédients"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_plat" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:fontFamily="@font/tw_cen_mt"
+            android:hint="Ajouter un commentaire..."
+            android:inputType="textPersonName"
+            android:padding="8dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_plat_ingredients"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Ingrédients"
-        android:fontFamily="@font/tw_cen_mt_bold"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bush_image9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_plat" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Ajouter un commentaire..."
-        android:fontFamily="@font/tw_cen_mt_bold"
-        android:inputType="textPersonName"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_plat_ingredients"
-        tools:ignore="TouchTargetSizeCheck" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_plat_supp"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_plat_commander"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="Suppléments :"
-        android:fontFamily="@font/tw_cen_mt_bold"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/rv_plat_supp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        </androidx.recyclerview.widget.RecyclerView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_plat_supp"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_plat_commander"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        <Button
+            android:id="@+id/btn_plat_commander"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#BA0000"
+            android:fontFamily="@font/tw_cen_mt_bold"
+            android:text="COMMANDER"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btn_plat_commander"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#616161"
-        android:text="COMMANDER"
-        android:textSize="18sp"
-        android:fontFamily="@font/tw_cen_mt_bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_plat_supp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
