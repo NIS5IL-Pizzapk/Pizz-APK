@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pizz_apk.R;
 import com.example.pizz_apk.databinding.RvItemPlatBinding;
 import com.example.pizz_apk.models.PlatPropose;
 
@@ -46,6 +47,7 @@ public class ListeBurgersAdapter extends RecyclerView.Adapter<ListeBurgersAdapte
         PlatPropose platPropose = burgersList.get(position);
         holder.binding.tvNomPlat.setText(platPropose.getNom());
         holder.binding.tvDescriptionPlat.setText(platPropose.getDescription());
+        holder.binding.imgPlatMini.setImageResource(R.drawable.burger);
         holder.binding.tvPrixPlat.setText(String.format(Locale.getDefault(),"%.2f",platPropose.getPrix())+"€");
         holder.binding.imgPlatMini.setOnClickListener(v -> listener.onPlatUniqueClicked(platPropose));
         holder.binding.imgbtnPlatAllergenes.setOnClickListener(v -> listener.onPlatUniqueAllergenesClicked(platPropose));

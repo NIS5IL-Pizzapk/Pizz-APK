@@ -86,9 +86,8 @@ public class ReservationFragment extends Fragment {
             }
         });
 
-
-        this.binding.rvItemReservation.setAdapter(reservationAdapter);
-        this.binding.rvItemReservation.setLayoutManager(new LinearLayoutManager(getContext()));
-        this.binding.rvItemReservation.setHasFixedSize(true);
+        binding.rvItemReservation.setHasFixedSize(true);
+        binding.rvItemReservation.setAdapter(reservationAdapter);
+        binding.rvItemReservation.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

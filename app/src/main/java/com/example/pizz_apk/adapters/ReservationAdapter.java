@@ -40,7 +40,17 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     @Override
     public void onBindViewHolder(@NonNull ReservationAdapter.ReservationViewHolder holder, int position) {
         final Reservation reservation = reservationList.getValue().get(position);
-        holder.binding.tvDateItem.setText(String.valueOf(reservation.getDate()));
+        //récupère la date et la met en forme pour l'afficher dans le textView
+        String date = reservation.getDate().toString();
+        String[] dateSplit = date.split(" ");
+        String dateFormatee = dateSplit[2] + " " + dateSplit[1] + " " + dateSplit[5];
+        holder.binding.tvDateItem.setText(dateFormatee);
+
+        //transforme l'heure en String pour l'afficher dans le textView
+        String heure = reservation.getHeure().toString();
+        holder.binding.tvHeureItem.setText(heure);
+
+
         holder.binding.tvHeureItem.setText(String.valueOf(reservation.getHeure()));
         holder.binding.tvNbpersonnesItem.setText(String.valueOf(reservation.getNbPersonnes())+ " personnes");
 

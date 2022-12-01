@@ -6,19 +6,34 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.pizz_apk.R;
+import com.example.pizz_apk.adapters.ListeBurgersAdapter;
+import com.example.pizz_apk.adapters.ListePizzasAdapter;
 import com.example.pizz_apk.adapters.PlatUniqueListener;
 import com.example.pizz_apk.databinding.FragmentListeBurgersBinding;
 import com.example.pizz_apk.databinding.FragmentListePizzasBinding;
+import com.example.pizz_apk.models.PlatPropose;
 import com.example.pizz_apk.models.RetroFitRequests;
+import com.example.pizz_apk.models.RetroFitResponse;
+import com.example.pizz_apk.services.Utils;
 import com.example.pizz_apk.viewmodels.ListeBurgersViewModel;
 import com.example.pizz_apk.viewmodels.ListePizzasViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ListeBurgersFragment extends Fragment {
 
@@ -49,5 +64,58 @@ public class ListeBurgersFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        this.requests = Utils.getRetrofitCon(requireContext());
+        this.HandleGetBurgers(view);
+
+
+
+    }
+
+    public void HandleGetBurgers(View view){
+        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlats();
+
+        call.enqueue(new Callback<RetroFitResponse<ArrayList<PlatPropose>>>() {
+            @Override
+            public void onResponse(Call<RetroFitResponse<ArrayList<PlatPropose>>> call, Response<RetroFitResponse<ArrayList<PlatPropose>>> response) {
+                if (response.isSuccessful()) {
+                    String message = response.body().getMessage();
+                    ArrayList<PlatPropose> result = response.body().getResult();
+                    //trier les plats pour ne garder que les burgers
+                    ArrayList<PlatPropose> burgers = new ArrayList<>();
+                    for (PlatPropose plat : result) {
+                        if (plat.getType().equals("burger")) {
+                            burgers.add(plat);
+                        }
+                    }
+
+                    burgersViewModel = new ViewModelProvider(requireActivity()).get(ListeBurgersViewModel.class);
+                    burgersViewModel.setListBurgersLiveData(burgers);
+                    platUniqueViewModel = new ViewModelProvider(requireActivity()).get(PlatUniqueViewModel.class);
+                    ListeBurgersAdapter adapter = new ListeBurgersAdapter(burgersViewModel.getListBurgersLiveData().getValue(), context, new PlatUniqueListener() {
+                        @Override
+                        public void onPlatUniqueClicked(PlatPropose platPropose) {
+                            platUniqueViewModel.setSelectedPlat(platPropose);
+                            Navigation.findNavController(view).navigate(R.id.action_listeBurgersFragment_to_platUniqueFragment);
+                        }
+
+                        @Override
+                        public void onPlatUniqueAllergenesClicked(PlatPropose platPropose) {
+                            platUniqueViewModel.setSelectedPlat(platPropose);
+                            Navigation.findNavController(view).navigate(R.id.action_listeBurgersFragment_to_allergenesFragment);
+                        }
+                    });
+                    binding.rvBurgersListe.setHasFixedSize(true);
+                    binding.rvBurgersListe.setAdapter(adapter);
+                    binding.rvBurgersListe.setLayoutManager(new LinearLayoutManager(context));
+
+                } else {
+                    Utils.requestNotSuccessfulToast(requireContext(), response);
+                }
+            }
+            @Override
+            public void onFailure(Call<RetroFitResponse<ArrayList<PlatPropose>>> call, Throwable t) {
+                Log.d("TAG", "onFailure: "+t.getMessage());
+            }
+        });
     }
 }
