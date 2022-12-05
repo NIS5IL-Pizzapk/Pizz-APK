@@ -27,17 +27,17 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="197dp"
+                    android:layout_width="290dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_nom_item"
+                        android:id="@+id/tv_date_item"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/tw_cen_mt_bold"
-                        android:text="4 FROMAGES"
+                        android:text="DATE DE RESERVATION"
                         android:textAllCaps="true"
                         android:textSize="25sp" />
 
@@ -46,72 +46,40 @@
                         android:layout_height="10dp" />
 
                     <TextView
-                        android:id="@+id/tv_supp_item"
+                        android:id="@+id/tv_heure_item"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="29dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/tw_cen_mt_bold"
                         android:lines="2"
-                        android:text="Suppléments"
+                        android:text="HEURE DE RESERVATION"
                         android:textAllCaps="false"
-                        android:textSize="20sp" />
+                        android:textSize="24sp" />
 
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="10dp" />
 
                     <TextView
-                        android:id="@+id/tv_prix_item"
+                        android:id="@+id/tv_nbpersonnes_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/tw_cen_mt_bold"
-                        android:text="Prix"
-                        android:textSize="18sp" />
+                        android:text="NOMBRE DE PERSONNES"
+                        android:textSize="24sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="169dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="67dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/iv_add_panier"
-                            android:layout_width="60dp"
-                            android:layout_height="57dp"
-                            android:layout_weight="0"
-                            app:srcCompat="@android:drawable/ic_input_add" />
-
-                        <TextView
-                            android:id="@+id/tv_nombre_item_panier"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:layout_weight="0"
-                            android:fontFamily="@font/tw_cen_mt_bold"
-                            android:text="1"
-                            android:textSize="48sp" />
-
-                        <ImageView
-                            android:id="@+id/iv_moins_panier"
-                            android:layout_width="53dp"
-                            android:layout_height="56dp"
-                            android:layout_marginLeft="1dp"
-                            android:layout_weight="0"
-                            app:srcCompat="@drawable/ic_baseline_horizontal_rule_24" />
-                    </LinearLayout>
-
                     <ImageView
                         android:id="@+id/iv_delete_panier"
-                        android:layout_width="95dp"
-                        android:layout_height="60dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_marginRight="15dp"
                         app:srcCompat="@drawable/ic_baseline_delete_red" />
                 </LinearLayout>
 

@@ -26,7 +26,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/img_pizza_mini"
+                    android:id="@+id/img_plat_mini"
                     android:layout_width="100dp"
                     android:layout_height="150dp"
                     android:layout_marginLeft="10dp"
@@ -42,7 +42,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_nom_pizza"
+                        android:id="@+id/tv_nom_plat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -56,7 +56,7 @@
                         android:layout_height="10dp" />
 
                     <TextView
-                        android:id="@+id/tv_description_pizza"
+                        android:id="@+id/tv_description_plat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
@@ -76,7 +76,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/tv_prix_pizza"
+                            android:id="@+id/tv_prix_plat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="PrixPizza"
@@ -90,7 +90,7 @@
                             android:orientation="horizontal">
 
                             <ImageButton
-                                android:id="@+id/imgbtn_pizza_allergenes"
+                                android:id="@+id/imgbtn_plat_allergenes"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_marginRight="5dp"

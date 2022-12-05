@@ -1,61 +1,53 @@
 package com.example.pizz_apk.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.example.pizz_apk.PlatUniqueFragment;
 import com.example.pizz_apk.R;
 import com.example.pizz_apk.databinding.RvItemPlatBinding;
-import com.example.pizz_apk.models.CategorieAccueil;
 import com.example.pizz_apk.models.PlatPropose;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
-public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.ListePizzasViewHolder>{
+public class ListeBurgersAdapter extends RecyclerView.Adapter<ListeBurgersAdapter.ListeBurgersViewHolder>{
 
-    ArrayList<PlatPropose> pizzasList = new ArrayList<>();
+    ArrayList<PlatPropose> burgersList = new ArrayList<>();
     RvItemPlatBinding binding;
     Context context;
     PlatUniqueListener listener;
 
-    public ListePizzasAdapter(ArrayList<PlatPropose> pizzasList, Context context, PlatUniqueListener listener) {
-        this.pizzasList = pizzasList;
+    public ListeBurgersAdapter(ArrayList<PlatPropose> burgersList, Context context, PlatUniqueListener listener) {
+        this.burgersList = burgersList;
         this.context = context;
         this.listener = listener;
     }
 
-    public void setPizzasList(ArrayList<PlatPropose> pizzasList) {
-        this.pizzasList = pizzasList;
+    public void setBurgersList(ArrayList<PlatPropose> burgersList) {
+        this.burgersList = burgersList;
         notifyDataSetChanged();
 
 
-//        this.pizzasList = pizzasList;
-//        this.notifyItemRangeRemoved(0,oldSize);
-//        this.notifyItemRangeInserted(0,this.pizzasList.size());
+
     }
 
     @NonNull
     @Override
-    public ListePizzasViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListeBurgersAdapter.ListeBurgersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         RvItemPlatBinding binding = RvItemPlatBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new ListePizzasViewHolder(binding);
+        return new ListeBurgersAdapter.ListeBurgersViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListePizzasViewHolder holder, int position) {
-        PlatPropose platPropose = pizzasList.get(position);
+    public void onBindViewHolder(@NonNull ListeBurgersAdapter.ListeBurgersViewHolder holder, int position) {
+        PlatPropose platPropose = burgersList.get(position);
         holder.binding.tvNomPlat.setText(platPropose.getNom());
         holder.binding.tvDescriptionPlat.setText(platPropose.getDescription());
+        holder.binding.imgPlatMini.setImageResource(R.drawable.burger);
         holder.binding.tvPrixPlat.setText(String.format(Locale.getDefault(),"%.2f",platPropose.getPrix())+"€");
         holder.binding.imgPlatMini.setOnClickListener(v -> listener.onPlatUniqueClicked(platPropose));
         holder.binding.imgbtnPlatAllergenes.setOnClickListener(v -> listener.onPlatUniqueAllergenesClicked(platPropose));
@@ -63,7 +55,7 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
 
     @Override
     public int getItemCount() {
-        return pizzasList.size();
+        return burgersList.size();
     }
 
     @Override
@@ -77,15 +69,13 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
     }
 
 
-    public static class ListePizzasViewHolder extends RecyclerView.ViewHolder {
+    public static class ListeBurgersViewHolder extends RecyclerView.ViewHolder {
 
         RvItemPlatBinding binding;
 
-        public ListePizzasViewHolder(@NonNull RvItemPlatBinding binding) {
+        public ListeBurgersViewHolder(@NonNull RvItemPlatBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
     }
 }
-
-

@@ -62,14 +62,9 @@ public class CategorieAccueilFragment extends Fragment {
             } else if (categorie.getTag() == "tacos") {
                 Navigation.findNavController(view).navigate(R.id.action_restaurantChoixFragment_to_accueilFragment);
             } else if (categorie.getTag() == "salades") {
-                Navigation.findNavController(view).navigate(R.id.action_restaurantChoixFragment_to_accueilFragment);
+                Navigation.findNavController(view).navigate(R.id.action_accueilFragment_to_listeBurgersFragment);
             }
-                
-
         });
-
-
-
         binding.rvButtonsAccueil.setHasFixedSize(true);
         binding.rvButtonsAccueil.setAdapter(categorieAccueilAdapter);
         binding.rvButtonsAccueil.setLayoutManager(new LinearLayoutManager(getContext()));
