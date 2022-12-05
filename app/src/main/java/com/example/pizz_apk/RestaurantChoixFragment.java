@@ -76,9 +76,11 @@ public class RestaurantChoixFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         restaurantsViewModel = new ViewModelProvider(requireActivity()).get(RestaurantsViewModel.class);
         restaurantsViewModel.setRestaurantsList(restaurantsList);
+
         RestaurantsAdapter restaurantsAdapter = new RestaurantsAdapter(restaurantsViewModel.getRestaurantsList(),getContext(), restaurant -> {
             restaurantsViewModel.setSelectedRestaurant(restaurant);
             Navigation.findNavController(view).navigate(R.id.action_restaurantChoixFragment_to_accueilFragment);
+
         });
         binding.rvHomepageRestaurants.setHasFixedSize(true);
         binding.rvHomepageRestaurants.setAdapter(restaurantsAdapter);
