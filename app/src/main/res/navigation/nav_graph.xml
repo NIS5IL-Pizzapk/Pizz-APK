@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_accueilFragment_to_listePizzasFragment"
             app:destination="@id/listePizzasFragment" />
+        <action
+            android:id="@+id/action_accueilFragment_to_listeBurgersFragment"
+            app:destination="@id/listeBurgersFragment" />
     </fragment>
     <fragment
         android:id="@+id/listePizzasFragment"
@@ -93,7 +96,11 @@
         android:id="@+id/nav_reservation"
         android:name="com.example.pizz_apk.ReservationFragment"
         android:label="fragment_reservation"
-        tools:layout="@layout/fragment_reservation" />
+        tools:layout="@layout/fragment_reservation" >
+        <action
+            android:id="@+id/action_nav_reservation_to_ajoutReservationFragment"
+            app:destination="@id/ajoutReservationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_commandesencours"
         android:name="com.example.pizz_apk.CommandesEnCoursFragment"
@@ -109,4 +116,25 @@
         android:name="com.example.pizz_apk.FragmentSignup"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" />
+    <fragment
+        android:id="@+id/ajoutReservationFragment"
+        android:name="com.example.pizz_apk.AjoutReservationFragment"
+        android:label="fragment_ajout_reservation"
+        tools:layout="@layout/fragment_ajout_reservation" >
+        <action
+            android:id="@+id/action_ajoutReservationFragment_to_nav_reservation"
+            app:destination="@id/nav_reservation" />
+    </fragment>
+    <fragment
+        android:id="@+id/listeBurgersFragment"
+        android:name="com.example.pizz_apk.ListeBurgersFragment"
+        android:label="fragment_liste_burgers"
+        tools:layout="@layout/fragment_liste_burgers" >
+        <action
+            android:id="@+id/action_listeBurgersFragment_to_platUniqueFragment"
+            app:destination="@id/platUniqueFragment" />
+        <action
+            android:id="@+id/action_listeBurgersFragment_to_allergenesFragment"
+            app:destination="@id/allergenesFragment" />
+    </fragment>
 </navigation>

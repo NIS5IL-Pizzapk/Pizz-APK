@@ -14,13 +14,13 @@ import java.util.Objects;
 public class ListePizzasViewModel extends ViewModel {
 
     private int oldSize = 0;
-    private final MutableLiveData<List<PlatPropose>> listPizzaLiveData = new MutableLiveData<>(new ArrayList<>());
+    private final MutableLiveData<ArrayList<PlatPropose>> listPizzaLiveData = new MutableLiveData<>(new ArrayList<>());
     private boolean baseCreme = false;
 
     public void setBaseLD(String base) {
         this.oldSize = Objects.requireNonNull(listPizzaLiveData.getValue()).size();
         //this.listPizzaLiveData.getValue().clear();
-        this.listPizzaLiveData.postValue(PlatPropose.getPlatsByTagNameFromList(TestData.listePizzas, base));
+//        this.listPizzaLiveData.postValue(PlatPropose.getPlatsByTagNameFromList(TestData.listePizzas, base));
         //this.listPizzaLiveData.getValue().addAll(PlatPropose.getPlatsByTagNameFromList(TestData.listePizzas, base));
     }
 
@@ -32,8 +32,12 @@ public class ListePizzasViewModel extends ViewModel {
         this.baseCreme = baseCreme;
     }
 
-    public MutableLiveData<List<PlatPropose>> getListPizzaLiveData() {
+    public MutableLiveData<ArrayList<PlatPropose>> getListPizzaLiveData() {
         return listPizzaLiveData;
+    }
+
+    public void setListPizzaLiveData(ArrayList<PlatPropose> listPizzaLiveData) {
+        this.listPizzaLiveData.setValue(listPizzaLiveData);
     }
 
     public int getOldSize() {

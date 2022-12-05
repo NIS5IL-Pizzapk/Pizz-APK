@@ -62,7 +62,7 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/tw_cen_mt_bold"
                 android:text="Qui est UnaVita ?"
@@ -113,6 +113,7 @@
             <TableLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -204,6 +205,7 @@
                     android:id="@+id/gifImageView2"
                     android:layout_width="wrap_content"
                     android:layout_height="150dp"
+                    android:layout_gravity="center"
                     android:layout_marginTop="25dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/unavita_background" />
@@ -216,7 +218,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="25dp"
                 android:fontFamily="@font/tw_cen_mt_bold"
                 android:text="Nos Burgers"
                 android:textAlignment="center" />
@@ -224,6 +226,7 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
 
                 <TableRow
                     android:layout_width="match_parent"
