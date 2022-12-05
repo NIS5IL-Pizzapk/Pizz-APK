@@ -62,6 +62,7 @@ public class PlatUniqueFragment extends Fragment {
 
             binding.btnPlatCommander.setOnClickListener(v -> {
                 platUniqueViewModel.addPlatToPanier(plat);
+                plat.setQuantite(1);
                 Navigation.findNavController(v).navigate(R.id.action_platUniqueFragment_to_nav_panier);
             });
         });
