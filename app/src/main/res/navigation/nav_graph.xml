@@ -71,7 +71,17 @@
         android:id="@+id/nav_panier"
         android:name="com.example.pizz_apk.PanierFragment"
         android:label="fragment_panier"
-        tools:layout="@layout/fragment_panier" />
+        tools:layout="@layout/fragment_panier" >
+        <action
+            android:id="@+id/action_nav_panier_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_nav_panier_to_guestFragment"
+            app:destination="@id/guestFragment" />
+        <action
+            android:id="@+id/action_nav_panier_to_fragmentSignup"
+            app:destination="@id/fragmentSignup" />
+    </fragment>
     <fragment
         android:id="@+id/nav_parametres"
         android:name="com.example.pizz_apk.ParametresFragment"
@@ -96,6 +106,16 @@
         android:name="com.example.pizz_apk.CommandesEnCoursFragment"
         android:label="fragment_commandes_en_cours"
         tools:layout="@layout/fragment_commandes_en_cours" />
+    <fragment
+        android:id="@+id/guestFragment"
+        android:name="com.example.pizz_apk.GuestFragment"
+        android:label="fragment_guest"
+        tools:layout="@layout/fragment_guest" />
+    <fragment
+        android:id="@+id/fragmentSignup"
+        android:name="com.example.pizz_apk.FragmentSignup"
+        android:label="fragment_signup"
+        tools:layout="@layout/fragment_signup" />
     <fragment
         android:id="@+id/ajoutReservationFragment"
         android:name="com.example.pizz_apk.AjoutReservationFragment"

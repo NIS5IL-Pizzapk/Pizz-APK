@@ -37,7 +37,7 @@
         app:srcCompat="@drawable/logo_unavita" />
 
     <ScrollView
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,6 +47,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <ImageView
@@ -61,18 +62,23 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
                 android:fontFamily="@font/tw_cen_mt_bold"
-                android:text="Qui est UnaVita ?" />
+                android:text="Qui est UnaVita ?"
+                android:textSize="20sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/tw_cen_mt_bold"
-                android:text="Le respect des traditions culinaires, le partage des saveurs, la qualité et la fraîcheur des produits reflètent nos valeurs. UNAVITA est situé au cœur du Village de CLARENSAC , à deux pas de la magnifique Fontaine du Griffe. Notre passion pour la pizza nous a conduit à rechercher en permanence des produits et des matières premières de qualité locale Notre carte est pleine de combinaisons qui satisferont  tous les types de palais. Les garnitures les plus imaginatives et raffinées sont à la base de notre philosophie de fabrication , nos pains hamburgers sont faits et fabriquée par nos soins , toutes nos frites sont épluchées à la main , notre pâte à pizza fraîche italienne Façonnèe à la main est croustillante et moelleuse à la fois" />
+                android:text="Le respect des traditions culinaires, le partage des saveurs, la qualité et la fraîcheur des produits reflètent nos valeurs. UNAVITA est situé au cœur du Village de CLARENSAC , à deux pas de la magnifique Fontaine du Griffe. \n\nNotre passion pour la pizza nous a conduit à rechercher en permanence des produits et des matières premières de qualité locale. \n\nNotre carte est pleine de combinaisons qui satisferont  tous les types de palais. Les garnitures les plus imaginatives et raffinées sont à la base de notre philosophie de fabrication , nos pains hamburgers sont faits et fabriquée par nos soins , toutes nos frites sont épluchées à la main , notre pâte à pizza fraîche italienne Façonnèe à la main est croustillante et moelleuse à la fois"
+                android:textSize="16sp" />
 
             <FrameLayout
                 android:id="@+id/frameLayout"
@@ -96,18 +102,18 @@
 
             <TextView
                 android:id="@+id/textView10"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="170sp"
                 android:layout_marginTop="25dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/tw_cen_mt_bold"
-                android:text="Nos Pizza" />
+                android:text="Nos Pizzas"
+                android:textAlignment="center" />
 
             <TableLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp">
+                android:layout_height="wrap_content">
+
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -199,6 +205,7 @@
                     android:id="@+id/gifImageView2"
                     android:layout_width="wrap_content"
                     android:layout_height="150dp"
+                    android:layout_gravity="center"
                     android:layout_marginTop="25dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/unavita_background" />
@@ -208,18 +215,18 @@
 
             <TextView
                 android:id="@+id/textView11"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="170sp"
                 android:layout_marginTop="25dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="25dp"
                 android:fontFamily="@font/tw_cen_mt_bold"
-                android:text="Nos Burgers" />
+                android:text="Nos Burgers"
+                android:textAlignment="center" />
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="50dp">
+                android:layout_height="match_parent">
+
 
                 <TableRow
                     android:layout_width="match_parent"
