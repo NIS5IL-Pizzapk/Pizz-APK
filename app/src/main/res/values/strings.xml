@@ -23,5 +23,7 @@
     <string name="commandes_en_cours">Commandes en cours</string>
     <string name="r_servations">Réservations</string>
     <string name="guest"><u>Continuer en tant qu\'invité</u></string>
-
+    <string name="pref_file">com.abc.preference_file</string>
+    <string name="pref_login_status">com.abc.preference_login_status</string>
+    <string name="pref_user_name">com.abc.preference_user_name</string>
 </resources>

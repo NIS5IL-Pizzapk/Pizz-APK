@@ -24,6 +24,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.pizz_apk.models.RetroFitRequests;
+import com.example.pizz_apk.services.Utils;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     //get selected fragment
     private Fragment selectedFragment;
     private AppBarConfiguration appBarConfiguration;
+    public static PrefConfig prefConfig;
+    public static RetroFitRequests RetroFitRequests;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +47,31 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
+        prefConfig = new PrefConfig(this);
+        RetroFitRequests requests;
 
-        appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.accueilFragment)
-                .setOpenableLayout(drawerLayout)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+        if (findViewById(R.id.nav_host_fragment) != null) {
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            if (prefConfig.readLoginStatus()) {
+                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.accueilFragment);
+            } else {
+                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.restaurantChoixFragment);
+            }
 
 
+            appBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.accueilFragment)
+                    .setOpenableLayout(drawerLayout)
+                    .build();
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+            NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+            NavigationUI.setupWithNavController(navigationView, navController);
 
+
+        }
     }
 
 
