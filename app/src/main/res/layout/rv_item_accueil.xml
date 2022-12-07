@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/imgAccueil"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="157dp"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
     </androidx.cardview.widget.CardView>
