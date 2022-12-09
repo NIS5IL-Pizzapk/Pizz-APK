@@ -14,12 +14,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import okhttp3.ResponseBody;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Utils {
+
+
 
     public static String getConfigValue(Context context, String name) {
         Resources resources = context.getResources();
@@ -36,7 +37,7 @@ public class Utils {
         return null;
     }
 
-    public static RetroFitRequests getRetrofitCon(Context ctx) {
+    public static RetroFitRequests<R> getRetrofitCon(Context ctx) {
         String apiUrl = Utils.getConfigValue(ctx, "api_url");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(apiUrl)
@@ -44,7 +45,6 @@ public class Utils {
                 .build();
         return retrofit.create(RetroFitRequests.class);
     }
-
     public static void requestNotSuccessfulToast(Context ctx, Response response) {
         String message = "";
         try {

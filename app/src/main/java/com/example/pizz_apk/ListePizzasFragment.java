@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.pizz_apk.adapters.ListePizzasAdapter;
 import com.example.pizz_apk.adapters.PlatUniqueListener;
@@ -26,14 +25,11 @@ import com.example.pizz_apk.services.Utils;
 import com.example.pizz_apk.viewmodels.ListePizzasViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 
 public class ListePizzasFragment extends Fragment {
@@ -43,7 +39,7 @@ public class ListePizzasFragment extends Fragment {
     PlatUniqueViewModel platUniqueViewModel;
     Context context = getContext();
     PlatUniqueListener listener;
-    RetroFitRequests requests;
+    RetroFitRequests<R> requests;
 
     public ListePizzasFragment() {
         // Required empty public constructor

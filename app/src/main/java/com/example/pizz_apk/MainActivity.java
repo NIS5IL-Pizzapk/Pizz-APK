@@ -2,31 +2,20 @@ package com.example.pizz_apk;
 
 import static androidx.navigation.Navigation.findNavController;
 
-import static com.google.android.material.tabs.TabLayout.GRAVITY_START;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.pizz_apk.models.RetroFitRequests;
-import com.example.pizz_apk.services.Utils;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment selectedFragment;
     private AppBarConfiguration appBarConfiguration;
     public static PrefConfig prefConfig;
-    public static RetroFitRequests RetroFitRequests;
+    public static RetroFitRequests<R> RetroFitRequests;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
         prefConfig = new PrefConfig(this);
-        RetroFitRequests requests;
+        RetroFitRequests<R> requests;
 
         if (findViewById(R.id.nav_host_fragment) != null) {
             if (savedInstanceState != null) {

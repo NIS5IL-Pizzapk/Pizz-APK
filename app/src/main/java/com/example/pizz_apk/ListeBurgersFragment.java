@@ -15,18 +15,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.pizz_apk.R;
 import com.example.pizz_apk.adapters.ListeBurgersAdapter;
-import com.example.pizz_apk.adapters.ListePizzasAdapter;
 import com.example.pizz_apk.adapters.PlatUniqueListener;
 import com.example.pizz_apk.databinding.FragmentListeBurgersBinding;
-import com.example.pizz_apk.databinding.FragmentListePizzasBinding;
 import com.example.pizz_apk.models.PlatPropose;
 import com.example.pizz_apk.models.RetroFitRequests;
 import com.example.pizz_apk.models.RetroFitResponse;
 import com.example.pizz_apk.services.Utils;
 import com.example.pizz_apk.viewmodels.ListeBurgersViewModel;
-import com.example.pizz_apk.viewmodels.ListePizzasViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
 
 import java.util.ArrayList;
@@ -42,7 +38,7 @@ public class ListeBurgersFragment extends Fragment {
     PlatUniqueViewModel platUniqueViewModel;
     Context context = getContext();
     PlatUniqueListener listener;
-    RetroFitRequests requests;
+    RetroFitRequests<R> requests;
 
     public ListeBurgersFragment() {
         // Required empty public constructor
