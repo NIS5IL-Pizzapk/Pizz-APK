@@ -55,13 +55,9 @@ public class CategorieAccueilFragment extends Fragment {
         categorieAccueilViewModel.setCategoriesList(categorieAccueilList);
         CategorieAccueilAdapter categorieAccueilAdapter = new CategorieAccueilAdapter(categorieAccueilViewModel.getCategoriesList(),getContext(), categorie -> {
             categorieAccueilViewModel.setSelectedCategorie(categorie);
-            if (categorie.getTag() == "pizzas_mois") {
-                Navigation.findNavController(view).navigate(R.id.action_restaurantChoixFragment_to_accueilFragment);
-            } else if (categorie.getTag() == "pizzas") {
+            if (categorie.getTag() == "pizzas") {
                 Navigation.findNavController(view).navigate(R.id.action_accueilFragment_to_listePizzasFragment);
-            } else if (categorie.getTag() == "tacos") {
-                Navigation.findNavController(view).navigate(R.id.action_accueilFragment_to_listeBoissonsFragment);
-            } else if (categorie.getTag() == "salades") {
+            } else if (categorie.getTag() == "burgers") {
                 Navigation.findNavController(view).navigate(R.id.action_accueilFragment_to_listeBurgersFragment);
             }
         });
