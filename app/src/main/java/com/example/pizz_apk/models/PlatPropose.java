@@ -9,7 +9,7 @@ import java.util.List;
 public class PlatPropose implements Serializable {
     @SerializedName("produitId")
     private int id;
-    private String type;
+    private String type; // à noter que le type doit obligatoirement être "pizza_rouge", "pizza_blanche", "burger", "dessert" ou "boisson"
     private String nom;
     private String description;
     private float prix;
