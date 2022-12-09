@@ -35,16 +35,15 @@ public class CategorieAccueilAdapter extends RecyclerView.Adapter<CategorieAccue
 
     @Override
     public void onBindViewHolder(@NonNull CategorieAccueilViewHolder holder, int position) {
-        binding.imgAccueil.setImageResource(categorieList.get(position).getImage());
+        binding.rvItemAccueilImageview.setImageResource(categorieList.get(position).getImage());
+        binding.rvItemAccueilMarque.setText(categorieList.get(position).getNom());
         final CategorieAccueil categorieAccueil = categorieList.get(position);
         binding.getRoot().setOnClickListener(v -> listener.onCategorieAccueilClicked(categorieAccueil));
-
     }
 
     @Override
     public int getItemCount() {
         return categorieList.size();
-
     }
 
 
