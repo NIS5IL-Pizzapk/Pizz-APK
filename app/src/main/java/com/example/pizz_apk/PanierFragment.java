@@ -90,7 +90,8 @@ public class PanierFragment extends Fragment {
         binding.buttonClosePopup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.popup.setVisibility(View.GONE);
+                binding.popup.setVisibility(View.INVISIBLE);
+
             }
         });
 

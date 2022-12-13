@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_accueilFragment_to_listeBoissonsFragment"
             app:destination="@id/listeBoissonsFragment" />
+        <action
+            android:id="@+id/action_accueilFragment_to_listeDessertsFragment"
+            app:destination="@id/listeDessertsFragment" />
     </fragment>
     <fragment
         android:id="@+id/listePizzasFragment"
@@ -147,6 +150,18 @@
         tools:layout="@layout/fragment_liste_boissons" >
         <action
             android:id="@+id/action_listeBoissonsFragment_to_platUniqueFragment"
+            app:destination="@id/platUniqueFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listeDessertsFragment"
+        android:name="com.example.pizz_apk.ListeDessertsFragment"
+        android:label="fragment_liste_desserts"
+        tools:layout="@layout/fragment_liste_desserts" >
+        <action
+            android:id="@+id/action_listeDessertsFragment_to_allergenesFragment"
+            app:destination="@id/allergenesFragment" />
+        <action
+            android:id="@+id/action_listeDessertsFragment_to_platUniqueFragment"
             app:destination="@id/platUniqueFragment" />
     </fragment>
 </navigation>
