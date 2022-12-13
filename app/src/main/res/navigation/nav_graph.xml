@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_platUniqueFragment_to_nav_panier"
             app:destination="@id/nav_panier" />
+        <action
+            android:id="@+id/action_platUniqueFragment_to_upSellingSupplementsFragment"
+            app:destination="@id/upSellingSupplementsFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantChoixFragment"
@@ -163,5 +166,32 @@
         <action
             android:id="@+id/action_listeDessertsFragment_to_platUniqueFragment"
             app:destination="@id/platUniqueFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/upSellingBoissonsFragment"
+        android:name="com.example.pizz_apk.UpSellingBoissonsFragment"
+        android:label="fragment_up_selling_boissons"
+        tools:layout="@layout/fragment_up_selling_boissons" >
+        <action
+            android:id="@+id/action_upSellingBoissonsFragment_to_upSellingDessertsFragment"
+            app:destination="@id/upSellingDessertsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/upSellingDessertsFragment"
+        android:name="com.example.pizz_apk.UpSellingDessertsFragment"
+        android:label="fragment_up_selling_desserts"
+        tools:layout="@layout/fragment_up_selling_desserts" >
+        <action
+            android:id="@+id/action_upSellingDessertsFragment_to_nav_panier"
+            app:destination="@id/nav_panier" />
+    </fragment>
+    <fragment
+        android:id="@+id/upSellingSupplementsFragment"
+        android:name="com.example.pizz_apk.UpSellingSupplementsFragment"
+        android:label="fragment_up_selling_supplements"
+        tools:layout="@layout/fragment_up_selling_supplements" >
+        <action
+            android:id="@+id/action_upSellingSupplementsFragment_to_upSellingBoissonsFragment"
+            app:destination="@id/upSellingBoissonsFragment" />
     </fragment>
 </navigation>
