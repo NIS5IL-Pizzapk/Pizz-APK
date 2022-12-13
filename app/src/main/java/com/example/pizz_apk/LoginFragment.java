@@ -53,9 +53,6 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setView(view).show();
-
         Button loginButton = view.findViewById(R.id.fragment_login_btn_connexion);
         EditText email = view.findViewById(R.id.input_username);
         EditText password = view.findViewById(R.id.input_password);
@@ -64,27 +61,25 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("email", email.getText().toString());
                 map.put("password", password.getText().toString());
-
+                map.put("email", email.getText().toString());
                 Call<LoginResult> call = requests.executeLogin(map);
                 call.enqueue(new Callback<LoginResult>() {
                     @Override
                     public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
 
-                        if (response.isSuccessful()) {
-                          LoginResult result = response.body();
-                          AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                            builder.setTitle(result.getUsername());
-                            builder.setMessage(result.getMail());
-                            builder.show();
-                            Toast.makeText(getContext(), "Connexion réussie", Toast.LENGTH_SHORT).show();
+                        if (response.code() == 200) {
+                            Toast.makeText(requireContext(), "Connexion réussie", Toast.LENGTH_SHORT).show();
+                        } else if (response.code() == 404) {
+                            Toast.makeText(requireContext(), "Email ou mot de passe incorrect", Toast.LENGTH_SHORT).show();
+                            //send console log response in console
+                            System.out.println(response);
                         } else {
-                            Toast.makeText(getContext(), "Connexion échouée", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), "Erreur inconnue" + response, Toast.LENGTH_SHORT).show();
+                            System.out.println(response);
                         }
 
                     }
-
                     @Override
                     public void onFailure(Call<LoginResult> call, Throwable t) {
                         Toast.makeText(getContext(), "Erreur de connexion", Toast.LENGTH_SHORT).show();

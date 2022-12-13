@@ -5,14 +5,14 @@ import com.google.gson.annotations.SerializedName;
 public class LoginResult {
     @SerializedName("email")
     private String mail;
-    @SerializedName("username")
-    private String username;
+    @SerializedName("password")
+    private String password;
 
     public String getMail() {
         return mail;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPassword() {
+        return password;
     }
 }
