@@ -25,8 +25,10 @@ public class TestData {
 
 
     public static List<CategorieAccueil> ListeCatégorie = new ArrayList<CategorieAccueil>(Arrays.asList(
-            new CategorieAccueil("Nos Pizzas",R.drawable.pizzas_du_mois,"pizzas"),
-            new CategorieAccueil("Nos Burgers",R.drawable.nos_pizzas,"burgers")
+            new CategorieAccueil("Nos Pizzas",R.drawable.pizza,"pizzas"),
+            new CategorieAccueil("Nos Burgers",R.drawable.burger,"burgers"),
+            new CategorieAccueil("Nos Boissons",R.drawable.coca,"boissons"),
+            new CategorieAccueil("Nos Desserts",R.drawable.dessert,"desserts")
     ));
 
     public static List<Restaurant> listeRestaurant = new ArrayList<Restaurant>(Arrays.asList(
