@@ -50,8 +50,6 @@ public class FragmentSignup extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setView(view).show();
 
         Button signupButton = view.findViewById(R.id.fragment_login_btn_connexion);
         EditText username = view.findViewById(R.id.input_name);
