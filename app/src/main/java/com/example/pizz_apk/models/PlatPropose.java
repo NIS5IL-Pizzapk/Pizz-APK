@@ -14,11 +14,12 @@ public class PlatPropose implements Serializable {
     private String description;
     private float prix;
     private List<Allergene> listeAllergenes;
-    private int image;
+    @SerializedName("imgPath")
+    private String image;
     private List<Tag> tags;
     private int quantite;
 
-    public PlatPropose(String type, String nom, String description, float prix, List<Allergene> listeAllergenes,List<Tag> tags,int image,int quantite) {
+    public PlatPropose(String type, String nom, String description, float prix, List<Allergene> listeAllergenes,List<Tag> tags,String image,int quantite) {
         this.type = type;
         this.nom = nom;
         this.description = description;
@@ -85,11 +86,11 @@ public class PlatPropose implements Serializable {
         this.id = id;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

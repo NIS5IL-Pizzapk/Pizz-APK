@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_plat_mini"
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="10dp"
+                    app:srcCompat="@drawable/pizza" />
+
+                <Space
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_nom_plat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="4 FROMAGES"
+                        android:textAllCaps="true"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/tw_cen_mt_bold"/>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp" />
+
+                    <TextView
+                        android:id="@+id/tv_description_plat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="2"
+                        android:text="mozza, gorgonzola, parmesan, chèvre"
+                        android:textAllCaps="false"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/tw_cen_mt_bold"/>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_prix_plat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PrixPizza"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/tw_cen_mt_bold"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="right"
+                            android:orientation="horizontal">
+
+                            <ImageButton
+                                android:id="@+id/imgbtn_plat_allergenes"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginBottom="5dp"
+                                app:srcCompat="@android:drawable/ic_menu_info_details"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+<ImageView
+android:id="@+id/iv_moins_panier"
+android:layout_width="53dp"
+android:layout_height="match_parent"
+android:layout_marginLeft="1dp"
+android:layout_weight="0"
+app:srcCompat="@drawable/ic_baseline_horizontal_rule_24" />
+
+<TextView
+android:id="@+id/tv_nombre_item_panier"
+android:layout_width="wrap_content"
+android:layout_height="match_parent"
+android:layout_gravity="center"
+android:layout_marginTop="3dp"
+android:layout_weight="0"
+android:fontFamily="@font/tw_cen_mt_bold"
+android:gravity="center"
+android:text="10"
+android:textAlignment="center"
+android:textSize="48sp" />
+
+<ImageView
+android:id="@+id/iv_add_panier"
+android:layout_width="60dp"
+android:layout_height="match_parent"
+android:layout_weight="0"
+app:srcCompat="@android:drawable/ic_input_add" />
