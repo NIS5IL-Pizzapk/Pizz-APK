@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,21 +69,17 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
 
-                        if (response.code() == 200) {
-                            Toast.makeText(requireContext(), "Connexion réussie", Toast.LENGTH_SHORT).show();
-                        } else if (response.code() == 404) {
-                            Toast.makeText(requireContext(), "Email ou mot de passe incorrect", Toast.LENGTH_SHORT).show();
-                            //send console log response in console
-                            System.out.println(response);
-                        } else {
-                            Toast.makeText(requireContext(), "Erreur inconnue" + response, Toast.LENGTH_SHORT).show();
-                            System.out.println(response);
+                        if (response.isSuccessful()) {
+                         //console write line
+                            System.out.println("connexion réussie ! " + response);
+                            Toast.makeText(requireContext(), "connexion réussie ! " + response, Toast.LENGTH_SHORT).show();
+                            Navigation.findNavController(v).navigate(R.id.accueilFragment);
                         }
-
                     }
                     @Override
                     public void onFailure(Call<LoginResult> call, Throwable t) {
-                        Toast.makeText(getContext(), "Erreur de connexion", Toast.LENGTH_SHORT).show();
+                        System.out.println("Erreur de connexion" + t);
+                        Toast.makeText(getContext(), "Erreur de connexion" + t, Toast.LENGTH_SHORT).show();
                     }
                 });
             }

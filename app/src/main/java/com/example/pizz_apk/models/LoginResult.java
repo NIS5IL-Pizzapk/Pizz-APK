@@ -15,4 +15,6 @@ public class LoginResult {
     public String getPassword() {
         return password;
     }
+
+
 }
