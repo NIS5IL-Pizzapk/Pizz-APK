@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.example.pizz_apk.models.LoginResult;
 import com.example.pizz_apk.models.RetroFitRequests;
 import com.example.pizz_apk.services.Utils;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;
 
@@ -77,7 +79,12 @@ public class LoginFragment extends Fragment {
                             editor.putString("token", response.body().getToken());
                             editor.putBoolean("isConnected", true);
                             editor.commit();
-                            System.out.println("connexion réussie ! " + response);
+                            Menu menu = ((NavigationView) requireActivity().findViewById(R.id.navigation_view)).getMenu();
+                            menu.findItem(R.id.nav_logout).setVisible(true);
+                            menu.findItem(R.id.nav_account).setVisible(true);
+                            menu.findItem(R.id.nav_commandesencours).setVisible(true);
+                            menu.findItem(R.id.nav_reservation).setVisible(true);
+                             System.out.println("connexion réussie ! " + response);
                             Toast.makeText(requireContext(), "connexion réussie ! " + response, Toast.LENGTH_SHORT).show();
                             Navigation.findNavController(v).navigate(R.id.accueilFragment);
 

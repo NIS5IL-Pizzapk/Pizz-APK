@@ -7,11 +7,13 @@
     <item
         android:id="@+id/nav_reservation"
         android:icon="@drawable/ic_baseline_checklist_24"
-        android:title="@string/r_servations" />
+        android:title="@string/r_servations"
+        android:visible="false" />
     <item
         android:id="@+id/nav_commandesencours"
         android:icon="@drawable/ic_baseline_shopping_cart_checkout_24"
-        android:title="@string/commandes_en_cours" />
+        android:title="@string/commandes_en_cours"
+        android:visible="false" />
     <item
             android:id="@+id/nav_parametres"
             android:icon="@drawable/ic_baseline_settings_24"
@@ -31,11 +33,11 @@
             android:id="@+id/nav_account"
             android:icon="@drawable/ic_baseline_manage_accounts_24"
             android:title="@string/title_account"
-            />
+            android:visible="false" />
         <item
-            android:id="@+id/nav_deconnexion"
+            android:id="@+id/nav_logout"
             android:icon="@drawable/ic_baseline_logout_24"
             android:title="@string/menu_deconnexion"
-            />
+            android:visible="false" />
 
 </menu>

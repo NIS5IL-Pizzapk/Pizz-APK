@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        //get menu and hide the buttons
+        Menu menu = navigationView.getMenu();
+
+
     }
 
 
@@ -64,21 +68,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_cart, menu);
 
-
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onMenuOpened(int featureId, Menu menu) {
-        SharedPreferences sharedPreferences = getSharedPreferences("user", 0);
-        String token = sharedPreferences.getString("token", null);
-
-        //hide disconnect button if the user is not connected into the application
-        if (token == null) {
-            menu.findItem(R.id.nav_deconnexion).setVisible(false);
-        } else {
-            menu.findItem(R.id.nav_deconnexion).setVisible(true);
-        }
 
         return super.onMenuOpened(featureId, menu);
     }
@@ -98,21 +92,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-
             if (item.getItemId() == R.id.nav_reservation) {
                 Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_reservation);
             }
             if (item.getItemId() == R.id.nav_commandesencours) {
                 Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_commandesencours);
             }
-            if (item.getItemId() == R.id.nav_account) {
-                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_account);
-            }
-            if (item.getItemId() == R.id.nav_deconnexion) {
-                SharedPreferences SharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
-                SharedPreferences.edit().clear().apply();
-                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_deconnexion);
-            }
+
         if (item.getItemId() == R.id.nav_panier) {
             Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_panier);
         }
@@ -126,8 +112,19 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.nav_contact) {
             Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_contact);
         }
+        if (item.getItemId() == R.id.nav_account) {
+            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_account);
+        }
+        if (item.getItemId() == R.id.nav_logout) {
+            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.accueilFragment);
+            SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+        }
 
         return NavigationUI.onNavDestinationSelected(item,findNavController(this, R.id.nav_host_fragment))
                 || super.onOptionsItemSelected(item);
     }
+
 }
