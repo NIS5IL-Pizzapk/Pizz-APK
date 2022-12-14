@@ -53,5 +53,12 @@ public class UpSellingSupplementsFragment extends Fragment {
             Navigation.findNavController(v).navigate(R.id.action_upSellingSupplementsFragment_to_upSellingBoissonsFragment);
         });
 
+        binding.imageView10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_upSellingSupplementsFragment_to_accueilFragment);
+            }
+        });
+
     }
 }

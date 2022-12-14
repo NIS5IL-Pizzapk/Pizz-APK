@@ -66,6 +66,12 @@ public class ListeDessertsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
         this.HandleGetDesserts(view);
+        binding.imageView10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_listeDessertsFragment_to_accueilFragment);
+            }
+        });
 
 
 

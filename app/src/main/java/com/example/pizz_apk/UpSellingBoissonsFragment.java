@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 
 import com.example.pizz_apk.adapters.ListeBoissonsAdapter;
 import com.example.pizz_apk.adapters.PlatUniqueListener;
+import com.example.pizz_apk.adapters.UpSellingBoissonsAdapter;
+import com.example.pizz_apk.adapters.UpSellingListener;
 import com.example.pizz_apk.databinding.FragmentUpSellingBoissonsBinding;
 import com.example.pizz_apk.databinding.FragmentUpSellingSupplementsBinding;
 import com.example.pizz_apk.models.PlatPropose;
@@ -39,7 +41,7 @@ public class UpSellingBoissonsFragment extends Fragment {
     ListeBoissonsViewModel boissonsViewModel;
     PlatUniqueViewModel platUniqueViewModel;
     Context context = getContext();
-    PlatUniqueListener listener;
+    UpSellingListener listener;
     RetroFitRequests requests;
 
     public UpSellingBoissonsFragment() {
@@ -68,6 +70,12 @@ public class UpSellingBoissonsFragment extends Fragment {
             Navigation.findNavController(v).navigate(R.id.action_upSellingBoissonsFragment_to_upSellingDessertsFragment);
         });
 
+        binding.imageView10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_upSellingBoissonsFragment_to_accueilFragment);
+            }
+        });
 
 
     }
@@ -92,18 +100,25 @@ public class UpSellingBoissonsFragment extends Fragment {
                     boissonsViewModel = new ViewModelProvider(requireActivity()).get(ListeBoissonsViewModel.class);
                     boissonsViewModel.setListBoissonsLiveData(boissons);
                     platUniqueViewModel = new ViewModelProvider(requireActivity()).get(PlatUniqueViewModel.class);
-                    ListeBoissonsAdapter adapter = new ListeBoissonsAdapter(boissonsViewModel.getListBoissonsLiveData().getValue(), context, new PlatUniqueListener() {
+                    UpSellingBoissonsAdapter adapter = new UpSellingBoissonsAdapter(boissonsViewModel.getListBoissonsLiveData().getValue(), context, new UpSellingListener() {
                         @Override
-                        public void onPlatUniqueClicked(PlatPropose platPropose) {
-                            platUniqueViewModel.setSelectedPlat(platPropose);
-                            Navigation.findNavController(view).navigate(R.id.action_listeBoissonsFragment_to_platUniqueFragment);
+                        public void onAddQuantity(PlatPropose platPropose) {
+                            //si le plat n'est pas dans la live data du panier, on l'ajoute
+                            if (!platUniqueViewModel.getPanier().getValue().contains(platPropose)) {
+                                platUniqueViewModel.getPanier().getValue().add(platPropose);
+                            }
+
                         }
 
                         @Override
-                        public void onPlatUniqueAllergenesClicked(PlatPropose platPropose) {
-                            platUniqueViewModel.setSelectedPlat(platPropose);
-                            Navigation.findNavController(view).navigate(R.id.action_listeBoissonsFragment_to_platUniqueFragment);
+                        public void onRemoveQuantity(PlatPropose platPropose) {
+                            //si la quantité du plat est à 0, on le retire du panier
+                            if (platPropose.getQuantite() == 0) {
+                                platUniqueViewModel.getPanier().getValue().remove(platPropose);
+                            }
+
                         }
+
                     });
                     binding.rvBoissonsListe.setHasFixedSize(true);
                     binding.rvBoissonsListe.setAdapter(adapter);

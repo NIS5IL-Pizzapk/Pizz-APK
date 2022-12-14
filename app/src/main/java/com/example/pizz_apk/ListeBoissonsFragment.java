@@ -69,6 +69,12 @@ public class ListeBoissonsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
         this.HandleGetBoissons(view);
+        binding.imageView10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_listeBoissonsFragment_to_accueilFragment);
+            }
+        });
 
 
 

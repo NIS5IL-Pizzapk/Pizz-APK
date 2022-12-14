@@ -28,7 +28,7 @@ public class ListeBoissonsAdapter extends RecyclerView.Adapter<ListeBoissonsAdap
         this.listener = listener;
     }
 
-    public void setBoissonsListList(ArrayList<PlatPropose> boissonsList) {
+    public void setBoissonsList(ArrayList<PlatPropose> boissonsList) {
         this.boissonsList = boissonsList;
         notifyDataSetChanged();
 
