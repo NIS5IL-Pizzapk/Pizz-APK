@@ -1,5 +1,6 @@
 package com.example.pizz_apk;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
 import static androidx.navigation.Navigation.findNavController;
 
 import static com.google.android.material.tabs.TabLayout.GRAVITY_START;
@@ -18,12 +19,15 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.pizz_apk.models.RetroFitRequests;
+import com.example.pizz_apk.services.Utils;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     //get selected fragment
     private Fragment selectedFragment;
     private AppBarConfiguration appBarConfiguration;
+    RetroFitRequests requests;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +57,30 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_cart, menu);
+
+
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        SharedPreferences sharedPreferences = getSharedPreferences("user", 0);
+        String token = sharedPreferences.getString("token", null);
+
+        //hide disconnect button if the user is not connected into the application
+        if (token == null) {
+            menu.findItem(R.id.nav_deconnexion).setVisible(false);
+        } else {
+            menu.findItem(R.id.nav_deconnexion).setVisible(true);
+        }
+
+        return super.onMenuOpened(featureId, menu);
     }
 
     @Override
@@ -68,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         this.navControllertest = Navigation.findNavController(this, R.id.nav_host_fragment);
            //     if (navControllertest.getCurrentDestination().getId() == R.id.nav_reservation || navControllertest.getCurrentDestination().getId() == R.id.nav_contact || navControllertest.getCurrentDestination().getId() == R.id.nav_parametres || navControllertest.getCurrentDestination().getId() == R.id.nav_apropos || navControllertest.getCurrentDestination().getId() == R.id.nav_commandesencours || navControllertest.getCurrentDestination().getId() == R.id.nav_account) {
              //       Navigation.findNavController(this,R.id.nav_host_fragment).navigate(R.id.accueilFragment);
-              //  }
+              //
     return NavigationUI.navigateUp(navControllertest, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
@@ -77,14 +97,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+
+            if (item.getItemId() == R.id.nav_reservation) {
+                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_reservation);
+            }
+            if (item.getItemId() == R.id.nav_commandesencours) {
+                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_commandesencours);
+            }
+            if (item.getItemId() == R.id.nav_account) {
+                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_account);
+            }
+            if (item.getItemId() == R.id.nav_deconnexion) {
+                SharedPreferences SharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+                SharedPreferences.edit().clear().apply();
+                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_deconnexion);
+            }
         if (item.getItemId() == R.id.nav_panier) {
             Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_panier);
-        }
-        if (item.getItemId() == R.id.nav_reservation) {
-            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_reservation);
-        }
-        if (item.getItemId() == R.id.nav_commandesencours) {
-            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_commandesencours);
         }
         if (item.getItemId() == R.id.nav_parametres) {
             Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_parametres);
@@ -92,15 +122,11 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.nav_apropos) {
             Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_apropos);
         }
-        if (item.getItemId() == R.id.nav_account) {
-            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_account);
-        }
+
         if (item.getItemId() == R.id.nav_contact) {
             Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_contact);
         }
-        if (item.getItemId() == R.id.nav_deconnexion) {
-            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_deconnexion);
-        }
+
         return NavigationUI.onNavDestinationSelected(item,findNavController(this, R.id.nav_host_fragment))
                 || super.onOptionsItemSelected(item);
     }

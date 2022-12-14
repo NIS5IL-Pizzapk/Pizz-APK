@@ -8,6 +8,12 @@ public class LoginResult {
     @SerializedName("password")
     private String password;
 
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
     public String getMail() {
         return mail;
     }

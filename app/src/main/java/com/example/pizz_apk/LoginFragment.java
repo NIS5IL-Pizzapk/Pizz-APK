@@ -1,6 +1,7 @@
 package com.example.pizz_apk;
 
 import android.app.AlertDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -69,11 +70,17 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
 
+
                         if (response.isSuccessful()) {
-                         //console write line
+                            SharedPreferences preferences = requireContext().getSharedPreferences("user", 0);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("token", response.body().getToken());
+                            editor.putBoolean("isConnected", true);
+                            editor.commit();
                             System.out.println("connexion réussie ! " + response);
                             Toast.makeText(requireContext(), "connexion réussie ! " + response, Toast.LENGTH_SHORT).show();
                             Navigation.findNavController(v).navigate(R.id.accueilFragment);
+
                         }
                     }
                     @Override
