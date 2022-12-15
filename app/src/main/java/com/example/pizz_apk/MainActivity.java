@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private Fragment selectedFragment;
     private AppBarConfiguration appBarConfiguration;
     RetroFitRequests requests;
+    private MenuItem menuItemToShow;
+    private MenuItem menuItemToHide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_cart, menu);
-
+        menuItemToHide = menu.findItem(R.id.nav_logout);
+        menuItemToShow = menu.findItem(R.id.nav_logout);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -116,11 +119,20 @@ public class MainActivity extends AppCompatActivity {
             Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_account);
         }
         if (item.getItemId() == R.id.nav_logout) {
-            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.accueilFragment);
+           // Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_logout);
+            NavigationView navigationView = findViewById(R.id.navigation_view);
+            //get menu and hide the buttons
+            Menu menu = navigationView.getMenu();
+            menu.findItem(R.id.nav_logout).setVisible(false);
+            menu.findItem(R.id.nav_account).setVisible(false);
+            menu.findItem(R.id.nav_commandesencours).setVisible(false);
+            menu.findItem(R.id.nav_reservation).setVisible(false);
+
             SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.apply();
+            this.invalidateOptionsMenu();
         }
 
         return NavigationUI.onNavDestinationSelected(item,findNavController(this, R.id.nav_host_fragment))
