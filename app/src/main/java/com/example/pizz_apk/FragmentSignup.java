@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,6 +69,7 @@ public class FragmentSignup extends Fragment {
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(getContext(), "Inscription réussie", Toast.LENGTH_SHORT).show();
+                            Navigation.findNavController(v).navigate(R.id.loginFragment);
                         } else {
                             Toast.makeText(getContext(), "Inscription échouée", Toast.LENGTH_SHORT).show();
                         }
