@@ -29,6 +29,7 @@ import com.example.pizz_apk.viewmodels.ListeBoissonsViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -81,7 +82,11 @@ public class UpSellingBoissonsFragment extends Fragment {
     }
 
     public void HandleGetBoissons(View view){
-        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getAllProduits();
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("restaurantId",1);
+        map.put("typeId", 4);
+
+        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlatsByTypeEtRestaurant(map);
 
         call.enqueue(new Callback<RetroFitResponse<ArrayList<PlatPropose>>>() {
             @Override
@@ -92,9 +97,7 @@ public class UpSellingBoissonsFragment extends Fragment {
                     //trier les plats pour ne garder que les boissons
                     ArrayList<PlatPropose> boissons = new ArrayList<>();
                     for (PlatPropose plat : result) {
-                        if (plat.getType().equals("boisson")) {
                             boissons.add(plat);
-                        }
                     }
 
                     boissonsViewModel = new ViewModelProvider(requireActivity()).get(ListeBoissonsViewModel.class);
