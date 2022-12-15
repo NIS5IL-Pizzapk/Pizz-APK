@@ -61,7 +61,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
-                        android:fontFamily="@font/tw_cen_mt_bold"
+                        android:fontFamily="@font/tw_cen_mt_italic"
                         android:text="mozza, gorgonzola, parmesan, chèvre"
                         android:textAllCaps="false"
                         android:textSize="16sp" />
@@ -80,7 +80,7 @@
                             android:foregroundGravity="center"
                             android:gravity="center"
                             android:text="20 €"
-                            android:textSize="24sp" />
+                            android:textSize="30sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -90,10 +90,10 @@
 
                             <ImageView
                                 android:id="@+id/iv_moins_panier"
-                                android:layout_width="53dp"
+                                android:layout_width="25dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0"
-                                app:srcCompat="@drawable/ic_baseline_horizontal_rule_24" />
+                                app:srcCompat="@drawable/btn_delete" />
 
                             <TextView
                                 android:id="@+id/tv_nombre_item_panier"
@@ -101,18 +101,19 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
                                 android:layout_weight="0"
-                                android:fontFamily="@font/tw_cen_mt_bold"
+                                android:fontFamily="@font/tw_cen_mt"
                                 android:gravity="center"
                                 android:text="10"
                                 android:textAlignment="center"
-                                android:textSize="30sp" />
+                                android:textSize="38sp" />
 
                             <ImageView
                                 android:id="@+id/iv_add_panier"
-                                android:layout_width="60dp"
+                                android:layout_width="25dp"
                                 android:layout_height="match_parent"
+                                android:layout_marginLeft="4dp"
                                 android:layout_weight="0"
-                                app:srcCompat="@android:drawable/ic_input_add" />
+                                app:srcCompat="@drawable/btn_add" />
 
                         </LinearLayout>
 

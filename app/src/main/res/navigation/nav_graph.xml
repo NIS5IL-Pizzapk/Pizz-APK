@@ -42,7 +42,11 @@
         android:id="@+id/loginFragment"
         android:name="com.example.pizz_apk.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_recapitulatifCommandeFragment"
+            app:destination="@id/recapitulatifCommandeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/platUniqueFragment"
         android:name="com.example.pizz_apk.PlatUniqueFragment"
@@ -224,4 +228,9 @@
             android:id="@+id/action_upSellingSupplementsFragment_to_accueilFragment"
             app:destination="@id/accueilFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/recapitulatifCommandeFragment"
+        android:name="com.example.pizz_apk.RecapitulatifCommandeFragment"
+        android:label="fragment_recapitulatif_commande"
+        tools:layout="@layout/fragment_recapitulatif_commande" />
 </navigation>
