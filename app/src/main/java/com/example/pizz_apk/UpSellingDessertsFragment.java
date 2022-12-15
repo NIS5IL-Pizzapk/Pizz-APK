@@ -1,64 +1,141 @@
 package com.example.pizz_apk;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link UpSellingDessertsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.example.pizz_apk.adapters.PlatUniqueListener;
+import com.example.pizz_apk.adapters.UpSellingBoissonsAdapter;
+import com.example.pizz_apk.adapters.UpSellingDessertsAdapter;
+import com.example.pizz_apk.adapters.UpSellingListener;
+import com.example.pizz_apk.databinding.FragmentUpSellingBoissonsBinding;
+import com.example.pizz_apk.databinding.FragmentUpSellingDessertsBinding;
+import com.example.pizz_apk.databinding.FragmentUpSellingSupplementsBinding;
+import com.example.pizz_apk.models.PlatPropose;
+import com.example.pizz_apk.models.RetroFitRequests;
+import com.example.pizz_apk.models.RetroFitResponse;
+import com.example.pizz_apk.services.Utils;
+import com.example.pizz_apk.viewmodels.ListeBoissonsViewModel;
+import com.example.pizz_apk.viewmodels.ListeDessertsViewModel;
+import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class UpSellingDessertsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    FragmentUpSellingDessertsBinding binding;
+    ListeDessertsViewModel dessertsViewModel;
+    PlatUniqueViewModel platUniqueViewModel;
+    Context context = getContext();
+    PlatUniqueListener listener;
+    RetroFitRequests requests;
 
     public UpSellingDessertsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment UpSellingDessertsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static UpSellingDessertsFragment newInstance(String param1, String param2) {
-        UpSellingDessertsFragment fragment = new UpSellingDessertsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_up_selling_desserts, container, false);
+        binding = FragmentUpSellingDessertsBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        this.requests = Utils.getRetrofitCon(requireContext());
+        this.HandleGetDesserts(view);
+        binding.btnSuivant.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.action_upSellingDessertsFragment_to_nav_panier);
+        });
+
+        binding.imageView10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_upSellingDessertsFragment_to_nav_panier);
+            }
+        });
+
+
+    }
+
+    public void HandleGetDesserts(View view){
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("restaurantId",1);
+        map.put("typeId", 5);
+
+        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlatsByTypeEtRestaurant(map);
+
+        call.enqueue(new Callback<RetroFitResponse<ArrayList<PlatPropose>>>() {
+            @Override
+            public void onResponse(Call<RetroFitResponse<ArrayList<PlatPropose>>> call, Response<RetroFitResponse<ArrayList<PlatPropose>>> response) {
+                if (response.isSuccessful()) {
+                    String message = response.body().getMessage();
+                    ArrayList<PlatPropose> result = response.body().getResult();
+                    //trier les plats pour ne garder que les desserts
+                    ArrayList<PlatPropose> desserts = new ArrayList<>();
+                    for (PlatPropose plat : result) {
+                            desserts.add(plat);
+                    }
+
+                    dessertsViewModel = new ViewModelProvider(requireActivity()).get(ListeDessertsViewModel.class);
+                    dessertsViewModel.setListDessertsLiveData(desserts);
+                    platUniqueViewModel = new ViewModelProvider(requireActivity()).get(PlatUniqueViewModel.class);
+                    UpSellingDessertsAdapter adapter = new UpSellingDessertsAdapter(dessertsViewModel.getListDessertsLiveData().getValue(), context, new UpSellingListener() {
+                        @Override
+                        public void onAddQuantity(PlatPropose platPropose) {
+                            //si le plat n'est pas dans la live data du panier, on l'ajoute
+                            if (!platUniqueViewModel.getPanier().getValue().contains(platPropose)) {
+                                platUniqueViewModel.getPanier().getValue().add(platPropose);
+                            }
+
+                        }
+
+                        @Override
+                        public void onRemoveQuantity(PlatPropose platPropose) {
+                            //si la quantité du plat est à 0, on le retire du panier
+                            if (platPropose.getQuantite() == 0) {
+                                platUniqueViewModel.getPanier().getValue().remove(platPropose);
+                            }
+
+                        }
+
+                    });
+                    binding.rvDessertsListe.setHasFixedSize(true);
+                    binding.rvDessertsListe.setAdapter(adapter);
+                    binding.rvDessertsListe.setLayoutManager(new LinearLayoutManager(context));
+
+                } else {
+                    Utils.requestNotSuccessfulToast(requireContext(), response);
+                }
+            }
+            @Override
+            public void onFailure(Call<RetroFitResponse<ArrayList<PlatPropose>>> call, Throwable t) {
+                Log.d("TAG", "onFailure: "+t.getMessage());
+            }
+        });
     }
 }

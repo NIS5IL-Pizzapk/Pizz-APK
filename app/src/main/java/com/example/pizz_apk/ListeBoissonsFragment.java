@@ -33,6 +33,7 @@ import com.example.pizz_apk.viewmodels.ListePizzasViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -69,13 +70,23 @@ public class ListeBoissonsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
         this.HandleGetBoissons(view);
+        binding.imageView10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_listeBoissonsFragment_to_accueilFragment);
+            }
+        });
 
 
 
     }
 
     public void HandleGetBoissons(View view){
-        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlats();
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("restaurantId",1);
+        map.put("typeId", 4);
+
+        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlatsByTypeEtRestaurant(map);
 
         call.enqueue(new Callback<RetroFitResponse<ArrayList<PlatPropose>>>() {
             @Override
@@ -86,9 +97,7 @@ public class ListeBoissonsFragment extends Fragment {
                     //trier les plats pour ne garder que les boissons
                     ArrayList<PlatPropose> boissons = new ArrayList<>();
                     for (PlatPropose plat : result) {
-                        if (plat.getType().equals("boisson")) {
                             boissons.add(plat);
-                        }
                     }
 
                     boissonsViewModel = new ViewModelProvider(requireActivity()).get(ListeBoissonsViewModel.class);

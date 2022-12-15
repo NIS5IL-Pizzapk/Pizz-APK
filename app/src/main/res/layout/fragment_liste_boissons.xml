@@ -20,7 +20,7 @@
             android:src="@drawable/logo_unavita" />
 
         <TextView
-            android:id="@+id/tv_nos_burgers"
+            android:id="@+id/titre"
             android:layout_marginTop="1dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"

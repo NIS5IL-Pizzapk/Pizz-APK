@@ -7,18 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlatPropose implements Serializable {
-    @SerializedName("produitId")
+    @SerializedName("id")
     private int id;
     private String type; // à noter que le type doit obligatoirement être "pizza_rouge", "pizza_blanche", "burger", "dessert" ou "boisson"
     private String nom;
     private String description;
     private float prix;
     private List<Allergene> listeAllergenes;
-    private int image;
+    private String image;
     private List<Tag> tags;
     private int quantite;
 
-    public PlatPropose(String type, String nom, String description, float prix, List<Allergene> listeAllergenes,List<Tag> tags,int image,int quantite) {
+    public PlatPropose(String type, String nom, String description, float prix, List<Allergene> listeAllergenes,List<Tag> tags,String image,int quantite) {
         this.type = type;
         this.nom = nom;
         this.description = description;
@@ -85,11 +85,11 @@ public class PlatPropose implements Serializable {
         this.id = id;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

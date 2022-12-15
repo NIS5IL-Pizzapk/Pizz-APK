@@ -30,6 +30,7 @@ import com.example.pizz_apk.viewmodels.ListePizzasViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -66,13 +67,23 @@ public class ListeBurgersFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
         this.HandleGetBurgers(view);
+        binding.imageView10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_listeBurgersFragment_to_accueilFragment);
+            }
+        });
 
 
 
     }
 
     public void HandleGetBurgers(View view){
-        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlats();
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("restaurantId",1);
+        map.put("typeId", 3);
+
+        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlatsByTypeEtRestaurant(map);
 
         call.enqueue(new Callback<RetroFitResponse<ArrayList<PlatPropose>>>() {
             @Override
@@ -83,9 +94,7 @@ public class ListeBurgersFragment extends Fragment {
                     //trier les plats pour ne garder que les burgers
                     ArrayList<PlatPropose> burgers = new ArrayList<>();
                     for (PlatPropose plat : result) {
-                        if (plat.getType().equals("burger")) {
                             burgers.add(plat);
-                        }
                     }
 
                     burgersViewModel = new ViewModelProvider(requireActivity()).get(ListeBurgersViewModel.class);

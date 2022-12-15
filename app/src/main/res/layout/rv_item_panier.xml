@@ -81,11 +81,12 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:id="@+id/iv_add_panier"
-                            android:layout_width="60dp"
-                            android:layout_height="57dp"
+                            android:id="@+id/iv_moins_panier"
+                            android:layout_width="53dp"
+                            android:layout_height="56dp"
+                            android:layout_marginLeft="1dp"
                             android:layout_weight="0"
-                            app:srcCompat="@android:drawable/ic_input_add" />
+                            app:srcCompat="@drawable/ic_baseline_horizontal_rule_24" />
 
                         <TextView
                             android:id="@+id/tv_nombre_item_panier"
@@ -98,12 +99,12 @@
                             android:textSize="48sp" />
 
                         <ImageView
-                            android:id="@+id/iv_moins_panier"
-                            android:layout_width="53dp"
-                            android:layout_height="56dp"
-                            android:layout_marginLeft="1dp"
+                            android:id="@+id/iv_add_panier"
+                            android:layout_width="60dp"
+                            android:layout_height="57dp"
                             android:layout_weight="0"
-                            app:srcCompat="@drawable/ic_baseline_horizontal_rule_24" />
+                            app:srcCompat="@android:drawable/ic_input_add" />
+
                     </LinearLayout>
 
                     <ImageView
