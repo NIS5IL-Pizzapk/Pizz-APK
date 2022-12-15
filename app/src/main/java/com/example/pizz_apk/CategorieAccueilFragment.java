@@ -59,6 +59,10 @@ public class CategorieAccueilFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_accueilFragment_to_listePizzasFragment);
             } else if (categorie.getTag() == "burgers") {
                 Navigation.findNavController(view).navigate(R.id.action_accueilFragment_to_listeBurgersFragment);
+            }else if (categorie.getTag() == "boissons") {
+                Navigation.findNavController(view).navigate(R.id.action_accueilFragment_to_listeBoissonsFragment);
+            }else if (categorie.getTag() == "desserts") {
+                Navigation.findNavController(view).navigate(R.id.action_accueilFragment_to_listeDessertsFragment);
             }
         });
         binding.rvButtonsAccueil.setHasFixedSize(true);

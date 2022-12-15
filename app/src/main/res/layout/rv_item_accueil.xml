@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:visibility="visible">
+    android:background="#00FFFFFF"
+    android:backgroundTint="#00FFFFFF">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#2B1D1D"
-        app:cardBackgroundColor="#494848"
+        android:id="@+id/cardView"
+        android:layout_width="409dp"
+        android:layout_height="144dp"
+        app:cardBackgroundColor="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,24 +26,29 @@
 
             <ImageView
                 android:id="@+id/rv_item_accueil_imageview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0"
-                android:padding="5dp"
-                android:paddingBottom="2dp"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                android:background="#00FFFFFF"
+                android:maxWidth="115sp"
+                android:maxHeight="115sp"
+                android:padding="8dp"
+                app:srcCompat="@drawable/pizza" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/rv_item_accueil_constlay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="#00FFFFFF">
 
                 <TextView
                     android:id="@+id/rv_item_accueil_marque"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Plat"
+                    android:fontFamily="@font/tw_cen_mt_bold"
+                    android:text="Nos Pizzas"
+                    android:textAlignment="center"
                     android:textSize="60sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -53,4 +59,5 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

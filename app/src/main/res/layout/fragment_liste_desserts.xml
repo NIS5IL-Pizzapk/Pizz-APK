@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListeBurgersFragment">
+    tools:context=".ListeDessertsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,18 +20,18 @@
             android:src="@drawable/logo_unavita" />
 
         <TextView
-            android:id="@+id/titre"
+            android:id="@+id/tv_nos_desserts"
             android:layout_marginTop="1dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="15"
             android:gravity="center"
-            android:text="NOS BURGERS"
+            android:text="NOS DESSERTS"
             android:fontFamily="@font/tw_cen_mt_bold"
             android:textSize="40sp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_burgers_liste"
+            android:id="@+id/rv_desserts_liste"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="68" />

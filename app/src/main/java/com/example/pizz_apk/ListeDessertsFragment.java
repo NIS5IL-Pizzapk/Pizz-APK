@@ -15,21 +15,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.pizz_apk.R;
 import com.example.pizz_apk.adapters.ListeBoissonsAdapter;
-import com.example.pizz_apk.adapters.ListeBurgersAdapter;
-import com.example.pizz_apk.adapters.ListePizzasAdapter;
+import com.example.pizz_apk.adapters.ListeDessertsAdapter;
 import com.example.pizz_apk.adapters.PlatUniqueListener;
 import com.example.pizz_apk.databinding.FragmentListeBoissonsBinding;
-import com.example.pizz_apk.databinding.FragmentListeBurgersBinding;
-import com.example.pizz_apk.databinding.FragmentListePizzasBinding;
+import com.example.pizz_apk.databinding.FragmentListeDessertsBinding;
 import com.example.pizz_apk.models.PlatPropose;
 import com.example.pizz_apk.models.RetroFitRequests;
 import com.example.pizz_apk.models.RetroFitResponse;
 import com.example.pizz_apk.services.Utils;
 import com.example.pizz_apk.viewmodels.ListeBoissonsViewModel;
-import com.example.pizz_apk.viewmodels.ListeBurgersViewModel;
-import com.example.pizz_apk.viewmodels.ListePizzasViewModel;
+import com.example.pizz_apk.viewmodels.ListeDessertsViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
 
 import java.util.ArrayList;
@@ -38,16 +34,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListeBoissonsFragment extends Fragment {
 
-    FragmentListeBoissonsBinding binding;
-    ListeBoissonsViewModel boissonsViewModel;
+public class ListeDessertsFragment extends Fragment {
+
+    FragmentListeDessertsBinding binding;
+    ListeDessertsViewModel dessertsViewModel;
     PlatUniqueViewModel platUniqueViewModel;
     Context context = getContext();
     PlatUniqueListener listener;
     RetroFitRequests requests;
 
-    public ListeBoissonsFragment() {
+    public ListeDessertsFragment() {
         // Required empty public constructor
     }
     @Override
@@ -60,7 +57,7 @@ public class ListeBoissonsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentListeBoissonsBinding.inflate(inflater, container, false);
+        binding = FragmentListeDessertsBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -68,11 +65,11 @@ public class ListeBoissonsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
-        this.HandleGetBoissons(view);
+        this.HandleGetDesserts(view);
         binding.imageView10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_listeBoissonsFragment_to_accueilFragment);
+                Navigation.findNavController(v).navigate(R.id.action_listeDessertsFragment_to_accueilFragment);
             }
         });
 
@@ -80,7 +77,7 @@ public class ListeBoissonsFragment extends Fragment {
 
     }
 
-    public void HandleGetBoissons(View view){
+    public void HandleGetDesserts(View view){
         Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getAllProduits();
 
         call.enqueue(new Callback<RetroFitResponse<ArrayList<PlatPropose>>>() {
@@ -89,33 +86,33 @@ public class ListeBoissonsFragment extends Fragment {
                 if (response.isSuccessful()) {
                     String message = response.body().getMessage();
                     ArrayList<PlatPropose> result = response.body().getResult();
-                    //trier les plats pour ne garder que les boissons
-                    ArrayList<PlatPropose> boissons = new ArrayList<>();
+                    //trier les plats pour ne garder que les Desserts
+                    ArrayList<PlatPropose> Desserts = new ArrayList<>();
                     for (PlatPropose plat : result) {
-                        if (plat.getType().equals("boisson")) {
-                            boissons.add(plat);
+                        if (plat.getType().equals("dessert")) {
+                            Desserts.add(plat);
                         }
                     }
 
-                    boissonsViewModel = new ViewModelProvider(requireActivity()).get(ListeBoissonsViewModel.class);
-                    boissonsViewModel.setListBoissonsLiveData(boissons);
+                    dessertsViewModel = new ViewModelProvider(requireActivity()).get(ListeDessertsViewModel.class);
+                    dessertsViewModel.setListDessertsLiveData(Desserts);
                     platUniqueViewModel = new ViewModelProvider(requireActivity()).get(PlatUniqueViewModel.class);
-                    ListeBoissonsAdapter adapter = new ListeBoissonsAdapter(boissonsViewModel.getListBoissonsLiveData().getValue(), context, new PlatUniqueListener() {
+                    ListeDessertsAdapter adapter = new ListeDessertsAdapter(dessertsViewModel.getListDessertsLiveData().getValue(), context, new PlatUniqueListener() {
                         @Override
                         public void onPlatUniqueClicked(PlatPropose platPropose) {
                             platUniqueViewModel.setSelectedPlat(platPropose);
-                            Navigation.findNavController(view).navigate(R.id.action_listeBoissonsFragment_to_platUniqueFragment);
+                            Navigation.findNavController(view).navigate(R.id.action_listeDessertsFragment_to_platUniqueFragment);
                         }
 
                         @Override
                         public void onPlatUniqueAllergenesClicked(PlatPropose platPropose) {
                             platUniqueViewModel.setSelectedPlat(platPropose);
-                            Navigation.findNavController(view).navigate(R.id.action_listeBoissonsFragment_to_platUniqueFragment);
+                            Navigation.findNavController(view).navigate(R.id.action_listeDessertsFragment_to_allergenesFragment);
                         }
                     });
-                    binding.rvBoissonsListe.setHasFixedSize(true);
-                    binding.rvBoissonsListe.setAdapter(adapter);
-                    binding.rvBoissonsListe.setLayoutManager(new LinearLayoutManager(context));
+                    binding.rvDessertsListe.setHasFixedSize(true);
+                    binding.rvDessertsListe.setAdapter(adapter);
+                    binding.rvDessertsListe.setLayoutManager(new LinearLayoutManager(context));
 
                 } else {
                     Utils.requestNotSuccessfulToast(requireContext(), response);
