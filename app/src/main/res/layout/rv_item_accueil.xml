@@ -21,8 +21,7 @@
             android:id="@+id/rv_item_accueil_linelay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#00FFFFFF"
-            android:backgroundTint="#00FFFFFF"
+            android:background="@drawable/background_container_blur"
             android:orientation="horizontal">
 
             <ImageView
