@@ -8,6 +8,7 @@ public class RetroFitResponse<T> {
         return message;
     }
 
+
     public T getResult() {
         return result;
     }

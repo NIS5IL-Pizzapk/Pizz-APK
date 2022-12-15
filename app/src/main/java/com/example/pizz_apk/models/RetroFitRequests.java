@@ -17,4 +17,7 @@ public interface RetroFitRequests {
     Call<LoginResult> executeLogin(@Body HashMap<String, String> map);
     @POST("/api/user/signup")
     Call<Void> executeSignup(@Body HashMap<String, String> map);
+    @POST("/api/adresse/add_adresse")
+    Call<Void> executeAddAdresse(@Body HashMap<String, String> map);
+
 }
