@@ -29,6 +29,7 @@ import com.example.pizz_apk.viewmodels.ListeDessertsViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,7 +79,11 @@ public class ListeDessertsFragment extends Fragment {
     }
 
     public void HandleGetDesserts(View view){
-        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getAllProduits();
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("restaurantId",1);
+        map.put("typeId", 5);
+
+        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlatsByTypeEtRestaurant(map);
 
         call.enqueue(new Callback<RetroFitResponse<ArrayList<PlatPropose>>>() {
             @Override
@@ -89,9 +94,7 @@ public class ListeDessertsFragment extends Fragment {
                     //trier les plats pour ne garder que les Desserts
                     ArrayList<PlatPropose> Desserts = new ArrayList<>();
                     for (PlatPropose plat : result) {
-                        if (plat.getType().equals("dessert")) {
                             Desserts.add(plat);
-                        }
                     }
 
                     dessertsViewModel = new ViewModelProvider(requireActivity()).get(ListeDessertsViewModel.class);
