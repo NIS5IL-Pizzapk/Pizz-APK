@@ -69,13 +69,19 @@ public class ListeBoissonsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
         this.HandleGetBoissons(view);
+        binding.imageView10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_listeBoissonsFragment_to_accueilFragment);
+            }
+        });
 
 
 
     }
 
     public void HandleGetBoissons(View view){
-        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlats();
+        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getAllProduits();
 
         call.enqueue(new Callback<RetroFitResponse<ArrayList<PlatPropose>>>() {
             @Override

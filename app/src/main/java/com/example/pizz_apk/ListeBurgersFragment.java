@@ -66,13 +66,19 @@ public class ListeBurgersFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
         this.HandleGetBurgers(view);
+        binding.imageView10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_listeBurgersFragment_to_accueilFragment);
+            }
+        });
 
 
 
     }
 
     public void HandleGetBurgers(View view){
-        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlats();
+        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getAllProduits();
 
         call.enqueue(new Callback<RetroFitResponse<ArrayList<PlatPropose>>>() {
             @Override
