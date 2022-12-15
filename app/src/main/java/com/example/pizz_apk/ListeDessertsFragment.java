@@ -78,7 +78,7 @@ public class ListeDessertsFragment extends Fragment {
     }
 
     public void HandleGetDesserts(View view){
-        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlats();
+        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getAllProduits();
 
         call.enqueue(new Callback<RetroFitResponse<ArrayList<PlatPropose>>>() {
             @Override

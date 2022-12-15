@@ -81,7 +81,7 @@ public class ListeBoissonsFragment extends Fragment {
     }
 
     public void HandleGetBoissons(View view){
-        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlats();
+        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getAllProduits();
 
         call.enqueue(new Callback<RetroFitResponse<ArrayList<PlatPropose>>>() {
             @Override

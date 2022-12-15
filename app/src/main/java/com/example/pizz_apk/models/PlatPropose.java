@@ -7,14 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlatPropose implements Serializable {
-    @SerializedName("produitId")
+    @SerializedName("id")
     private int id;
     private String type; // à noter que le type doit obligatoirement être "pizza_rouge", "pizza_blanche", "burger", "dessert" ou "boisson"
     private String nom;
     private String description;
     private float prix;
     private List<Allergene> listeAllergenes;
-    @SerializedName("imgPath")
     private String image;
     private List<Tag> tags;
     private int quantite;
