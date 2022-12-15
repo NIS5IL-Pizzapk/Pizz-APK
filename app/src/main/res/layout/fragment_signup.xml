@@ -66,7 +66,7 @@
             android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/input_username"
+            android:id="@+id/fragment_reset_input_mail"
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_marginTop="10dp"
@@ -108,7 +108,7 @@
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/fragment_recapcomm_btn_modify"
+            android:id="@+id/fragment_reset_btn_valid"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
