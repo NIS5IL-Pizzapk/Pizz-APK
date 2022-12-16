@@ -54,65 +54,63 @@ public class FragmentSignup extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        Button signupButton = view.findViewById(R.id.fragment_login_btn_connexion);
+        Button signupButton = view.findViewById(R.id.fragment_sign_btn_valid);
         EditText username = view.findViewById(R.id.input_name);
         EditText email = view.findViewById(R.id.input_email);
         EditText password = view.findViewById(R.id.input_password);
         EditText adress = view.findViewById(R.id.input_adresse_livraison);
         EditText telephone = view.findViewById(R.id.telephone);
 
-        signupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HashMap<String, String> map = new HashMap<>();
-                map.put("username", username.getText().toString());
-                map.put("email", email.getText().toString());
-                map.put("password", password.getText().toString());
-                map.put("telephone", telephone.getText().toString());
-                HashMap<String, String> mapadrss = new HashMap<>();
-                mapadrss.put("adresse", adress.getText().toString());
+        signupButton.setOnClickListener(v -> {
 
-                requests.executeSignup(map).enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        if (response.isSuccessful()) {
-                            Toast.makeText(getContext(), "Inscription réussie", Toast.LENGTH_SHORT).show();
-                            Navigation.findNavController(v).navigate(R.id.loginFragment);
-                        } else {
-                            Toast.makeText(getContext(), "Inscription échouée", Toast.LENGTH_SHORT).show();
-                        }
-                    }
+            HashMap<String, String> map = new HashMap<>();
+            map.put("username", username.getText().toString());
+            map.put("email", email.getText().toString());
+            HashMap<String, String> mapadrss = new HashMap<>();
+            mapadrss.put("adresse", adress.getText().toString());
+            map.put("password", password.getText().toString());
+            map.put("telephone", telephone.getText().toString());
 
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-
+            requests.executeSignup(map).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful() && password != null) {
+                        Toast.makeText(getContext(), "Inscription réussie", Toast.LENGTH_SHORT).show();
+                        Navigation.findNavController(v).navigate(R.id.loginFragment);
+                    } else if (password == null) {
                         Toast.makeText(getContext(), "Inscription échouée", Toast.LENGTH_SHORT).show();
                     }
-                });
+                }
 
-                requests.executeAddAdresse(mapadrss).enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        if (response.isSuccessful()) {
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
 
-                            Log.d("adrss", "onResponse: " + response.body());
-                            Toast.makeText(getContext(), "adress réussie", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Log.d("adrss", "onResponse: " + response.body());
-                            Log.d("adrss", "onResponse: " + mapadrss);
-                            Toast.makeText(getContext(), "adress échouée", Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                    Toast.makeText(getContext(), "Inscription échouée", Toast.LENGTH_SHORT).show();
+                }
+            });
 
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Log.d("adrss", "onResponse: " + t.getMessage());
+
+            requests.executeAddAdresse(mapadrss).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful()) {
+
+                        Log.d("adrss", "onResponse: " + response.body());
+                        Toast.makeText(getContext(), "adress réussie", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Log.d("adrss", "onResponse: " + response.body());
                         Log.d("adrss", "onResponse: " + mapadrss);
-                        Toast.makeText(getContext(), "Inscription échouée", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "adress échouée", Toast.LENGTH_SHORT).show();
                     }
-                });
-            }
-        });
+                }
 
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Log.d("adrss", "onResponse: " + t.getMessage());
+                    Log.d("adrss", "onResponse: " + mapadrss);
+                    Toast.makeText(getContext(), "Inscription échouée", Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
     }
 }

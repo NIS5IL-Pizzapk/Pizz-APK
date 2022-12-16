@@ -57,13 +57,11 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button loginButton = view.findViewById(R.id.fragment_login_btn_connexion);
+        Button loginButton = view.findViewById(R.id.fragment_lgin_btn_valid);
         EditText email = view.findViewById(R.id.input_username);
         EditText password = view.findViewById(R.id.input_password);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        loginButton.setOnClickListener(v -> {
                 HashMap<String, String> map = new HashMap<>();
                 map.put("password", password.getText().toString());
                 map.put("email", email.getText().toString());
@@ -71,7 +69,6 @@ public class LoginFragment extends Fragment {
                 call.enqueue(new Callback<LoginResult>() {
                     @Override
                     public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-
 
                         if (response.isSuccessful()) {
                             SharedPreferences preferences = requireContext().getSharedPreferences("user", 0);
@@ -96,7 +93,6 @@ public class LoginFragment extends Fragment {
                         Toast.makeText(getContext(), "Erreur de connexion" + t, Toast.LENGTH_SHORT).show();
                     }
                 });
-            }
         });
 
     }

@@ -52,7 +52,7 @@ public class GuestFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button guestButton = view.findViewById(R.id.fragment_login_btn_connexion);
+        Button guestButton = view.findViewById(R.id.fragment_guest_btn_connexion);
         EditText username = view.findViewById(R.id.input_name);
         EditText email = view.findViewById(R.id.input_username);
         EditText phone = view.findViewById(R.id.input_password);
