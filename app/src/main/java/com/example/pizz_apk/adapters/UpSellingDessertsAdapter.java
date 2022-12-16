@@ -59,9 +59,11 @@ public class UpSellingDessertsAdapter extends RecyclerView.Adapter<UpSellingDess
         });
         // enlève un à la quantité du plat quand on clique sur le bouton - et met à jour le prix total du panier
         holder.binding.ivMoinsPanier.setOnClickListener(v -> {
+            if (platPropose.getQuantite() > 1){
             platPropose.setQuantite(platPropose.getQuantite()-1);
             holder.binding.tvNombreItemPanier.setText(String.valueOf(platPropose.getQuantite()));
             listener.onRemoveQuantity(platPropose);
+            }
         });
     }
 

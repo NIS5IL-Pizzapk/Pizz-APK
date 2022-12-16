@@ -29,4 +29,6 @@ public interface RetroFitRequests {
     @POST("/api/adresse/add_adresse")
     Call<Void> executeAddAdresse(@Body HashMap<String, String> map);
 
+    @GET("/api/produit/supplement/get_all")
+    Call<RetroFitResponse<ArrayList<PlatPropose>>> getAllSupplements();
 }
