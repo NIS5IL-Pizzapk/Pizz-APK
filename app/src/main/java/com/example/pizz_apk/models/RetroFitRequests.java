@@ -17,4 +17,6 @@ public interface RetroFitRequests {
     //fais la requete pour avoir les plats par type et par restaurant en envoyant un objet JSON avec le type et l'id du restaurant
     Call<RetroFitResponse<ArrayList<PlatPropose>>> getPlatsByTypeEtRestaurant(@Body HashMap<String, Integer> map);
 
+    @GET("/api/produit/supplement/get_all")
+    Call<RetroFitResponse<ArrayList<PlatPropose>>> getAllSupplements();
 }
