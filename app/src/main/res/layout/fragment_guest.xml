@@ -52,20 +52,6 @@
             android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/input_adresse_livraison"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/custom_input"
-            android:ems="10"
-            android:fontFamily="@font/tw_cen_mt"
-            android:hint="Entrez une adresse de livraison"
-            android:inputType="textPostalAddress"
-            android:minHeight="48dp"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-
-        <EditText
             android:id="@+id/input_username"
             android:layout_width="300dp"
             android:layout_height="48dp"
