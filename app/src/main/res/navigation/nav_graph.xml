@@ -34,12 +34,19 @@
         <action
             android:id="@+id/action_listePizzasFragment_to_allergenesFragment"
             app:destination="@id/allergenesFragment" />
+        <action
+            android:id="@+id/action_listePizzasFragment_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.pizz_apk.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_recapitulatifCommandeFragment"
+            app:destination="@id/recapitulatifCommandeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/platUniqueFragment"
         android:name="com.example.pizz_apk.PlatUniqueFragment"
@@ -51,6 +58,9 @@
         <action
             android:id="@+id/action_platUniqueFragment_to_upSellingSupplementsFragment"
             app:destination="@id/upSellingSupplementsFragment" />
+        <action
+            android:id="@+id/action_platUniqueFragment_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantChoixFragment"
@@ -90,6 +100,9 @@
         <action
             android:id="@+id/action_nav_panier_to_fragmentSignup"
             app:destination="@id/fragmentSignup" />
+        <action
+            android:id="@+id/action_nav_panier_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
     </fragment>
     <fragment
         android:id="@+id/nav_parametres"
@@ -109,6 +122,9 @@
         <action
             android:id="@+id/action_nav_reservation_to_ajoutReservationFragment"
             app:destination="@id/ajoutReservationFragment" />
+        <action
+            android:id="@+id/action_nav_reservation_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
     </fragment>
     <fragment
         android:id="@+id/nav_commandesencours"
@@ -145,6 +161,9 @@
         <action
             android:id="@+id/action_listeBurgersFragment_to_allergenesFragment"
             app:destination="@id/allergenesFragment" />
+        <action
+            android:id="@+id/action_listeBurgersFragment_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
     </fragment>
     <fragment
         android:id="@+id/listeBoissonsFragment"
@@ -154,6 +173,9 @@
         <action
             android:id="@+id/action_listeBoissonsFragment_to_platUniqueFragment"
             app:destination="@id/platUniqueFragment" />
+        <action
+            android:id="@+id/action_listeBoissonsFragment_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
     </fragment>
     <fragment
         android:id="@+id/listeDessertsFragment"
@@ -166,6 +188,9 @@
         <action
             android:id="@+id/action_listeDessertsFragment_to_platUniqueFragment"
             app:destination="@id/platUniqueFragment" />
+        <action
+            android:id="@+id/action_listeDessertsFragment_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
     </fragment>
     <fragment
         android:id="@+id/upSellingBoissonsFragment"
@@ -175,6 +200,9 @@
         <action
             android:id="@+id/action_upSellingBoissonsFragment_to_upSellingDessertsFragment"
             app:destination="@id/upSellingDessertsFragment" />
+        <action
+            android:id="@+id/action_upSellingBoissonsFragment_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
     </fragment>
     <fragment
         android:id="@+id/upSellingDessertsFragment"
@@ -184,6 +212,9 @@
         <action
             android:id="@+id/action_upSellingDessertsFragment_to_nav_panier"
             app:destination="@id/nav_panier" />
+        <action
+            android:id="@+id/action_upSellingDessertsFragment_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
     </fragment>
     <fragment
         android:id="@+id/upSellingSupplementsFragment"
@@ -193,5 +224,13 @@
         <action
             android:id="@+id/action_upSellingSupplementsFragment_to_upSellingBoissonsFragment"
             app:destination="@id/upSellingBoissonsFragment" />
+        <action
+            android:id="@+id/action_upSellingSupplementsFragment_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/recapitulatifCommandeFragment"
+        android:name="com.example.pizz_apk.RecapitulatifCommandeFragment"
+        android:label="fragment_recapitulatif_commande"
+        tools:layout="@layout/fragment_recapitulatif_commande" />
 </navigation>

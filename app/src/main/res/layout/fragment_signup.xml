@@ -109,7 +109,7 @@
 
 
         <Button
-            android:id="@+id/fragment_login_btn_connexion"
+            android:id="@+id/fragment_reset_btn_valid"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"

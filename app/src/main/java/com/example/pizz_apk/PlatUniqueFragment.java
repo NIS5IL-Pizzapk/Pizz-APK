@@ -1,6 +1,7 @@
 package com.example.pizz_apk;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -58,12 +59,12 @@ public class PlatUniqueFragment extends Fragment {
             binding.tvPlatNom.setText(plat.getNom());
             binding.tvPlatPrix.setText(String.valueOf(plat.getPrix())+ " €");
             binding.tvPlatIngredients.setText(plat.getDescription());
-            binding.imgPlat.setImageResource(plat.getImage());
+            binding.imgPlat.setImageDrawable(Drawable.createFromPath(String.valueOf(plat.getImage())));
 
             binding.btnPlatCommander.setOnClickListener(v -> {
                 platUniqueViewModel.addPlatToPanier(plat);
                 plat.setQuantite(1);
-                Navigation.findNavController(v).navigate(R.id.action_platUniqueFragment_to_nav_panier);
+                Navigation.findNavController(v).navigate(R.id.action_platUniqueFragment_to_upSellingSupplementsFragment);
             });
         });
     }
