@@ -17,6 +17,8 @@ public class PlatPropose implements Serializable {
     private String image;
     private List<Tag> tags;
     private int quantite;
+    private boolean estSupplement;
+    private List<PlatPropose> supplementsactifs;
 
     public PlatPropose(String type, String nom, String description, float prix, List<Allergene> listeAllergenes,List<Tag> tags,String image,int quantite) {
         this.type = type;
@@ -100,6 +102,44 @@ public class PlatPropose implements Serializable {
     public void setQuantite(int quantite) {
         this.quantite = quantite;
     }
+
+    public boolean isEstSupplement() {
+        return estSupplement;
+    }
+
+    public void setEstSupplement(boolean estSupplement) {
+        this.estSupplement = estSupplement;
+    }
+
+    public List<PlatPropose> getSupplementsactifs() {
+        return supplementsactifs;
+    }
+
+    public void setSupplementsactifs(List<PlatPropose> supplementsactifs) {
+        this.supplementsactifs = supplementsactifs;
+    }
+
+    public void addSupplementActif(PlatPropose supplement) {
+        if (supplementsactifs == null) {
+            supplementsactifs = new ArrayList<>();
+        }
+        supplementsactifs.add(supplement);
+        prix += supplement.getPrix();
+    }
+
+    public void removeSupplementActif(PlatPropose supplement) {
+        if (supplementsactifs != null) {
+            supplementsactifs.remove(supplement);
+        }
+    }
+
+    public void clearSupplementsActifs() {
+        if (supplementsactifs != null) {
+            supplementsactifs.clear();
+        }
+    }
+
+
 
     public void addQuantite(int quantite) {
         this.quantite += quantite;

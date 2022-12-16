@@ -82,8 +82,11 @@ public class UpSellingSupplementsFragment extends Fragment {
 
     }
     public void HandleGetSupplements(View view){
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("restaurantId",1);
+        map.put("typeId", 6);
 
-        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getAllSupplements();
+        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getSupplementsByTypeEtRestaurant(map);
 
         call.enqueue(new Callback<RetroFitResponse<ArrayList<PlatPropose>>>() {
             @Override

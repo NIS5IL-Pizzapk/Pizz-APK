@@ -24,14 +24,30 @@
         android:layout_height="wrap_content"
         android:alpha="0.3"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/bush" />
 
     <TextView
+        android:id="@+id/tv_texte_supplements"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="275dp"
+        android:fontFamily="@font/tw_cen_mt_bold"
+        android:text="Suppléments :"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cstrlay_container_pizza" />
+
+    <TextView
         android:id="@+id/tv_plat_nom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/tw_cen_mt"
         android:text="VOTRE PIZZA"
         android:textSize="50sp"
@@ -43,24 +59,23 @@
         android:id="@+id/tv_plat_prix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/tw_cen_mt_bold"
         android:text="Prix"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_plat_nom" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cstrlay_container_pizza"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/background_container_blur"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background_slate9">
 
@@ -120,8 +135,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_plat_supp"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
+            android:layout_width="0dp"
+            android:layout_height="125dp"
             android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_plat_commander"
             app:layout_constraintEnd_toEndOf="parent"
