@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -58,14 +59,20 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button loginButton = view.findViewById(R.id.fragment_lgin_btn_valid);
-        EditText email = view.findViewById(R.id.input_username);
-        EditText password = view.findViewById(R.id.input_password);
+        EditText email = (EditText) view.findViewById(R.id.fragment_lgin_input_mail);
+        EditText password = (EditText) view.findViewById(R.id.input_password);
 
         loginButton.setOnClickListener(v -> {
                 HashMap<String, String> map = new HashMap<>();
+
                 map.put("password", password.getText().toString());
+            Log.d("password", password.getText().toString());
                 map.put("email", email.getText().toString());
+            Log.d("email", email.getText().toString());
+                //map.put("email", email.getText().toString());
+
                 Call<LoginResult> call = requests.executeLogin(map);
+
                 call.enqueue(new Callback<LoginResult>() {
                     @Override
                     public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
