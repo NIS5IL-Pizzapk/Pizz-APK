@@ -77,14 +77,15 @@ public class FragmentSignup extends Fragment {
                     if (response.isSuccessful() && password != null) {
                         Toast.makeText(getContext(), "Inscription réussie", Toast.LENGTH_SHORT).show();
                         Navigation.findNavController(v).navigate(R.id.loginFragment);
-                    } else if (password == null) {
+                    } else if (response.code() == 400) {
+                        Log.d("error", "onResponse: " + response.code());
                         Toast.makeText(getContext(), "Inscription échouée", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
-
+                    Log.d("TAG", "onFailure: " + t.getMessage());
                     Toast.makeText(getContext(), "Inscription échouée", Toast.LENGTH_SHORT).show();
                 }
             });

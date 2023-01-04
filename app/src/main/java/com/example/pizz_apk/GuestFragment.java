@@ -53,9 +53,9 @@ public class GuestFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button guestButton = view.findViewById(R.id.fragment_guest_btn_connexion);
-        EditText username = view.findViewById(R.id.input_name);
-        EditText email = view.findViewById(R.id.input_username);
-        EditText phone = view.findViewById(R.id.input_password);
+        EditText username = view.findViewById(R.id.input_name_guest);
+        EditText email = view.findViewById(R.id.input_username_guest);
+        EditText phone = view.findViewById(R.id.input_password_guest);
 
         guestButton.setOnClickListener(v -> {
             HashMap<String, String> map = new HashMap<>();
