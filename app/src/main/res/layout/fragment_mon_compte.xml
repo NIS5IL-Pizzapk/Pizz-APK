@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
     <EditText
-        android:id="@+id/input_username_guest"
+        android:id="@+id/input_email_guest"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
-        android:id="@+id/input_username_guest2"
+        android:id="@+id/input_password_guest"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -74,16 +74,16 @@
         android:ems="10"
         android:fontFamily="@font/tw_cen_mt"
         android:hint="Votre mot de passe"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:minHeight="48dp"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_username_guest" />
+        app:layout_constraintTop_toBottomOf="@+id/input_email_guest" />
 
     <EditText
-        android:id="@+id/input_username_guest3"
+        android:id="@+id/input_adresse_guest"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -91,16 +91,16 @@
         android:ems="10"
         android:fontFamily="@font/tw_cen_mt"
         android:hint="Votre adresse"
-        android:inputType="textEmailAddress"
+        android:inputType="textPostalAddress"
         android:minHeight="48dp"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_username_guest2" />
+        app:layout_constraintTop_toBottomOf="@+id/input_password_guest" />
 
     <EditText
-        android:id="@+id/input_username_guest4"
+        android:id="@+id/input_telephone_guest"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -108,16 +108,16 @@
         android:ems="10"
         android:fontFamily="@font/tw_cen_mt"
         android:hint="Votre téléphone"
-        android:inputType="textEmailAddress"
+        android:inputType="phone"
         android:minHeight="48dp"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_username_guest3" />
+        app:layout_constraintTop_toBottomOf="@+id/input_adresse_guest" />
 
     <EditText
-        android:id="@+id/input_username_guest5"
+        android:id="@+id/input_username_guest"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -125,12 +125,23 @@
         android:ems="10"
         android:fontFamily="@font/tw_cen_mt"
         android:hint="Votre username"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:minHeight="48dp"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_username_guest4" />
+        app:layout_constraintTop_toBottomOf="@+id/input_telephone_guest" />
+
+    <Button
+        android:id="@+id/btn_modif_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#3E3E3E"
+        android:text="Modifier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_username_guest" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

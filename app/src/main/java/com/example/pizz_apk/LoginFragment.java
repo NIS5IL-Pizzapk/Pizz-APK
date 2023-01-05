@@ -81,6 +81,13 @@ public class LoginFragment extends Fragment {
                             SharedPreferences preferences = requireContext().getSharedPreferences("user", 0);
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putString("token", response.body().getToken());
+                            //store the id of the user connected
+                            editor.putInt("userId", response.body().getId());
+                            editor.putString("userUsername", response.body().getUsername());
+                            editor.putString("userEmail", response.body().getMail());
+                            editor.putString("userPassword", response.body().getPassword());
+                            editor.putString("userAdresse", response.body().getAdresseLivraison());
+                            editor.putString("userTelephone", response.body().getTelephone());
                             editor.putBoolean("isConnected", true);
                             editor.commit();
                             Menu menu = ((NavigationView) requireActivity().findViewById(R.id.navigation_view)).getMenu();

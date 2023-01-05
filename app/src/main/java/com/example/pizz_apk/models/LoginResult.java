@@ -7,8 +7,16 @@ public class LoginResult {
     private String mail;
     @SerializedName("password")
     private String password;
-
+    @SerializedName("token")
     private String token;
+    @SerializedName("id")
+    private int id;
+    @SerializedName("username")
+    private String username;
+    @SerializedName("adresse")
+    private String adresse;
+    @SerializedName("telephone")
+    private String telephone;
 
     public String getToken() {
         return token;
@@ -22,5 +30,19 @@ public class LoginResult {
         return password;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getAdresseLivraison() {
+        return adresse;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
 }

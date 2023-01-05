@@ -30,7 +30,6 @@ import retrofit2.Retrofit;
 public class FragmentSignup extends Fragment {
     private Retrofit retrofit;
     RetroFitRequests requests;
-    public Void poguid;
 
     public FragmentSignup() {
         // Required empty public constructor
