@@ -3,10 +3,11 @@ package com.example.pizz_apk.models;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class User implements Serializable {
     @SerializedName("id")
-    private int id;
+    private HashMap<String, String> id;
     private String username;
     private String password;
     private String email;
@@ -22,11 +23,11 @@ public class User implements Serializable {
         this.telephone = telephone;
     }
 
-    public int getId() {
+    public HashMap<String, String> getId() {
         return id;
     }
 
-    public void setUser(int id) {
+    public void setUser(HashMap<String, String> id) {
         this.id = id;
     }
 

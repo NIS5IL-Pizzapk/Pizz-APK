@@ -90,6 +90,7 @@ public class LoginFragment extends Fragment {
                             editor.putString("userTelephone", response.body().getTelephone());
                             editor.putBoolean("isConnected", true);
                             editor.commit();
+                            Log.d("connexion réussie ! ", response.toString() + " " + response.body().getToken());
                             Menu menu = ((NavigationView) requireActivity().findViewById(R.id.navigation_view)).getMenu();
                             menu.findItem(R.id.nav_logout).setVisible(true);
                             menu.findItem(R.id.nav_account).setVisible(true);
@@ -98,7 +99,10 @@ public class LoginFragment extends Fragment {
                              System.out.println("connexion réussie ! " + response);
                             Toast.makeText(requireContext(), "connexion réussie ! " + response, Toast.LENGTH_SHORT).show();
                             Navigation.findNavController(v).navigate(R.id.accueilFragment);
-
+                        } else if (response.code() == 401) {
+                            Log.d("connexion échouée ! ", response.toString());
+                            System.out.println("connexion échouée ! " + response);
+                            Toast.makeText(requireContext(), "connexion échouée ! " + response, Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override

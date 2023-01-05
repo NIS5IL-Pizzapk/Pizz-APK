@@ -30,13 +30,12 @@ public interface RetroFitRequests {
     @POST("/api/user/signup")
     Call<Void> executeGuest(@Body HashMap<String, String> map);
 
-    @GET("/api/user/by_id/:id")
-    Call<RetroFitResponse<User>> getUserById(@Body int map);
-
-    @POST("/api/user/update/")
-    Call<Void> executeUpdate(@Body HashMap<String, String> map);
+    @GET("/api/user/by_id/{id}")
+    Call<RetroFitResponse<User>> getUserById(@Body HashMap<String, String> map);
 
     @POST("/api/adresse/add_adresse")
     Call<Void> executeAddAdresse(@Body HashMap<String, String> map);
 
+    @POST("/api/user/update/")
+    Call<RetroFitResponse<User>> executeUpdate(HashMap<String, String> userID, String valueUsername, String valuePassword, String valueEmail, String valueAdresse, String valueTelephone);
 }

@@ -18,4 +18,8 @@ public class RetroFitResponse<T> {
     public ArrayList<T> getResults() {
         return (ArrayList<T>) result;
     }
+
+    public boolean getSuccess() {
+        return message.equals("success");
+    }
 }
