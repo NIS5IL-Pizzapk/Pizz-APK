@@ -29,7 +29,7 @@ import retrofit2.Retrofit;
 public class MonCompteFragment extends Fragment {
     private Retrofit retrofit;
     RetroFitRequests requests;
-    public HashMap<String, String> userID;
+    public int userID;
     public String valueUsername;
     public String valuePassword;
     public String valueEmail;
@@ -59,9 +59,14 @@ public class MonCompteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-      HashMap<String , String> map = new HashMap<>();
-        map.put("id", String.valueOf(userID));
-        requests.getUserById(map).enqueue(new Callback<RetroFitResponse<User>>() {
+        //Retrofit get userid stored in editor
+        userID = Utils.getUserId(requireContext());
+        String token = Utils.getToken(requireContext());
+        Log.d("token", String.valueOf(token));
+        //get the user info from the server with the token
+        Log.d("IDuser: ", String.valueOf(userID));
+
+        requests.getUserById(userID).enqueue(new Callback<RetroFitResponse<User>>() {
             @Override
             public void onResponse(Call<RetroFitResponse<User>> call, Response<RetroFitResponse<User>> response) {
                 if (response.isSuccessful()) {
@@ -132,7 +137,7 @@ public class MonCompteFragment extends Fragment {
                     if (retroFitResponse != null) {
                         User user = retroFitResponse.getResult();
                         if (user != null) {
-                            userID = user.getId();
+                            userID = Utils.getUserId(requireContext());
                         }
                     }
                 }
@@ -152,7 +157,7 @@ public class MonCompteFragment extends Fragment {
                     if (retroFitResponse != null) {
                         User user = retroFitResponse.getResult();
                         if (user != null) {
-                            userID = user.getId();
+                            userID = Utils.getUserId(requireContext());
                         }
                     }
                 }

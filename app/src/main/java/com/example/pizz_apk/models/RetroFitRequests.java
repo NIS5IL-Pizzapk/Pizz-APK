@@ -2,12 +2,15 @@ package com.example.pizz_apk.models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
-
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 
 public interface RetroFitRequests {
@@ -30,12 +33,12 @@ public interface RetroFitRequests {
     @POST("/api/user/signup")
     Call<Void> executeGuest(@Body HashMap<String, String> map);
 
-    @GET("/api/user/by_id/{id}")
-    Call<RetroFitResponse<User>> getUserById(@Body HashMap<String, String> map);
+    @HTTP(method = "GET", path = "/api/user/by_id/{id}")
+    Call<RetroFitResponse<User>> getUserById(@Query("id") int id);
 
     @POST("/api/adresse/add_adresse")
     Call<Void> executeAddAdresse(@Body HashMap<String, String> map);
 
     @POST("/api/user/update/")
-    Call<RetroFitResponse<User>> executeUpdate(HashMap<String, String> userID, String valueUsername, String valuePassword, String valueEmail, String valueAdresse, String valueTelephone);
+    Call<RetroFitResponse<User>> executeUpdate(int userID, String valueUsername, String valuePassword, String valueEmail, String valueAdresse, String valueTelephone);
 }
