@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListePizzasFragment">
+    tools:context=".ListePizzasBlanchesFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:layout_weight="15"
             android:fontFamily="@font/tw_cen_mt_bold"
             android:gravity="center"
-            android:text="NOS PIZZAS ROUGES"
+            android:text="NOS PIZZAS BLANCHES"
             android:textSize="40sp" />
 
         <androidx.recyclerview.widget.RecyclerView
