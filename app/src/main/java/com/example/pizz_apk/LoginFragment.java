@@ -1,6 +1,5 @@
 package com.example.pizz_apk;
 
-import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -9,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.example.pizz_apk.models.LoginResult;
 import com.example.pizz_apk.models.RetroFitRequests;
+import com.example.pizz_apk.models.RetroFitResponse;
+import com.example.pizz_apk.models.User;
 import com.example.pizz_apk.services.Utils;
 import com.google.android.material.navigation.NavigationView;
 
@@ -57,28 +59,46 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button loginButton = view.findViewById(R.id.fragment_login_btn_connexion);
-        EditText email = view.findViewById(R.id.input_username);
-        EditText password = view.findViewById(R.id.input_password);
+        Button loginButton = view.findViewById(R.id.fragment_lgin_btn_valid);
+        EditText email = (EditText) view.findViewById(R.id.fragment_lgin_input_mail);
+        EditText password = (EditText) view.findViewById(R.id.input_password);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        loginButton.setOnClickListener(v -> {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("password", password.getText().toString());
-                map.put("email", email.getText().toString());
-                Call<LoginResult> call = requests.executeLogin(map);
-                call.enqueue(new Callback<LoginResult>() {
-                    @Override
-                    public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
 
+                map.put("password", password.getText().toString());
+            Log.d("password", password.getText().toString());
+                map.put("email", email.getText().toString());
+            Log.d("email", email.getText().toString());
+                //map.put("email", email.getText().toString());
+
+                Call<LoginResult> call = requests.executeLogin(map);
+
+                call.enqueue(new Callback<LoginResult>() {
+                    public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
 
                         if (response.isSuccessful()) {
                             SharedPreferences preferences = requireContext().getSharedPreferences("user", 0);
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putString("token", response.body().getToken());
+                            //get the user id of the user request
+                            Call<RetroFitResponse<User>> calling = requests.getUserById(response.body().getId());;
+                            Call<LoginResult> calltest = requests.getUserByIdLogin(response.body().getId(), "Bearer " + response.body().getToken());
+                            //store the id of the user connected
+                            Log.d("calltest2", calltest.toString());
+                            editor.putInt("id", response.body().getId());
+                            editor.putString("userUsername", response.body().getUsername());
+                            editor.putString("userEmail", response.body().getMail());
+                            editor.putString("userPassword", response.body().getPassword());
+                            editor.putString("userAdresse", response.body().getAdresseLivraison());
+                            editor.putString("userTelephone", response.body().getTelephone());
                             editor.putBoolean("isConnected", true);
                             editor.commit();
+                            Log.d("token USER", " token of the current user "+response.body().getToken());
+                            Log.d("id USER", "userid of the current user "+ requests.getUserById(response.body().getId()));
+                            Log.d("username USER", "username of the current user"+response.body().getUsername());
+                            Log.d("email USER", "email of the current user " +response.body().getMail());
+                            Log.d("connexion réussie ! ", response + " " + response.body().getToken());
                             Menu menu = ((NavigationView) requireActivity().findViewById(R.id.navigation_view)).getMenu();
                             menu.findItem(R.id.nav_logout).setVisible(true);
                             menu.findItem(R.id.nav_account).setVisible(true);
@@ -87,7 +107,10 @@ public class LoginFragment extends Fragment {
                              System.out.println("connexion réussie ! " + response);
                             Toast.makeText(requireContext(), "connexion réussie ! " + response, Toast.LENGTH_SHORT).show();
                             Navigation.findNavController(v).navigate(R.id.accueilFragment);
-
+                        } else if (response.code() == 401) {
+                            Log.d("connexion échouée ! ", response.toString());
+                            System.out.println("connexion échouée ! " + response);
+                            Toast.makeText(requireContext(), "connexion échouée ! " + response, Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override
@@ -96,7 +119,6 @@ public class LoginFragment extends Fragment {
                         Toast.makeText(getContext(), "Erreur de connexion" + t, Toast.LENGTH_SHORT).show();
                     }
                 });
-            }
         });
 
     }

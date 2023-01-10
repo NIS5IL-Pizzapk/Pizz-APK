@@ -83,9 +83,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         this.navControllertest = Navigation.findNavController(this, R.id.nav_host_fragment);
-           //     if (navControllertest.getCurrentDestination().getId() == R.id.nav_reservation || navControllertest.getCurrentDestination().getId() == R.id.nav_contact || navControllertest.getCurrentDestination().getId() == R.id.nav_parametres || navControllertest.getCurrentDestination().getId() == R.id.nav_apropos || navControllertest.getCurrentDestination().getId() == R.id.nav_commandesencours || navControllertest.getCurrentDestination().getId() == R.id.nav_account) {
-             //       Navigation.findNavController(this,R.id.nav_host_fragment).navigate(R.id.accueilFragment);
-              //
+        // if user is connect do not go back to the restaurant list
+        //     if (navControllertest.getCurrentDestination().getId() == R.id.nav_reservation || navControllertest.getCurrentDestination().getId() == R.id.nav_contact || navControllertest.getCurrentDestination().getId() == R.id.nav_parametres || navControllertest.getCurrentDestination().getId() == R.id.nav_apropos || navControllertest.getCurrentDestination().getId() == R.id.nav_commandesencours || navControllertest.getCurrentDestination().getId() == R.id.nav_account) {
+        //       Navigation.findNavController(this,R.id.nav_host_fragment).navigate(R.id.accueilFragment);
+        //
     return NavigationUI.navigateUp(navControllertest, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
