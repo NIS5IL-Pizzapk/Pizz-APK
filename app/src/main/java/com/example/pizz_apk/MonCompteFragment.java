@@ -1,24 +1,30 @@
 package com.example.pizz_apk;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.pizz_apk.models.LoginResult;
 import com.example.pizz_apk.models.RetroFitRequests;
 import com.example.pizz_apk.models.RetroFitResponse;
 import com.example.pizz_apk.models.User;
 import com.example.pizz_apk.services.Utils;
+import com.google.android.material.navigation.NavigationView;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import retrofit2.Call;
@@ -29,7 +35,6 @@ import retrofit2.Retrofit;
 public class MonCompteFragment extends Fragment {
     private Retrofit retrofit;
     RetroFitRequests requests;
-    public int userID;
     public String valueUsername;
     public String valuePassword;
     public String valueEmail;
@@ -60,13 +65,36 @@ public class MonCompteFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //Retrofit get userid stored in editor
-        userID = Utils.getUserId(requireContext());
+        int id = Utils.getUserId(requireContext());
         String token = Utils.getToken(requireContext());
         Log.d("token", String.valueOf(token));
         //get the user info from the server with the token
-        Log.d("IDuser: ", String.valueOf(userID));
+        Log.d("IDuser: ", String.valueOf(id));
+      Call<RetroFitResponse<User>> call = requests.getUserById(id);
+      //get the userid from the call made
+        call.enqueue(new Callback<RetroFitResponse<User>>() {
+                @Override
+                public void onResponse(Call<RetroFitResponse<User>> call, Response<RetroFitResponse<User>> response) {
 
-        requests.getUserById(userID).enqueue(new Callback<RetroFitResponse<User>>() {
+                    if (response.isSuccessful()) {
+                        Log.d("response", String.valueOf(response.body()));
+                    } else if (response.code() == 401) {
+                        Log.d("connexion échouée ! ", response.toString());
+                        System.out.println("connexion échouée ! " + response);
+                        Toast.makeText(requireContext(), "connexion échouée ! " + response, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                @Override
+                public void onFailure(Call<RetroFitResponse<User>> call, Throwable t) {
+                    System.out.println("Erreur de connexion" + t);
+                    Toast.makeText(getContext(), "Erreur de connexion" + t, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+
+
+        requests.getUserById(id).enqueue(new Callback<RetroFitResponse<User>>() {
             @Override
             public void onResponse(Call<RetroFitResponse<User>> call, Response<RetroFitResponse<User>> response) {
                 if (response.isSuccessful()) {
@@ -127,9 +155,11 @@ public class MonCompteFragment extends Fragment {
         mapadrss.put("adresse", adress.getText().toString());
         map.put("password", password.getText().toString());
         map.put("telephone", telephone.getText().toString());
-
+        String token = Utils.getToken(requireContext());
+        int id = Utils.getUserId(requireContext());
+        Log.d("token", String.valueOf(token));
         //get current login user current id
-        requests.getUserById(userID).enqueue(new Callback<RetroFitResponse<User>>() {
+        requests.getUserById(id).enqueue(new Callback<RetroFitResponse<User>>() {
             @Override
             public void onResponse(Call<RetroFitResponse<User>> call, Response<RetroFitResponse<User>> response) {
                 if (response.isSuccessful()) {
@@ -137,7 +167,8 @@ public class MonCompteFragment extends Fragment {
                     if (retroFitResponse != null) {
                         User user = retroFitResponse.getResult();
                         if (user != null) {
-                            userID = Utils.getUserId(requireContext());
+                            int id = Utils.getUserId(requireContext());
+                            id = Utils.getUserId(requireContext());
                         }
                     }
                 }
@@ -149,7 +180,7 @@ public class MonCompteFragment extends Fragment {
             }
         });
 
-        requests.executeUpdate(userID, username.getText().toString(), password.getText().toString(), email.getText().toString(), adress.getText().toString(), telephone.getText().toString()).enqueue(new Callback<RetroFitResponse<User>>() {
+        requests.executeUpdate(id, username.getText().toString(), password.getText().toString(), email.getText().toString(), adress.getText().toString(), telephone.getText().toString()).enqueue(new Callback<RetroFitResponse<User>>() {
             @Override
             public void onResponse(Call<RetroFitResponse<User>> call, Response<RetroFitResponse<User>> response) {
                 if (response.isSuccessful()) {
@@ -157,6 +188,7 @@ public class MonCompteFragment extends Fragment {
                     if (retroFitResponse != null) {
                         User user = retroFitResponse.getResult();
                         if (user != null) {
+                            int userID = Utils.getUserId(requireContext());
                             userID = Utils.getUserId(requireContext());
                         }
                     }

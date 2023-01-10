@@ -1,6 +1,5 @@
 package com.example.pizz_apk;
 
-import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -20,6 +19,8 @@ import android.widget.Toast;
 
 import com.example.pizz_apk.models.LoginResult;
 import com.example.pizz_apk.models.RetroFitRequests;
+import com.example.pizz_apk.models.RetroFitResponse;
+import com.example.pizz_apk.models.User;
 import com.example.pizz_apk.services.Utils;
 import com.google.android.material.navigation.NavigationView;
 
@@ -74,15 +75,18 @@ public class LoginFragment extends Fragment {
                 Call<LoginResult> call = requests.executeLogin(map);
 
                 call.enqueue(new Callback<LoginResult>() {
-                    @Override
                     public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
 
                         if (response.isSuccessful()) {
                             SharedPreferences preferences = requireContext().getSharedPreferences("user", 0);
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putString("token", response.body().getToken());
+                            //get the user id of the user request
+                            Call<RetroFitResponse<User>> calling = requests.getUserById(response.body().getId());;
+                            Call<LoginResult> calltest = requests.getUserByIdLogin(response.body().getId(), "Bearer " + response.body().getToken());
                             //store the id of the user connected
-                            editor.putInt("userId", response.body().getId());
+                            Log.d("calltest2", calltest.toString());
+                            editor.putInt("id", response.body().getId());
                             editor.putString("userUsername", response.body().getUsername());
                             editor.putString("userEmail", response.body().getMail());
                             editor.putString("userPassword", response.body().getPassword());
@@ -90,7 +94,11 @@ public class LoginFragment extends Fragment {
                             editor.putString("userTelephone", response.body().getTelephone());
                             editor.putBoolean("isConnected", true);
                             editor.commit();
-                            Log.d("connexion réussie ! ", response.toString() + " " + response.body().getToken());
+                            Log.d("token USER", " token of the current user "+response.body().getToken());
+                            Log.d("id USER", "userid of the current user "+ requests.getUserById(response.body().getId()));
+                            Log.d("username USER", "username of the current user"+response.body().getUsername());
+                            Log.d("email USER", "email of the current user " +response.body().getMail());
+                            Log.d("connexion réussie ! ", response + " " + response.body().getToken());
                             Menu menu = ((NavigationView) requireActivity().findViewById(R.id.navigation_view)).getMenu();
                             menu.findItem(R.id.nav_logout).setVisible(true);
                             menu.findItem(R.id.nav_account).setVisible(true);

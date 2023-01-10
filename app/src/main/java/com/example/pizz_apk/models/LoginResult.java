@@ -22,6 +22,7 @@ public class LoginResult {
         return token;
     }
 
+
     public String getMail() {
         return mail;
     }

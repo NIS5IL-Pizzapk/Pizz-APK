@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -34,7 +35,11 @@ public interface RetroFitRequests {
     Call<Void> executeGuest(@Body HashMap<String, String> map);
 
     @HTTP(method = "GET", path = "/api/user/by_id/{id}")
-    Call<RetroFitResponse<User>> getUserById(@Query("id") int id);
+    Call<LoginResult> getUserByIdLogin(@Path("id") int id, @Header("Authorization") String token);
+
+
+    @HTTP(method = "GET", path = "/api/user/by_id/{id}")
+    Call<RetroFitResponse<User>> getUserById(@Path("id") int id);
 
     @POST("/api/adresse/add_adresse")
     Call<Void> executeAddAdresse(@Body HashMap<String, String> map);
