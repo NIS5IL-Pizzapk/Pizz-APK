@@ -44,6 +44,13 @@ public interface RetroFitRequests {
     @POST("/api/adresse/add_adresse")
     Call<Void> executeAddAdresse(@Body HashMap<String, String> map);
 
+
     @POST("/api/user/update/")
     Call<RetroFitResponse<User>> executeUpdate(int userID, String valueUsername, String valuePassword, String valueEmail, String valueAdresse, String valueTelephone);
+    @GET("/api/produit/supplement/get_all")
+    Call<RetroFitResponse<ArrayList<PlatPropose>>> getAllSupplements();
+
+    @POST("/api/produit/supplement/by_type_et_restaurant")
+        //fais la requete pour avoir les supplements par type et par restaurant en envoyant un objet JSON avec le type et l'id du restaurant
+    Call<RetroFitResponse<ArrayList<PlatPropose>>> getSupplementsByTypeEtRestaurant(@Body HashMap<String, Integer> map);
 }

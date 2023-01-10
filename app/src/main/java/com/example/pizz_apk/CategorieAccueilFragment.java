@@ -55,7 +55,7 @@ public class CategorieAccueilFragment extends Fragment {
         categorieAccueilViewModel.setCategoriesList(categorieAccueilList);
         CategorieAccueilAdapter categorieAccueilAdapter = new CategorieAccueilAdapter(categorieAccueilViewModel.getCategoriesList(),getContext(), categorie -> {
             categorieAccueilViewModel.setSelectedCategorie(categorie);
-            if (categorie.getTag() == "pizzas") {
+            if (categorie.getTag() == "pizzas_rouges") {
                 Navigation.findNavController(view).navigate(R.id.action_accueilFragment_to_listePizzasFragment);
             } else if (categorie.getTag() == "burgers") {
                 Navigation.findNavController(view).navigate(R.id.action_accueilFragment_to_listeBurgersFragment);
@@ -63,6 +63,8 @@ public class CategorieAccueilFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_accueilFragment_to_listeBoissonsFragment);
             }else if (categorie.getTag() == "desserts") {
                 Navigation.findNavController(view).navigate(R.id.action_accueilFragment_to_listeDessertsFragment);
+            } else if (categorie.getTag() == "pizzas_blanches") {
+                Navigation.findNavController(view).navigate(R.id.action_accueilFragment_to_listePizzasBlanchesFragment);
             }
         });
         binding.rvButtonsAccueil.setHasFixedSize(true);

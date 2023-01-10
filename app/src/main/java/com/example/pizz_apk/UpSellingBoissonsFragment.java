@@ -109,6 +109,9 @@ public class UpSellingBoissonsFragment extends Fragment {
                             //si le plat n'est pas dans la live data du panier, on l'ajoute
                             if (!platUniqueViewModel.getPanier().getValue().contains(platPropose)) {
                                 platUniqueViewModel.getPanier().getValue().add(platPropose);
+                            } else  {
+                                platPropose.setQuantite(platPropose.getQuantite() + 1);
+
                             }
 
                         }
