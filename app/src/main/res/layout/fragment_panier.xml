@@ -127,26 +127,26 @@
                 android:text="CRÉER UN COMPTE"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/tw_cen_mt"
-                android:padding="5dp"
-                android:text="Vous n'avez pas de compte et vous ne souhaitez pas en créer un,"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+            <!--     <TextView
+                   android:id="@+id/textView18"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="@font/tw_cen_mt"
+                   android:padding="5dp"
+                   android:text="Vous n'avez pas de compte et vous ne souhaitez pas en créer un,"
+                   android:textAlignment="center"
+                   android:textSize="20sp" /> -->
 
-            <Button
-                android:id="@+id/btn_guest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#000000"
-                android:minHeight="48dp"
-                android:text="@string/guest"
-                android:textColor="@color/grey"
-                android:textSize="20sp"
-                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+            <!--   <Button
+                   android:id="@+id/btn_guest"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:backgroundTint="#000000"
+                   android:minHeight="48dp"
+                   android:text="@string/guest"
+                   android:textColor="@color/grey"
+                   android:textSize="20sp"
+                   tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" /> -->
 
         </LinearLayout>
 

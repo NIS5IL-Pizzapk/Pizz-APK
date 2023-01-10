@@ -45,6 +45,15 @@ public class Utils {
         return retrofit.create(RetroFitRequests.class);
     }
 
+    public static String getToken (Context ctx) {
+        return ctx.getSharedPreferences("user", Context.MODE_PRIVATE).getString("token", null);
+    }
+
+    //get current connected userid retrofit
+    public  static int getUserId (Context ctx) {
+        return ctx.getSharedPreferences("user", Context.MODE_PRIVATE).getInt("userId", 0);
+    }
+
     public static void requestNotSuccessfulToast(Context ctx, Response response) {
         String message = "";
         try {

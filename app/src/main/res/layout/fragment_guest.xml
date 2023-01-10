@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/input_name"
+            android:id="@+id/input_name_guest"
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:background="@drawable/custom_input"
@@ -52,21 +52,7 @@
             android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/input_adresse_livraison"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/custom_input"
-            android:ems="10"
-            android:fontFamily="@font/tw_cen_mt"
-            android:hint="Entrez une adresse de livraison"
-            android:inputType="textPostalAddress"
-            android:minHeight="48dp"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/fragment_reset_input_mail"
+            android:id="@+id/input_username_guest"
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_marginTop="10dp"
@@ -80,7 +66,7 @@
             android:textSize="20dp" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_password"
+            android:id="@+id/input_password_guest"
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_marginTop="10dp"
@@ -94,7 +80,7 @@
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/fragment_reset_btn_valid"
+            android:id="@+id/fragment_guest_btn_connexion"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
