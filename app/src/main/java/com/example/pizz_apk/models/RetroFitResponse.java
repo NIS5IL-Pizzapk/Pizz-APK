@@ -15,8 +15,13 @@ public class RetroFitResponse<T> {
         return result;
     }
 
-    public ArrayList<T> getResults() {
-        return (ArrayList<T>) result;
+    //get user
+    public User getUser() {
+        return (User) result;
+    }
+
+    public User getResults() {
+        return (User) result;
     }
 
     public boolean getSuccess() {

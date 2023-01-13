@@ -3,6 +3,7 @@ package com.example.pizz_apk.models;
 import com.google.gson.annotations.SerializedName;
 
 public class LoginResult {
+    User user;
     @SerializedName("email")
     private String mail;
     @SerializedName("password")
@@ -17,6 +18,12 @@ public class LoginResult {
     private String adresse;
     @SerializedName("telephone")
     private String telephone;
+
+
+    public User getUser() {
+        return user;
+    }
+
 
     public String getToken() {
         return token;

@@ -6,6 +6,8 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
@@ -25,8 +27,15 @@ public interface RetroFitRequests {
     //fais la requete pour avoir les plats par type et par restaurant en envoyant un objet JSON avec le type et l'id du restaurant
     Call<RetroFitResponse<ArrayList<PlatPropose>>> getPlatsByTypeEtRestaurant(@Body HashMap<String, Integer> map);
 
+//    @POST("/api/user/login")
+//    Call<LoginResult> executeLogin(@Body HashMap<String, String> map);
+
+    @FormUrlEncoded
     @POST("/api/user/login")
-    Call<LoginResult> executeLogin(@Body HashMap<String, String> map);
+    Call<LoginResult> Login(
+            @Field("email") String email,
+            @Field("password") String password
+    );
 
     @POST("/api/user/signup")
     Call<Void> executeSignup(@Body HashMap<String, String> map);
