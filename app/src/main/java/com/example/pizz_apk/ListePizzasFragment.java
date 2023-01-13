@@ -101,6 +101,7 @@ public class ListePizzasFragment extends Fragment {
                         @Override
                         public void onPlatUniqueClicked(PlatPropose platPropose) {
                             platUniqueViewModel.setSelectedPlat(platPropose);
+                            platUniqueViewModel.setSelectedTypePlat(typeId);
                             Navigation.findNavController(view).navigate(R.id.action_listePizzasFragment_to_platUniqueFragment);
                         }
 

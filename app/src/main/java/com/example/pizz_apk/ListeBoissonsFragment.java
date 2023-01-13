@@ -69,7 +69,7 @@ public class ListeBoissonsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
-        this.HandleGetBoissons(view);
+        this.HandleGetBoissons(view,1,4);
         binding.imageView10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,10 +81,10 @@ public class ListeBoissonsFragment extends Fragment {
 
     }
 
-    public void HandleGetBoissons(View view){
+    public void HandleGetBoissons(View view,int restaurantId, int typeId){
         HashMap<String, Integer> map = new HashMap<>();
-        map.put("restaurantId",1);
-        map.put("typeId", 4);
+        map.put("restaurantId",restaurantId);
+        map.put("typeId", typeId);
 
         Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlatsByTypeEtRestaurant(map);
 
@@ -107,6 +107,7 @@ public class ListeBoissonsFragment extends Fragment {
                         @Override
                         public void onPlatUniqueClicked(PlatPropose platPropose) {
                             platUniqueViewModel.setSelectedPlat(platPropose);
+                            platUniqueViewModel.setSelectedTypePlat(typeId);
                             Navigation.findNavController(view).navigate(R.id.action_listeBoissonsFragment_to_platUniqueFragment);
                         }
 

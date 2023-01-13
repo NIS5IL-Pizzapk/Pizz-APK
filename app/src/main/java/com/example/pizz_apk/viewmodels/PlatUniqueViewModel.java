@@ -13,6 +13,10 @@ public class PlatUniqueViewModel extends ViewModel {
     List<PlatPropose> platsList;
     MutableLiveData<List<PlatPropose>> panier = new MutableLiveData<>();
     MutableLiveData<PlatPropose> selectedPlat = new MutableLiveData<>();
+    int selectedTypePlat;
+
+
+
 
     public List<PlatPropose> getPlatsList() {
         if (platsList == null) {
@@ -65,6 +69,14 @@ public class PlatUniqueViewModel extends ViewModel {
 
     public void setSelectedPlat(PlatPropose plat) {
         selectedPlat.postValue(plat);
+    }
+
+    public void setSelectedTypePlat(int id) {
+        selectedTypePlat = id;
+    }
+
+    public int getSelectedTypePlat() {
+        return selectedTypePlat;
     }
 
 

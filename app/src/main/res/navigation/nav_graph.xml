@@ -64,6 +64,9 @@
         <action
             android:id="@+id/action_platUniqueFragment_to_accueilFragment"
             app:destination="@id/accueilFragment" />
+        <action
+            android:id="@+id/action_platUniqueFragment_to_upSellingBoissonsFragment"
+            app:destination="@id/upSellingBoissonsFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantChoixFragment"

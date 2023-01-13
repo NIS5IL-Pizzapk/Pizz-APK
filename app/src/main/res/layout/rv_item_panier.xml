@@ -49,10 +49,7 @@
                         android:id="@+id/tv_supp_item"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ellipsize="end"
                         android:fontFamily="@font/tw_cen_mt_bold"
-                        android:lines="2"
-                        android:text="Suppléments"
                         android:textAllCaps="false"
                         android:textSize="20sp" />
 
@@ -66,7 +63,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/tw_cen_mt_bold"
                         android:text="Prix"
-                        android:textSize="18sp" />
+                        android:textSize="26sp" />
 
                 </LinearLayout>
 

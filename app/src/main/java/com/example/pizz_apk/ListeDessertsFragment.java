@@ -66,7 +66,7 @@ public class ListeDessertsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
-        this.HandleGetDesserts(view);
+        this.HandleGetDesserts(view,1,4);
         binding.imageView10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,10 +78,10 @@ public class ListeDessertsFragment extends Fragment {
 
     }
 
-    public void HandleGetDesserts(View view){
+    public void HandleGetDesserts(View view,int restaurantId, int typeId){
         HashMap<String, Integer> map = new HashMap<>();
-        map.put("restaurantId",1);
-        map.put("typeId", 5);
+        map.put("restaurantId",restaurantId);
+        map.put("typeId", typeId);
 
         Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlatsByTypeEtRestaurant(map);
 
@@ -91,14 +91,9 @@ public class ListeDessertsFragment extends Fragment {
                 if (response.isSuccessful()) {
                     String message = response.body().getMessage();
                     ArrayList<PlatPropose> result = response.body().getResult();
-                    //trier les plats pour ne garder que les Desserts
-                    ArrayList<PlatPropose> Desserts = new ArrayList<>();
-                    for (PlatPropose plat : result) {
-                            Desserts.add(plat);
-                    }
 
                     dessertsViewModel = new ViewModelProvider(requireActivity()).get(ListeDessertsViewModel.class);
-                    dessertsViewModel.setListDessertsLiveData(Desserts);
+                    dessertsViewModel.setListDessertsLiveData(result);
                     platUniqueViewModel = new ViewModelProvider(requireActivity()).get(PlatUniqueViewModel.class);
                     ListeDessertsAdapter adapter = new ListeDessertsAdapter(dessertsViewModel.getListDessertsLiveData().getValue(), context, new PlatUniqueListener() {
                         @Override
