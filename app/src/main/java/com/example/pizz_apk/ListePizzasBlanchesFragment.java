@@ -14,11 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.pizz_apk.adapters.ListePizzasAdapter;
 import com.example.pizz_apk.adapters.PlatUniqueListener;
 import com.example.pizz_apk.databinding.FragmentListePizzasBinding;
+import com.example.pizz_apk.databinding.FragmentListePizzasBlanchesBinding;
 import com.example.pizz_apk.models.PlatPropose;
 import com.example.pizz_apk.models.RetroFitRequests;
 import com.example.pizz_apk.models.RetroFitResponse;
@@ -26,26 +26,22 @@ import com.example.pizz_apk.services.Utils;
 import com.example.pizz_apk.viewmodels.ListePizzasViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
+public class ListePizzasBlanchesFragment extends Fragment {
 
-public class ListePizzasFragment extends Fragment {
-
-    FragmentListePizzasBinding binding;
+    FragmentListePizzasBlanchesBinding binding;
     ListePizzasViewModel pizzaListViewModel;
     PlatUniqueViewModel platUniqueViewModel;
     Context context = getContext();
     RetroFitRequests requests;
 
-    public ListePizzasFragment() {
+    public ListePizzasBlanchesFragment() {
         // Required empty public constructor
     }
 
@@ -61,7 +57,7 @@ public class ListePizzasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentListePizzasBinding.inflate(inflater, container, false);
+        binding = FragmentListePizzasBlanchesBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -69,11 +65,11 @@ public class ListePizzasFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
-        this.HandleGetPizzas(view,1,1);
+        this.HandleGetPizzas(view,1,2);
         binding.imageView10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_listePizzasFragment_to_accueilFragment);
+                Navigation.findNavController(v).navigate(R.id.action_listePizzasBlanchesFragment_to_accueilFragment);
             }
         });
     }
@@ -83,7 +79,7 @@ public class ListePizzasFragment extends Fragment {
         map.put("restaurantId", restaurantId);
         map.put("typeId", typeId);
 
-        Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlatsByTypeEtRestaurant(map);
+        Call<RetroFitResponse<ArrayList<PlatPropose>>> call = requests.getPlatsByTypeEtRestaurant(map);
 
 
 
@@ -101,13 +97,13 @@ public class ListePizzasFragment extends Fragment {
                         @Override
                         public void onPlatUniqueClicked(PlatPropose platPropose) {
                             platUniqueViewModel.setSelectedPlat(platPropose);
-                            Navigation.findNavController(view).navigate(R.id.action_listePizzasFragment_to_platUniqueFragment);
+                            Navigation.findNavController(view).navigate(R.id.action_listePizzasBlanchesFragment_to_platUniqueFragment);
                         }
 
                         @Override
                         public void onPlatUniqueAllergenesClicked(PlatPropose platPropose) {
                             platUniqueViewModel.setSelectedPlat(platPropose);
-                            Navigation.findNavController(view).navigate(R.id.action_listePizzasFragment_to_allergenesFragment);
+                            Navigation.findNavController(view).navigate(R.id.action_listePizzasBlanchesFragment_to_allergenesFragment);
                         }
                     });
                     binding.rvPizzasListe.setHasFixedSize(true);

@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_accueilFragment_to_listeDessertsFragment"
             app:destination="@id/listeDessertsFragment" />
+        <action
+            android:id="@+id/action_accueilFragment_to_listePizzasBlanchesFragment"
+            app:destination="@id/listePizzasBlanchesFragment" />
     </fragment>
     <fragment
         android:id="@+id/listePizzasFragment"
@@ -233,4 +236,19 @@
         android:name="com.example.pizz_apk.RecapitulatifCommandeFragment"
         android:label="fragment_recapitulatif_commande"
         tools:layout="@layout/fragment_recapitulatif_commande" />
+    <fragment
+        android:id="@+id/listePizzasBlanchesFragment"
+        android:name="com.example.pizz_apk.ListePizzasBlanchesFragment"
+        android:label="fragment_liste_pizzas_blanches"
+        tools:layout="@layout/fragment_liste_pizzas_blanches" >
+        <action
+            android:id="@+id/action_listePizzasBlanchesFragment_to_accueilFragment"
+            app:destination="@id/accueilFragment" />
+        <action
+            android:id="@+id/action_listePizzasBlanchesFragment_to_platUniqueFragment"
+            app:destination="@id/platUniqueFragment" />
+        <action
+            android:id="@+id/action_listePizzasBlanchesFragment_to_allergenesFragment"
+            app:destination="@id/allergenesFragment" />
+    </fragment>
 </navigation>
