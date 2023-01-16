@@ -67,6 +67,14 @@ public class LoginFragment extends Fragment {
         Button loginButton = view.findViewById(R.id.fragment_lgin_btn_valid);
         EditText email = (EditText) view.findViewById(R.id.fragment_lgin_input_mail);
         EditText password = (EditText) view.findViewById(R.id.input_password);
+        Button forgetPassword = view.findViewById(R.id.fragment_login_btn_forget_password);
+
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_lostPasswordFragment);
+            }
+        });
 
         sharedPrefManager = new SharedPrefManager(requireContext());
 

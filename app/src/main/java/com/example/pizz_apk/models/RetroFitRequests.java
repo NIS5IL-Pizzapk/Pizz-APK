@@ -46,13 +46,14 @@ public interface RetroFitRequests {
     @HTTP(method = "GET", path = "/api/user/by_id/{id}")
     Call<LoginResult> getUserByIdLogin(@Path("id") int id, @Header("Authorization") String token);
 
-
     @HTTP(method = "GET", path = "/api/user/by_id/{id}")
     Call<RetroFitResponse<User>> getUserById(@Path("id") int id);
 
     @POST("/api/adresse/add_adresse")
     Call<Void> executeAddAdresse(@Body HashMap<String, String> map);
 
+    @POST("/api/user/send_mail")
+    Call<Void> executeSendMail(@Body HashMap<String, String> map);
 
     @POST("/api/user/update/")
     Call<RetroFitResponse<User>> executeUpdate(int userID, String valueUsername, String valuePassword, String valueEmail, String valueAdresse, String valueTelephone);
