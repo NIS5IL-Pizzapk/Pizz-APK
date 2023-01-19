@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pizz_apk.adapters.RestaurantsAdapter;
 import com.example.pizz_apk.adapters.RestaurantsListener;
@@ -38,6 +39,8 @@ public class RestaurantChoixFragment extends Fragment {
     FragmentRestaurantChoixBinding binding;
 
     RestaurantsViewModel restaurantsViewModel;
+
+    SharedPrefManager sharedPrefManager;
 
 
     TextView tv;
