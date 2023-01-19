@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.example.pizz_apk.models.RetroFitRequests;
 import com.example.pizz_apk.models.RetroFitResponse;
 import com.example.pizz_apk.models.User;
 import com.example.pizz_apk.services.Utils;
+import com.example.pizz_apk.viewmodels.UserViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;
@@ -35,6 +37,7 @@ public class LoginFragment extends Fragment {
 
     private Retrofit retrofit;
     RetroFitRequests requests;
+    UserViewModel userViewModel;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -96,6 +99,8 @@ public class LoginFragment extends Fragment {
                             editor.commit();
                             Log.d("token USER", " token of the current user "+response.body().getToken());
                             Log.d("id USER", "userid of the current user "+ requests.getUserById(response.body().getId()));
+                            userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
+                            userViewModel.setSelectedUserId(Integer.valueOf(response.body().getId()));
                             Log.d("username USER", "username of the current user"+response.body().getUsername());
                             Log.d("email USER", "email of the current user " +response.body().getMail());
                             Log.d("connexion réussie ! ", response + " " + response.body().getToken());

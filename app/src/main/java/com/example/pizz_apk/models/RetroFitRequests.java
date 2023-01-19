@@ -6,6 +6,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
@@ -24,6 +25,18 @@ public interface RetroFitRequests {
     @POST("/api/produit/plat/by_type_et_restaurant")
     //fais la requete pour avoir les plats par type et par restaurant en envoyant un objet JSON avec le type et l'id du restaurant
     Call<RetroFitResponse<ArrayList<PlatPropose>>> getPlatsByTypeEtRestaurant(@Body HashMap<String, Integer> map);
+
+    @GET("/api/restaurant/get_all")
+    Call<RetroFitResponse<ArrayList<Restaurant>>> getAllRestaurants();
+
+    @DELETE("/api/reservation/delete/{id}")
+    Call<RetroFitResponse<Reservation>> deleteReservation(@Path("id") int id);
+
+    @GET("/api/reservation/all_from_user/{id}")
+    Call<RetroFitResponse<ArrayList<Reservation>>> getAllReservationsFromUser(@Path("id") int id);
+
+    @GET("/api/allergene/get_by_produit/{id}")
+    Call<RetroFitResponse<ArrayList<Allergene>>> getAllergeneByProduitId(@Path("id") int id);
 
     @POST("/api/user/login")
     Call<LoginResult> executeLogin(@Body HashMap<String, String> map);

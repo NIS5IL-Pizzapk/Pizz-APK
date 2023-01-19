@@ -25,6 +25,7 @@ import com.example.pizz_apk.models.RetroFitResponse;
 import com.example.pizz_apk.services.Utils;
 import com.example.pizz_apk.viewmodels.ListePizzasViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
+import com.example.pizz_apk.viewmodels.RestaurantsViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +38,7 @@ public class ListePizzasBlanchesFragment extends Fragment {
 
     FragmentListePizzasBlanchesBinding binding;
     ListePizzasViewModel pizzaListViewModel;
+    RestaurantsViewModel restaurantsViewModel;
     PlatUniqueViewModel platUniqueViewModel;
     Context context = getContext();
     RetroFitRequests requests;
@@ -65,7 +67,9 @@ public class ListePizzasBlanchesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
-        this.HandleGetPizzas(view,1,2);
+        restaurantsViewModel = new ViewModelProvider(requireActivity()).get(RestaurantsViewModel.class);
+        int idRestaurant = restaurantsViewModel.getSelectedRestaurant().getValue().getId();
+        this.HandleGetPizzas(view,idRestaurant,1);
         binding.imageView10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

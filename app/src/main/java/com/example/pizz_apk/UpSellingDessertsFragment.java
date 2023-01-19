@@ -29,6 +29,7 @@ import com.example.pizz_apk.services.Utils;
 import com.example.pizz_apk.viewmodels.ListeBoissonsViewModel;
 import com.example.pizz_apk.viewmodels.ListeDessertsViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
+import com.example.pizz_apk.viewmodels.RestaurantsViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,6 +44,7 @@ public class UpSellingDessertsFragment extends Fragment {
     FragmentUpSellingDessertsBinding binding;
     ListeDessertsViewModel dessertsViewModel;
     PlatUniqueViewModel platUniqueViewModel;
+    RestaurantsViewModel restaurantsViewModel;
     Context context = getContext();
     PlatUniqueListener listener;
     RetroFitRequests requests;
@@ -67,7 +69,9 @@ public class UpSellingDessertsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
-        this.HandleGetDesserts(view,1,5);
+        restaurantsViewModel = new ViewModelProvider(requireActivity()).get(RestaurantsViewModel.class);
+        int idRestaurant = restaurantsViewModel.getSelectedRestaurant().getValue().getId();
+        this.HandleGetDesserts(view,idRestaurant,5);
         binding.btnSuivant.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_upSellingDessertsFragment_to_nav_panier);
         });
