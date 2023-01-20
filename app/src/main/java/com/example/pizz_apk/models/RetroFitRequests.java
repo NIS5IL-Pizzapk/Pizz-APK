@@ -56,8 +56,8 @@ public interface RetroFitRequests {
     @POST("/api/adresse/add_adresse")
     Call<Void> executeAddAdresse(@Body HashMap<String, String> map);
 
-//    @POST("/api/user/send_mail")
-//    Call<Void> executeSendMail(@Body HashMap<String, String> map);
+   @POST("/api/user/send_mail")
+    Call<Void> executeSendMail(@Body HashMap<String, String> map);
 
     @POST("/api/user/update/")
     Call<RetroFitResponse<User>> executeUpdate(int userID, String valueUsername, String valuePassword, String valueEmail, String valueAdresse, String valueTelephone);
