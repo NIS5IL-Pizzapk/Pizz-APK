@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -45,8 +48,34 @@ public class Utils {
         return retrofit.create(RetroFitRequests.class);
     }
 
-    public static String getToken (Context ctx) {
-        return ctx.getSharedPreferences("user", Context.MODE_PRIVATE).getString("token", null);
+    public static void handleJWTToken (Context ctx, Response<ResponseBody> response) {
+        String token = response.headers().get("Authorization");
+        ctx.getSharedPreferences("token", Context.MODE_PRIVATE)
+                .edit()
+                .putString("token", token)
+                .apply();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        Request original = chain.request();
+
+                        Request request = original.newBuilder()
+                                .header("Authorization", "Bearer " + token)
+                                .method(original.method(), original.body())
+                                .build();
+
+                        return chain.proceed(request);
+                    }
+                })
+                .build();
+    }
+
+    public static void setToken(Context ctx, String token) {
+        ctx.getSharedPreferences("token", Context.MODE_PRIVATE)
+                .edit()
+                .putString("token", token)
+                .apply();
     }
 
     //get current connected userid retrofit

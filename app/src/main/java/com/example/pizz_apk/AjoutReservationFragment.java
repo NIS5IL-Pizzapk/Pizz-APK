@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.pizz_apk.databinding.FragmentAjoutReservationBinding;
-import com.example.pizz_apk.databinding.FragmentReservationBinding;
 import com.example.pizz_apk.models.Reservation;
 import com.example.pizz_apk.viewmodels.ReservationViewModel;
 
@@ -24,7 +23,6 @@ public class AjoutReservationFragment extends Fragment {
 
     FragmentAjoutReservationBinding binding;
     ReservationViewModel reservationViewModel;
-
 
 
     public AjoutReservationFragment() {
@@ -48,7 +46,7 @@ public class AjoutReservationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        reservationViewModel= new ViewModelProvider(requireActivity()).get(ReservationViewModel.class);
+        reservationViewModel = new ViewModelProvider(requireActivity()).get(ReservationViewModel.class);
 
         binding.btnReserver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +60,6 @@ public class AjoutReservationFragment extends Fragment {
                 //récupère le champ du nombre de personnes et le convertit en int pour l'ajouter à la liste des réservations
                 String nbPersonnes = binding.etNbPersonnes.getText().toString();
                 int nbPersonnesInt = Integer.parseInt(nbPersonnes);
-
                 Navigation.findNavController(v).navigate(R.id.action_ajoutReservationFragment_to_nav_reservation);
 
 

@@ -7,6 +7,8 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
@@ -38,8 +40,13 @@ public interface RetroFitRequests {
     @GET("/api/allergene/get_by_produit/{id}")
     Call<RetroFitResponse<ArrayList<Allergene>>> getAllergeneByProduitId(@Path("id") int id);
 
+
+    @FormUrlEncoded
     @POST("/api/user/login")
-    Call<LoginResult> executeLogin(@Body HashMap<String, String> map);
+    Call<LoginResult> Login(
+            @Field("email") String email,
+            @Field("password") String password
+    );
 
     @POST("/api/user/signup")
     Call<Void> executeSignup(@Body HashMap<String, String> map);
@@ -50,13 +57,14 @@ public interface RetroFitRequests {
     @HTTP(method = "GET", path = "/api/user/by_id/{id}")
     Call<LoginResult> getUserByIdLogin(@Path("id") int id, @Header("Authorization") String token);
 
-
     @HTTP(method = "GET", path = "/api/user/by_id/{id}")
     Call<RetroFitResponse<User>> getUserById(@Path("id") int id);
 
     @POST("/api/adresse/add_adresse")
     Call<Void> executeAddAdresse(@Body HashMap<String, String> map);
 
+    @POST("/api/user/send_mail")
+    Call<Void> executeSendMail(@Body HashMap<String, String> map);
 
     @POST("/api/user/update/")
     Call<RetroFitResponse<User>> executeUpdate(int userID, String valueUsername, String valuePassword, String valueEmail, String valueAdresse, String valueTelephone);

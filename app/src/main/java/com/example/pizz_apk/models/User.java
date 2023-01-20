@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class User implements Serializable {
     @SerializedName("id")
-    private HashMap<String, String> id;
+    private int id;
     private String username;
     private String password;
     private String email;
@@ -15,7 +15,8 @@ public class User implements Serializable {
     private String token;
     private String telephone;
 
-    public User(String username, String password, String email, String adresseLivraison, String telephone) {
+    public User(int id,String username, String password, String email, String adresseLivraison, String telephone) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -23,11 +24,11 @@ public class User implements Serializable {
         this.telephone = telephone;
     }
 
-    public HashMap<String, String> getId() {
+    public int getId() {
         return id;
     }
 
-    public void setUser(HashMap<String, String> id) {
+    public void setUser(int id) {
         this.id = id;
     }
 

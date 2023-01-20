@@ -66,8 +66,6 @@ public class MonCompteFragment extends Fragment {
 
         //Retrofit get userid stored in editor
         int id = Utils.getUserId(requireContext());
-        String token = Utils.getToken(requireContext());
-        Log.d("token", String.valueOf(token));
         //get the user info from the server with the token
         Log.d("IDuser: ", String.valueOf(id));
       Call<RetroFitResponse<User>> call = requests.getUserById(id);
@@ -155,9 +153,7 @@ public class MonCompteFragment extends Fragment {
         mapadrss.put("adresse", adress.getText().toString());
         map.put("password", password.getText().toString());
         map.put("telephone", telephone.getText().toString());
-        String token = Utils.getToken(requireContext());
         int id = Utils.getUserId(requireContext());
-        Log.d("token", String.valueOf(token));
         //get current login user current id
         requests.getUserById(id).enqueue(new Callback<RetroFitResponse<User>>() {
             @Override

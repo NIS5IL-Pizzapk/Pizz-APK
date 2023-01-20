@@ -128,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
             menu.findItem(R.id.nav_account).setVisible(false);
             menu.findItem(R.id.nav_commandesencours).setVisible(false);
             menu.findItem(R.id.nav_reservation).setVisible(false);
-
             SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();

@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_loginFragment_to_recapitulatifCommandeFragment"
             app:destination="@id/recapitulatifCommandeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_lostPasswordFragment"
+            app:destination="@id/lostPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/platUniqueFragment"
@@ -253,5 +256,14 @@
         <action
             android:id="@+id/action_listePizzasBlanchesFragment_to_allergenesFragment"
             app:destination="@id/allergenesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lostPasswordFragment"
+        android:name="com.example.pizz_apk.LostPasswordFragment"
+        android:label="fragment_lost_password"
+        tools:layout="@layout/fragment_lost_password" >
+        <action
+            android:id="@+id/action_lostPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>
