@@ -63,32 +63,29 @@ public class LostPasswordFragment extends Fragment {
         EditText customerMail = view.findViewById(R.id.fragment_reset_input_mail);
         sendMailButton.setOnClickListener(v -> {
 
-            Call<SendMailResult> call = requests.SendEmail(String.valueOf(customerMail));
+            HashMap<String, String> map = new HashMap<>();
+            map.put("email", customerMail.getText().toString());
 
-            call.enqueue(new Callback<SendMailResult>() {
+            requests.executeSendMail(map).enqueue(new Callback<Void>() {
                 @Override
-                public void onResponse(Call<SendMailResult> call, Response<SendMailResult> response) {
+                public void onResponse(Call<Void> call, Response<Void> response) {
                     Log.d("TEST", "mailer répond: " + response);
                     if (response.isSuccessful()) {
-                        SendMailResult result = response.body();
-                        if (result != null) {
-                            if (result.getSuccess()) {
-                                Log.d("TEST", "mailer répond: " + response);
-                                Toast.makeText(requireContext(), "Email envoyé", Toast.LENGTH_SHORT).show();
-                                Navigation.findNavController(view).navigate(R.id.action_lostPasswordFragment_to_loginFragment);
-                            } else {
-                                Log.d("TEST", "mailer répond: " + response);
-                                Toast.makeText(requireContext(), "Email non envoyé", Toast.LENGTH_SHORT).show();
-                            }
-                        }
+                        Toast.makeText(getContext(), "Envoyé ! Veuillez vérifier votre boite mail", Toast.LENGTH_SHORT).show();
+                        Navigation.findNavController(v).navigate(R.id.loginFragment);
+                    } else if (response.code() == 400) {
+                        Log.d("error", "onResponse: " + response.code());
+                        Toast.makeText(getContext(), "Envoi du mail échoué", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
-                public void onFailure(Call<SendMailResult> call, Throwable t) {
-                    Log.e("ERROR", t.getMessage());
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Log.d("TAG", "onFailure: " + t.getMessage());
+                    Toast.makeText(getContext(), "Envoi du mail échoué", Toast.LENGTH_SHORT).show();
                 }
             });
+
         });
         }
 }

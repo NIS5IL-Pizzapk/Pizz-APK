@@ -73,6 +73,7 @@ public class FragmentSignup extends Fragment {
             requests.executeSignup(map).enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
+                    Log.d("error", "creation: " + response.code());
                     if (response.isSuccessful() && password != null) {
                         Toast.makeText(getContext(), "Inscription réussie", Toast.LENGTH_SHORT).show();
                         Navigation.findNavController(v).navigate(R.id.loginFragment);
