@@ -28,6 +28,7 @@ public interface RetroFitRequests {
     //fais la requete pour avoir les plats par type et par restaurant en envoyant un objet JSON avec le type et l'id du restaurant
     Call<RetroFitResponse<ArrayList<PlatPropose>>> getPlatsByTypeEtRestaurant(@Body HashMap<String, Integer> map);
 
+
     @GET("/api/restaurant/get_all")
     Call<RetroFitResponse<ArrayList<Restaurant>>> getAllRestaurants();
 
@@ -48,6 +49,13 @@ public interface RetroFitRequests {
             @Field("password") String password
     );
 
+    @FormUrlEncoded
+    @POST("/api/user/send_mail")
+    Call<SendMailResult> SendEmail(
+            @Field("email") String email
+    );
+
+
     @POST("/api/user/signup")
     Call<Void> executeSignup(@Body HashMap<String, String> map);
 
@@ -63,8 +71,8 @@ public interface RetroFitRequests {
     @POST("/api/adresse/add_adresse")
     Call<Void> executeAddAdresse(@Body HashMap<String, String> map);
 
-    @POST("/api/user/send_mail")
-    Call<Void> executeSendMail(@Body HashMap<String, String> map);
+//    @POST("/api/user/send_mail")
+//    Call<Void> executeSendMail(@Body HashMap<String, String> map);
 
     @POST("/api/user/update/")
     Call<RetroFitResponse<User>> executeUpdate(int userID, String valueUsername, String valuePassword, String valueEmail, String valueAdresse, String valueTelephone);
