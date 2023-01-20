@@ -39,7 +39,7 @@
                         android:fontFamily="@font/tw_cen_mt_bold"
                         android:text="DATE DE RESERVATION"
                         android:textAllCaps="true"
-                        android:textSize="25sp" />
+                        android:textSize="16sp" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -48,13 +48,12 @@
                     <TextView
                         android:id="@+id/tv_heure_item"
                         android:layout_width="match_parent"
-                        android:layout_height="29dp"
+                        android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:fontFamily="@font/tw_cen_mt_bold"
-                        android:lines="2"
                         android:text="HEURE DE RESERVATION"
                         android:textAllCaps="false"
-                        android:textSize="24sp" />
+                        android:textSize="16sp" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -66,7 +65,19 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/tw_cen_mt_bold"
                         android:text="NOMBRE DE PERSONNES"
-                        android:textSize="24sp" />
+                        android:textSize="16sp" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp" />
+
+                    <TextView
+                        android:id="@+id/tv_resto_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/tw_cen_mt_bold"
+                        android:text="RESTAURANT"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 

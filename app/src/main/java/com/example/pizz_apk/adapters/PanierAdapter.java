@@ -61,8 +61,18 @@ public class PanierAdapter extends RecyclerView.Adapter<PanierAdapter.PanierView
             notifyDataSetChanged();
         });
 
-        //todo : pouvoir afficher les suppléments du plat dans le panier (si il y en a)
-
+        //si le plat a des suppléments
+        if (plat.getSupplementsactifs() != null) {
+            //récupère le nom et la quantité de chaque suppléments du plat et les affiche
+            String Supplements = "";
+            for (int i = 0; i < plat.getSupplementsactifs().size(); i++) {
+                Supplements += plat.getSupplementsactifs().get(i).getQuantite() + " ";
+                Supplements += plat.getSupplementsactifs().get(i).getNom() + " ";
+                String Newligne = System.getProperty("line.separator");
+                Supplements += Newligne;
+            }
+            holder.binding.tvSuppItem.setText(Supplements);
+        }
 
 
     }

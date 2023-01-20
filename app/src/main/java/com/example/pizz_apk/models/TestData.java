@@ -19,14 +19,5 @@ public class TestData {
             new CategorieAccueil("Nos Desserts",R.drawable.dessert,"desserts")
     ));
 
-    public static List<Restaurant> listeRestaurant = new ArrayList<Restaurant>(Arrays.asList(
-            new Restaurant("Clarensac"),
-            new Restaurant("Vauvert")
-    ));
-
-    public static List<Reservation> listeReservation = new ArrayList<Reservation>(Arrays.asList(
-            new Reservation("ALDEBERT","Arnaud", "06 06 06 06 06", 3,new Date(),new Time(12,0,0))
-    ));
-
 
 }

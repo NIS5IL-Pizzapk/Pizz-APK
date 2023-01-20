@@ -123,7 +123,10 @@ public class PlatPropose implements Serializable {
         if (supplementsactifs == null) {
             supplementsactifs = new ArrayList<>();
         }
-        supplementsactifs.add(supplement);
+        // On vérifie que le supplément n'est pas déjà présent dans la liste des suppléments actifs
+        if (!supplementsactifs.contains(supplement)) {
+            supplementsactifs.add(supplement);
+        }
         prix += supplement.getPrix();
     }
 

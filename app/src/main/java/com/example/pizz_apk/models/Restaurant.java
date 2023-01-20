@@ -1,24 +1,35 @@
 package com.example.pizz_apk.models;
 
-public class Restaurant {
-    private String nom;
+import com.google.gson.annotations.SerializedName;
 
-    public Restaurant(String nom) {
-        this.nom = nom;
+import java.io.Serializable;
+
+public class Restaurant implements Serializable {
+    @SerializedName("ville")
+    private String ville;
+    @SerializedName("id")
+    private int id;
+
+    public Restaurant(String ville, int id) {
+        this.ville = ville;
+        this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getVille() {
+        return ville;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setVille(String ville) {
+        this.ville = ville;
     }
 
-    @Override
-    public String toString() {
-        return "Restaurant{" +
-                "nom='" + nom + '\'' +
-                '}';
+
+    public int getId() {
+        return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }

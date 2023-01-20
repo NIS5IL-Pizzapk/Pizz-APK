@@ -60,8 +60,6 @@ public class AjoutReservationFragment extends Fragment {
                 //récupère le champ du nombre de personnes et le convertit en int pour l'ajouter à la liste des réservations
                 String nbPersonnes = binding.etNbPersonnes.getText().toString();
                 int nbPersonnesInt = Integer.parseInt(nbPersonnes);
-
-                reservationViewModel.addReservation(new Reservation("ALDEBERT", "Arnaud", "06 06 06 06 06", nbPersonnesInt, dateSql, heureSql));
                 Navigation.findNavController(v).navigate(R.id.action_ajoutReservationFragment_to_nav_reservation);
 
 

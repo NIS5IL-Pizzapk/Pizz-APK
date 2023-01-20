@@ -27,6 +27,7 @@ import com.example.pizz_apk.models.RetroFitResponse;
 import com.example.pizz_apk.services.Utils;
 import com.example.pizz_apk.viewmodels.ListeBoissonsViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
+import com.example.pizz_apk.viewmodels.RestaurantsViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,6 +42,7 @@ public class UpSellingBoissonsFragment extends Fragment {
     FragmentUpSellingBoissonsBinding binding;
     ListeBoissonsViewModel boissonsViewModel;
     PlatUniqueViewModel platUniqueViewModel;
+    RestaurantsViewModel restaurantsViewModel;
     Context context = getContext();
     UpSellingListener listener;
     RetroFitRequests requests;
@@ -66,7 +68,9 @@ public class UpSellingBoissonsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
-        this.HandleGetBoissons(view);
+        restaurantsViewModel = new ViewModelProvider(requireActivity()).get(RestaurantsViewModel.class);
+        int idRestaurant = restaurantsViewModel.getSelectedRestaurant().getValue().getId();
+        this.HandleGetBoissons(view,idRestaurant,4);
         binding.btnSuivant.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_upSellingBoissonsFragment_to_upSellingDessertsFragment);
         });
@@ -81,10 +85,10 @@ public class UpSellingBoissonsFragment extends Fragment {
 
     }
 
-    public void HandleGetBoissons(View view){
+    public void HandleGetBoissons(View view, int restaurantId, int typeId){
         HashMap<String, Integer> map = new HashMap<>();
-        map.put("restaurantId",1);
-        map.put("typeId", 4);
+        map.put("restaurantId",restaurantId);
+        map.put("typeId", typeId);
 
         Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlatsByTypeEtRestaurant(map);
 
@@ -94,14 +98,10 @@ public class UpSellingBoissonsFragment extends Fragment {
                 if (response.isSuccessful()) {
                     String message = response.body().getMessage();
                     ArrayList<PlatPropose> result = response.body().getResult();
-                    //trier les plats pour ne garder que les boissons
-                    ArrayList<PlatPropose> boissons = new ArrayList<>();
-                    for (PlatPropose plat : result) {
-                            boissons.add(plat);
-                    }
+
 
                     boissonsViewModel = new ViewModelProvider(requireActivity()).get(ListeBoissonsViewModel.class);
-                    boissonsViewModel.setListBoissonsLiveData(boissons);
+                    boissonsViewModel.setListBoissonsLiveData(result);
                     platUniqueViewModel = new ViewModelProvider(requireActivity()).get(PlatUniqueViewModel.class);
                     UpSellingBoissonsAdapter adapter = new UpSellingBoissonsAdapter(boissonsViewModel.getListBoissonsLiveData().getValue(), context, new UpSellingListener() {
                         @Override
