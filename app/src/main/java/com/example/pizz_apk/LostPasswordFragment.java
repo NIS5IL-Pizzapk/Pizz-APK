@@ -75,14 +75,20 @@ public class LostPasswordFragment extends Fragment {
                         Navigation.findNavController(v).navigate(R.id.loginFragment);
                     } else if (response.code() == 400) {
                         Log.d("error", "onResponse: " + response.code());
-                        Toast.makeText(getContext(), "Envoi du mail échoué", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Envoi du mail échoué ! Veuillez vérifier votre connexion internet", Toast.LENGTH_SHORT).show();
+                    }else if (response.code() == 401) {
+                        Log.d("error", "onResponse: " + response.code());
+                        Toast.makeText(getContext(), "Envoi du mail échoué ! Veuillez vérifier si votre adresse mail est correct !", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Log.d("error", "onResponse: " + response.code());
+                        Toast.makeText(getContext(), "Envoi du mail échoué ! : " + response, Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
                     Log.d("TAG", "onFailure: " + t.getMessage());
-                    Toast.makeText(getContext(), "Envoi du mail échoué", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Envoi du mail échoué : " + t.getMessage() + "Call was : " + call, Toast.LENGTH_SHORT).show();
                 }
             });
 
