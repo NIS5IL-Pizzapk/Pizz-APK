@@ -1,47 +1,66 @@
 package com.example.pizz_apk.models;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
-public class Reservation {
-    private String nom;
-    private String prenom;
-    private String telephone;
+public class Reservation implements Serializable {
+    @SerializedName("id")
+    private int id;
+    @SerializedName("userId")
+    private int userId;
+    private User user;
+    private Restaurant restaurant;
+    @SerializedName("restaurantId")
+    private int restaurantId;
+    @SerializedName("nb_personnes")
     private int nbPersonnes;
+    @SerializedName("date_resa")
     private Date date;
+    @SerializedName("heure_resa")
     private Time heure;
 
-    public Reservation(String nom, String prenom, String telephone, int nbPersonnes, Date date, Time heure) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.telephone = telephone;
-        this.nbPersonnes = nbPersonnes;
-        this.date = date;
-        this.heure = heure;
+
+    public User getUser() {
+        return user;
     }
 
-    public String getNom() {
-        return nom;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public int getId() {
+        return id;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     public int getNbPersonnes() {
@@ -67,6 +86,7 @@ public class Reservation {
     public void setHeure(Time heure) {
         this.heure = heure;
     }
+
 
 
 }

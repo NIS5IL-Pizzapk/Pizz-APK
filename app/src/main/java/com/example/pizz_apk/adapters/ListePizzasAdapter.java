@@ -57,7 +57,7 @@ public class ListePizzasAdapter extends RecyclerView.Adapter<ListePizzasAdapter.
         holder.binding.tvNomPlat.setText(platPropose.getNom());
         holder.binding.tvDescriptionPlat.setText(platPropose.getDescription());
         holder.binding.tvPrixPlat.setText(String.format(Locale.getDefault(),"%.2f",platPropose.getPrix())+"€");
-        holder.binding.imgPlatMini.setOnClickListener(v -> listener.onPlatUniqueClicked(platPropose));
+        holder.binding.btnDetailsPlat.setOnClickListener(v -> listener.onPlatUniqueClicked(platPropose));
         holder.binding.imgbtnPlatAllergenes.setOnClickListener(v -> listener.onPlatUniqueAllergenesClicked(platPropose));
     }
 

@@ -31,6 +31,7 @@ import com.example.pizz_apk.viewmodels.ListeBoissonsViewModel;
 import com.example.pizz_apk.viewmodels.ListeBurgersViewModel;
 import com.example.pizz_apk.viewmodels.ListePizzasViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
+import com.example.pizz_apk.viewmodels.RestaurantsViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +45,7 @@ public class ListeBoissonsFragment extends Fragment {
     FragmentListeBoissonsBinding binding;
     ListeBoissonsViewModel boissonsViewModel;
     PlatUniqueViewModel platUniqueViewModel;
+    RestaurantsViewModel restaurantsViewModel;
     Context context = getContext();
     PlatUniqueListener listener;
     RetroFitRequests requests;
@@ -69,7 +71,9 @@ public class ListeBoissonsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
-        this.HandleGetBoissons(view);
+        restaurantsViewModel = new ViewModelProvider(requireActivity()).get(RestaurantsViewModel.class);
+        int idRestaurant = restaurantsViewModel.getSelectedRestaurant().getValue().getId();
+        this.HandleGetBoissons(view,idRestaurant,4);
         binding.imageView10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,10 +85,10 @@ public class ListeBoissonsFragment extends Fragment {
 
     }
 
-    public void HandleGetBoissons(View view){
+    public void HandleGetBoissons(View view,int restaurantId, int typeId){
         HashMap<String, Integer> map = new HashMap<>();
-        map.put("restaurantId",1);
-        map.put("typeId", 4);
+        map.put("restaurantId",restaurantId);
+        map.put("typeId", typeId);
 
         Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlatsByTypeEtRestaurant(map);
 
@@ -107,6 +111,7 @@ public class ListeBoissonsFragment extends Fragment {
                         @Override
                         public void onPlatUniqueClicked(PlatPropose platPropose) {
                             platUniqueViewModel.setSelectedPlat(platPropose);
+                            platUniqueViewModel.setSelectedTypePlat(typeId);
                             Navigation.findNavController(view).navigate(R.id.action_listeBoissonsFragment_to_platUniqueFragment);
                         }
 

@@ -6,22 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pizz_apk.R;
 import com.example.pizz_apk.databinding.RvItemRestaurantBinding;
 import com.example.pizz_apk.models.Restaurant;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.RestaurantsViewHolder>{
 
-    List<Restaurant> restaurantsList;
+    ArrayList<Restaurant> restaurantsList;
     Context context;
     RestaurantsListener listener;
     RvItemRestaurantBinding binding;
 
-    public RestaurantsAdapter(List<Restaurant> restaurantsList, Context context, RestaurantsListener listener) {
+    public RestaurantsAdapter(ArrayList<Restaurant> restaurantsList, Context context, RestaurantsListener listener) {
         this.restaurantsList = restaurantsList;
         this.context = context;
         this.listener = listener;
@@ -40,7 +41,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
     public void onBindViewHolder(@NonNull RestaurantsViewHolder holder, int position) {
         final Restaurant restaurant = restaurantsList.get(position);
         holder.binding.btnChoixRestaurant.setOnClickListener(v -> listener.onRestaurantClicked(restaurant));
-        holder.binding.btnChoixRestaurant.setText(restaurant.getNom());
+        holder.binding.btnChoixRestaurant.setText(restaurant.getVille());
 
     }
 

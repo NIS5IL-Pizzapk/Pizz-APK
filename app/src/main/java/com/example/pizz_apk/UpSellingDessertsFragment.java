@@ -29,6 +29,7 @@ import com.example.pizz_apk.services.Utils;
 import com.example.pizz_apk.viewmodels.ListeBoissonsViewModel;
 import com.example.pizz_apk.viewmodels.ListeDessertsViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
+import com.example.pizz_apk.viewmodels.RestaurantsViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,6 +44,7 @@ public class UpSellingDessertsFragment extends Fragment {
     FragmentUpSellingDessertsBinding binding;
     ListeDessertsViewModel dessertsViewModel;
     PlatUniqueViewModel platUniqueViewModel;
+    RestaurantsViewModel restaurantsViewModel;
     Context context = getContext();
     PlatUniqueListener listener;
     RetroFitRequests requests;
@@ -67,7 +69,9 @@ public class UpSellingDessertsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
-        this.HandleGetDesserts(view);
+        restaurantsViewModel = new ViewModelProvider(requireActivity()).get(RestaurantsViewModel.class);
+        int idRestaurant = restaurantsViewModel.getSelectedRestaurant().getValue().getId();
+        this.HandleGetDesserts(view,idRestaurant,5);
         binding.btnSuivant.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_upSellingDessertsFragment_to_nav_panier);
         });
@@ -82,10 +86,10 @@ public class UpSellingDessertsFragment extends Fragment {
 
     }
 
-    public void HandleGetDesserts(View view){
+    public void HandleGetDesserts(View view, int restaurantId, int typeId){
         HashMap<String, Integer> map = new HashMap<>();
-        map.put("restaurantId",1);
-        map.put("typeId", 5);
+        map.put("restaurantId",restaurantId);
+        map.put("typeId", typeId);
 
         Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getPlatsByTypeEtRestaurant(map);
 
@@ -95,14 +99,10 @@ public class UpSellingDessertsFragment extends Fragment {
                 if (response.isSuccessful()) {
                     String message = response.body().getMessage();
                     ArrayList<PlatPropose> result = response.body().getResult();
-                    //trier les plats pour ne garder que les desserts
-                    ArrayList<PlatPropose> desserts = new ArrayList<>();
-                    for (PlatPropose plat : result) {
-                            desserts.add(plat);
-                    }
+
 
                     dessertsViewModel = new ViewModelProvider(requireActivity()).get(ListeDessertsViewModel.class);
-                    dessertsViewModel.setListDessertsLiveData(desserts);
+                    dessertsViewModel.setListDessertsLiveData(result);
                     platUniqueViewModel = new ViewModelProvider(requireActivity()).get(PlatUniqueViewModel.class);
                     UpSellingDessertsAdapter adapter = new UpSellingDessertsAdapter(dessertsViewModel.getListDessertsLiveData().getValue(), context, new UpSellingListener() {
                         @Override
