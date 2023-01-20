@@ -100,8 +100,6 @@ public class LoginFragment extends Fragment {
 
                 call.enqueue(new Callback<LoginResult>() {
                     public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-
-                    Log.d("response", "WHY THE TOKEN IS NOT GIVEN  "+response.body().getToken());
                         if (response.isSuccessful()) {
 
 
