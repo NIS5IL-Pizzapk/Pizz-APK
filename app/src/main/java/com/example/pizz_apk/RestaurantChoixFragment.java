@@ -103,6 +103,7 @@ public class RestaurantChoixFragment extends Fragment {
         call.enqueue(new Callback<RetroFitResponse<ArrayList<Restaurant>>>() {
             @Override
             public void onResponse(Call<RetroFitResponse<ArrayList<Restaurant>>> call, Response<RetroFitResponse<ArrayList<Restaurant>>> response) {
+               Log.d("TAG", "onResponse: " + response.body());
                 if (response.isSuccessful()) {
                     String message = response.body().getMessage();
                     ArrayList<Restaurant> result = response.body().getResult();
@@ -114,6 +115,7 @@ public class RestaurantChoixFragment extends Fragment {
                         Navigation.findNavController(view).navigate(R.id.action_restaurantChoixFragment_to_accueilFragment);
 
                     });
+                    Log.d("TAG", "onResponse: " + restaurantsViewModel.getListRestaurantLiveData());
                     binding.rvHomepageRestaurants.setHasFixedSize(true);
                     binding.rvHomepageRestaurants.setAdapter(restaurantsAdapter);
                     binding.rvHomepageRestaurants.setLayoutManager(new LinearLayoutManager(getContext()));
