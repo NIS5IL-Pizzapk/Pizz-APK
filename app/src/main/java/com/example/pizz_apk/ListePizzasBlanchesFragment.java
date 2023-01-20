@@ -69,7 +69,7 @@ public class ListePizzasBlanchesFragment extends Fragment {
         this.requests = Utils.getRetrofitCon(requireContext());
         restaurantsViewModel = new ViewModelProvider(requireActivity()).get(RestaurantsViewModel.class);
         int idRestaurant = restaurantsViewModel.getSelectedRestaurant().getValue().getId();
-        this.HandleGetPizzas(view,idRestaurant,1);
+        this.HandleGetPizzas(view,idRestaurant,2);
         binding.imageView10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
