@@ -85,11 +85,15 @@ public class Utils {
 
     public static void requestNotSuccessfulToast(Context ctx, Response response) {
         String message = "";
+        Log.d("TAG", "requestNotSuccessfulToast: " + response.code());
         try {
+            Log.d("response", response.errorBody().string());
             message = response.errorBody().string().split("\"message\":\"")[1].split("\"")[0];
         } catch (IOException e) {
+            Log.d("response", "error" + e);
             e.printStackTrace();
         }
+        Log.d("response", message);
         Toast.makeText(ctx, "Erreur "+response.code() + " : " + message, Toast.LENGTH_SHORT).show();
     }
 }
