@@ -114,7 +114,11 @@
         android:id="@+id/nav_parametres"
         android:name="com.example.pizz_apk.ParametresFragment"
         android:label="fragment_parametres"
-        tools:layout="@layout/fragment_parametres" />
+        tools:layout="@layout/fragment_parametres" >
+        <action
+            android:id="@+id/action_nav_parametres_to_cguFragment"
+            app:destination="@id/cguFragment" />
+    </fragment>
     <fragment
         android:id="@+id/allergenesFragment"
         android:name="com.example.pizz_apk.AllergenesFragment"
@@ -263,4 +267,9 @@
             android:id="@+id/action_lostPasswordFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cguFragment"
+        android:name="com.example.pizz_apk.CguFragment"
+        android:label="fragment_cgu"
+        tools:layout="@layout/fragment_cgu" />
 </navigation>
