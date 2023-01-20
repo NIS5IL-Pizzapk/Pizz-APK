@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:id="@+id/ctr_lay"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <RelativeLayout
@@ -46,10 +47,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/tw_cen_mt_bold"
                         android:text="4 FROMAGES"
                         android:textAllCaps="true"
-                        android:textSize="25sp"
-                        android:fontFamily="@font/tw_cen_mt_bold"/>
+                        android:textSize="25sp" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -60,11 +61,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
+                        android:fontFamily="@font/tw_cen_mt_bold"
                         android:lines="2"
                         android:text="mozza, gorgonzola, parmesan, chèvre"
                         android:textAllCaps="false"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/tw_cen_mt_bold"/>
+                        android:textSize="20sp" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -79,15 +80,38 @@
                             android:id="@+id/tv_prix_plat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/tw_cen_mt_bold"
                             android:text="PrixPizza"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/tw_cen_mt_bold"/>
+                            android:textSize="20sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="right"
                             android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:foregroundGravity="center"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:id="@+id/btn_details_plat"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="20dp"
+                                    android:backgroundTint="#732929"
+                                    android:fontFamily="@font/tw_cen_mt_bold"
+                                    android:foregroundGravity="center"
+                                    android:gravity="center"
+                                    android:text="DÉTAILS"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="20sp" />
+                            </LinearLayout>
 
                             <ImageButton
                                 android:id="@+id/imgbtn_plat_allergenes"

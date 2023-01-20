@@ -90,7 +90,7 @@
 
                             <ImageView
                                 android:id="@+id/iv_moins_panier"
-                                android:layout_width="25dp"
+                                android:layout_width="35dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0"
                                 app:srcCompat="@drawable/btn_delete" />
@@ -109,7 +109,7 @@
 
                             <ImageView
                                 android:id="@+id/iv_add_panier"
-                                android:layout_width="25dp"
+                                android:layout_width="35dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="4dp"
                                 android:layout_weight="0"

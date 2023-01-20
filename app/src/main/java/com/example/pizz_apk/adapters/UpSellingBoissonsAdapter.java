@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pizz_apk.R;
 import com.example.pizz_apk.databinding.RvItemUpsellingBinding;
 import com.example.pizz_apk.models.PlatPropose;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
@@ -49,7 +50,7 @@ public class UpSellingBoissonsAdapter extends RecyclerView.Adapter<UpSellingBois
         PlatPropose platPropose = boissonsList.get(position);
         holder.binding.tvNomPlat.setText(platPropose.getNom());
         holder.binding.tvDescriptionPlat.setText(platPropose.getDescription());
-        holder.binding.imgPlatMini.setImageDrawable(Drawable.createFromPath(String.valueOf(platPropose.getImage())));
+        holder.binding.imgPlatMini.setImageResource(R.drawable.drink);
         holder.binding.tvPrixPlat.setText(String.format(Locale.getDefault(),"%.2f",platPropose.getPrix())+"€");
         holder.binding.tvNombreItemPanier.setText(String.valueOf(platPropose.getQuantite()));
         // ajoute un à la quantité du plat quand on clique sur le bouton + et met à jour le prix total du panier
@@ -60,11 +61,12 @@ public class UpSellingBoissonsAdapter extends RecyclerView.Adapter<UpSellingBois
         });
         // enlève un à la quantité du plat quand on clique sur le bouton - et met à jour le prix total du panier
         holder.binding.ivMoinsPanier.setOnClickListener(v -> {
-            if (platPropose.getQuantite() > 1){
+            if (platPropose.getQuantite() > 0){
                 platPropose.setQuantite(platPropose.getQuantite()-1);
                 holder.binding.tvNombreItemPanier.setText(String.valueOf(platPropose.getQuantite()));
-                listener.onRemoveQuantity(platPropose);
+
             }
+            listener.onRemoveQuantity(platPropose);
         });
     }
 

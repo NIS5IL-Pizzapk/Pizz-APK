@@ -64,7 +64,12 @@ public class PlatUniqueFragment extends Fragment {
             binding.btnPlatCommander.setOnClickListener(v -> {
                 platUniqueViewModel.addPlatToPanier(plat);
                 plat.setQuantite(1);
-                Navigation.findNavController(v).navigate(R.id.action_platUniqueFragment_to_upSellingSupplementsFragment);
+                //si le type du plat est 1 ou 2, on va vers la page upselling suppléments sinon on va direct à l'upselling boissons
+                if (platUniqueViewModel.getSelectedTypePlat() == 1 || platUniqueViewModel.getSelectedTypePlat() == 2 || platUniqueViewModel.getSelectedTypePlat() == 3) {
+                    Navigation.findNavController(v).navigate(R.id.action_platUniqueFragment_to_upSellingSupplementsFragment);
+                } else {
+                    Navigation.findNavController(v).navigate(R.id.action_platUniqueFragment_to_upSellingBoissonsFragment);
+                }
             });
         });
     }

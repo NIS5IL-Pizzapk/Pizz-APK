@@ -30,6 +30,7 @@ import com.example.pizz_apk.viewmodels.ListeBoissonsViewModel;
 import com.example.pizz_apk.viewmodels.ListeDessertsViewModel;
 import com.example.pizz_apk.viewmodels.ListeSupplementsViewModel;
 import com.example.pizz_apk.viewmodels.PlatUniqueViewModel;
+import com.example.pizz_apk.viewmodels.RestaurantsViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +45,7 @@ public class UpSellingSupplementsFragment extends Fragment {
     FragmentUpSellingSupplementsBinding binding;
     ListeSupplementsViewModel supplementsViewModel;
     PlatUniqueViewModel platUniqueViewModel;
+    RestaurantsViewModel restaurantsViewModel;
     Context context = getContext();
     PlatUniqueListener listener;
     RetroFitRequests requests;
@@ -68,7 +70,9 @@ public class UpSellingSupplementsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.requests = Utils.getRetrofitCon(requireContext());
-        this.HandleGetSupplements(view);
+        restaurantsViewModel = new ViewModelProvider(requireActivity()).get(RestaurantsViewModel.class);
+        int idRestaurant = restaurantsViewModel.getSelectedRestaurant().getValue().getId();
+        this.HandleGetSupplements(view,idRestaurant,6);
         binding.btnSuivant.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_upSellingSupplementsFragment_to_upSellingBoissonsFragment);
         });
@@ -81,10 +85,10 @@ public class UpSellingSupplementsFragment extends Fragment {
         });
 
     }
-    public void HandleGetSupplements(View view){
+    public void HandleGetSupplements(View view, int restaurantId, int typeId){
         HashMap<String, Integer> map = new HashMap<>();
-        map.put("restaurantId",1);
-        map.put("typeId", 6);
+        map.put("restaurantId",restaurantId);
+        map.put("typeId", typeId);
 
         Call<RetroFitResponse<ArrayList<PlatPropose>>> call =requests.getSupplementsByTypeEtRestaurant(map);
 
@@ -94,30 +98,26 @@ public class UpSellingSupplementsFragment extends Fragment {
                 if (response.isSuccessful()) {
                     String message = response.body().getMessage();
                     ArrayList<PlatPropose> result = response.body().getResult();
-                    //trier les plats pour ne garder que les desserts
-                    ArrayList<PlatPropose> supplements = new ArrayList<>();
-                    for (PlatPropose plat : result) {
-                        supplements.add(plat);
-                    }
+
 
                     supplementsViewModel = new ViewModelProvider(requireActivity()).get(ListeSupplementsViewModel.class);
-                    supplementsViewModel.setListSupplementsLiveData(supplements);
+                    supplementsViewModel.setListSupplementsLiveData(result);
                     platUniqueViewModel = new ViewModelProvider(requireActivity()).get(PlatUniqueViewModel.class);
                     UpSellingSupplementsAdapter adapter = new UpSellingSupplementsAdapter(supplementsViewModel.getListSupplementsLiveData().getValue(), context, new UpSellingListener() {
                         @Override
                         public void onAddQuantity(PlatPropose platPropose) {
-                            //si le plat n'est pas dans la live data du panier, on l'ajoute
-                            if (!platUniqueViewModel.getPanier().getValue().contains(platPropose)) {
-                                platUniqueViewModel.getPanier().getValue().add(platPropose);
-                            }
+                            //recupère le plat selectionné et ajoute ce supplement à la liste des supplements du plat
+                            PlatPropose plat = platUniqueViewModel.getSelectedPlat().getValue();
+                            plat.addSupplementActif(platPropose);
 
                         }
 
                         @Override
                         public void onRemoveQuantity(PlatPropose platPropose) {
-                            //si la quantité du plat est à 0, on le retire du panier
+                            //si la quantité du plat est à 0, on le retire de la liste des supplements du plat
                             if (platPropose.getQuantite() == 0) {
-                                platUniqueViewModel.getPanier().getValue().remove(platPropose);
+                                PlatPropose plat = platUniqueViewModel.getSelectedPlat().getValue();
+                                plat.removeSupplementActif(platPropose);
                             }
 
                         }

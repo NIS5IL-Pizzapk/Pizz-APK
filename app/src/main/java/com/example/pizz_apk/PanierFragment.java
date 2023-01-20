@@ -76,6 +76,11 @@ public class PanierFragment extends Fragment {
             public void onRemovePlat(PlatPropose plat) {
                 platUniqueViewModel.removePlatFromPanier(plat);
                 binding.tvPrixTotalPanier.setText("Prix total " + platUniqueViewModel.getTotalPrice() + " €");
+                // rafraîchir l'affichage du panier après suppression d'un plat sans passer par l'adapter (pas de notify)
+                binding.rvItemPanier.setAdapter(new PanierAdapter(platUniqueViewModel.getPanier(), getContext(), this));
+
+
+
             }
         });
 
